@@ -1,0 +1,19 @@
+<form  [formGroup]="userLoginForm">
+  <h3>Login Here</h3>
+
+  <label for="username">Username </label>
+  <input type="email" id="email" class="form-control form-control-lg" formControlName="username" autocomplete="email" />
+
+
+  <label for="password">Password</label>
+  <input type="password" id="password" class="form-control form-control-lg" formControlName="password" autocomplete="current-password" />
+
+
+  <button class="btn btn-outline-light btn-lg px-5" (click)=" login()">Giriş Yap</button>
+
+  <div class="social">
+    <div class="go"><i class="fab fa-google"></i>  Gsoogle</div>
+    <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+  </div>
+
+</form>
