@@ -6,17 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PMS.Entity.Concrete
+namespace PMS.Entity.Dtos
 {
-    public class UserPosition : IEntity
+    public class CreateAddressDto
     {
-        [Key]
-        public int USERPOSITIONID { get; set; }
 
         public int USERID { get; set; }
 
-        public int POSITIONID { get; set; } 
+        public string ADDRESSDETAIL { get; set; }
 
+        public string CITY { get; set; }
 
+        public string COUNTRY { get; set; }
+
+        public string STATE { get; set; }
     }
 }

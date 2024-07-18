@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PMS.Core.Entities.Abstracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,19 +8,17 @@ using System.Threading.Tasks;
 
 namespace PMS.Entity.Concrete
 {
-    public class UserPerformance
+    public class UserPerformance : IEntity
     {
         [Key]
-        public int UserId { get; set; }
+        public int USERID { get; set; }
 
-        public string Name {  get; set; }   
+        public string NAME {  get; set; }   
 
-        public string Email {  get; set; }  
+        public string EMAIL {  get; set; }  
 
-        public DateTime BirthDate { get; set; }
+        public DateTime BIRTHDATE { get; set; }
 
-        public int AddressId {  get; set; }
-
-        public string Phone {  get; set; }
+        public string PHONE {  get; set; } 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PMS.Core.Entities.Abstracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace PMS.Entity.Concrete
 {
-    public class Position
+    public class Position : IEntity
     {
         [Key]
-        public int PositionId { get; set; }
+        public int POSITIONID { get; set; }
 
-        public string PositionName {  get; set; }
+        public string POSITIONNAME {  get; set; }
 
-        public string PositionLevel {  get; set; }   
+        public string POSITIONLEVEL {  get; set; }    
     }
 }

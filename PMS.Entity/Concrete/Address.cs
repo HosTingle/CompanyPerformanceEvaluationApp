@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PMS.Core.Entities.Abstracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace PMS.Entity.Concrete
 {
-    public class Address
+    public class Address: IEntity
     {
         [Key]
-        public int AddressId { get; set; }
+        public int ADDRESSID { get; set; }
 
-        public int UserId { get; set; }
+        public int USERID { get; set; }
 
-        public string AddressDetail{ get; set; }
+        public string ADDRESSDETAIL{ get; set; } 
 
-        public string City { get; set; }
+        public string CITY { get; set; }
 
-        public string Country { get; set; }
+        public string COUNTRY { get; set; }
 
-        public string State {  get; set; }  
+        public string STATE {  get; set; }  
 
 
     }

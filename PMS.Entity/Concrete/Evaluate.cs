@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PMS.Core.Entities.Abstracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace PMS.Entity.Concrete
 {
-    public class Evaluate
+    public class Evaluate : IEntity
     {
         [Key]
-        public int EvaluationId{ get; set; }
+        public int EVALUATIONID { get; set; }
 
-        public int EvaluatorId { get; set; }
+        public int EVALUATORID { get; set; }
 
-        public int EvaluateeId { get; set; }
+        public int EVALUATEEID { get; set; }
 
-        public DateTime EvakuatıonDate { get; set; }
+        public DateTime EVALUATIONDATE { get; set; }
 
-        public int EvalQuestionId {  get; set; }
-        public int EvaluateScore {  get; set; } 
+        public int EVALQUESTIONID {  get; set; }
+        public int EVALUATESCORE {  get; set; } 
 
-        public int TaskId {  get; set; }    
+        public int TASKID {  get; set; }    
 
-        public string FeedBackComment {  get; set; }    
+        public string FEEDBACKCOMMENT {  get; set; }     
     }
 }
