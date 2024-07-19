@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.0.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PMS.Core\PMS.Core.csproj" />
     <ProjectReference Include="..\PMS.DataAccess\PMS.DataAccess.csproj" />
     <ProjectReference Include="..\PMS.Entity\PMS.Entity.csproj" />

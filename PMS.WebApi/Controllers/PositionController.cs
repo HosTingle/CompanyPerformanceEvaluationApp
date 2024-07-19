@@ -7,52 +7,19 @@ namespace PMS.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserPerformanceController : ControllerBase
+    public class PositionController : ControllerBase
     {
-        IUserPerformanceService _userPerformanceService;
+        IPositionService _positionService;
 
-        public UserPerformanceController(IUserPerformanceService userPerformanceService)
+        public PositionController(IPositionService positionService)
         {
-            _userPerformanceService = userPerformanceService;
+            _positionService = positionService;
         }
 
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
-            var result=await _userPerformanceService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpPost("add")]
-        public IActionResult Add(UserPerformance userPerformance) 
-        {
-            
-            var result = _userPerformanceService.Add(userPerformance);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpPost("update")]
-        public IActionResult Update(UserPerformance userPerformance) 
-        {
-
-            var result = _userPerformanceService.Update(userPerformance);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpPost("delete")]
-        public IActionResult Delete(UserPerformance userPerformance)
-        {
-             
-            var result = _userPerformanceService.Delete(userPerformance); 
+            var result = await _positionService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -62,7 +29,37 @@ namespace PMS.WebApi.Controllers
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(int id)
         {
-            var result=await _userPerformanceService.GetById(id);
+            var result = await _positionService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("add")]
+        public IActionResult Add(Position position)
+        {
+            var result = _positionService.Add(position);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("delete")]
+        public IActionResult Delete(Position position)
+        {
+            var result = _positionService.Delete(position);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("update")]
+        public IActionResult Update(Position position)
+        {
+            var result = _positionService.Update(position);
             if (result.Success)
             {
                 return Ok(result);

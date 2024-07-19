@@ -27,7 +27,7 @@ namespace PMS.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPost("add")]
-        public async Task<IActionResult> Add(Address address) 
+        public IActionResult Add(Address address) 
         {
             var result = _addressService.Add(address); 
             if (result.Success)
@@ -37,7 +37,7 @@ namespace PMS.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPost("delete")]
-        public async Task<IActionResult> Delete(Address address) 
+        public IActionResult Delete(Address address) 
         {
             var result = _addressService.Delete(address);
             if (result.Success)
@@ -47,7 +47,7 @@ namespace PMS.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPost("update")]
-        public async Task<IActionResult> Update(Address address)
+        public IActionResult Update(Address address)
         {
             var result = _addressService.Update(address);
             if (result.Success)

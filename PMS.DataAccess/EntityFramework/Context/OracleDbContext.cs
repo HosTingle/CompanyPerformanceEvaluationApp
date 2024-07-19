@@ -17,14 +17,14 @@ namespace PMS.DataAccess.EntityFramework.Context
         }
 
         public DbSet<Address> ADDRESS { get; set; }
-        public DbSet<Claim> Claims { get; set; }
-        public DbSet<Evaluate> Evaluates { get; set; }
-        public DbSet<EvaluateQuestion> EvaluateQuestions { get; set; }
-        public DbSet<Position> Positions { get; set; }
-        public DbSet<PositionClaim> PositionClaims { get; set; }
-        public DbSet<UserTask> UserTasks { get; set; }
-        public DbSet<UserAuth> UserAuths { get; set; }
+        public DbSet<Claim> CLAIM { get; set; } 
+        public DbSet<Evaluate> EVALUATE { get; set; }
+        public DbSet<EvaluateQuestion> EVALUATE_QUESTION { get; set; } 
+        public DbSet<Position> POSITION { get; set; } 
+        public DbSet<PositionClaim> POSITION_CLAIM { get; set; } 
+        public DbSet<UserTask> USERTASK { get; set; }
+        public DbSet<UserAuth> USER_AUTH { get; set; } 
         public DbSet<UserPerformance> USER_PERFORMANCE { get; set; } 
-        public DbSet<UserPosition> UserPositions { get; set; }
+        public DbSet<UserPosition> USER_POSITION { get; set; } 
     }
 }

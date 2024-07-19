@@ -7,52 +7,19 @@ namespace PMS.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserPerformanceController : ControllerBase
+    public class UserAuthController : ControllerBase
     {
-        IUserPerformanceService _userPerformanceService;
+        IUserAuthService _userAuthService;
 
-        public UserPerformanceController(IUserPerformanceService userPerformanceService)
+        public UserAuthController(IUserAuthService userAuthService)
         {
-            _userPerformanceService = userPerformanceService;
+            _userAuthService = userAuthService;
         }
 
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
-            var result=await _userPerformanceService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpPost("add")]
-        public IActionResult Add(UserPerformance userPerformance) 
-        {
-            
-            var result = _userPerformanceService.Add(userPerformance);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpPost("update")]
-        public IActionResult Update(UserPerformance userPerformance) 
-        {
-
-            var result = _userPerformanceService.Update(userPerformance);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpPost("delete")]
-        public IActionResult Delete(UserPerformance userPerformance)
-        {
-             
-            var result = _userPerformanceService.Delete(userPerformance); 
+            var result = await _userAuthService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -62,7 +29,37 @@ namespace PMS.WebApi.Controllers
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(int id)
         {
-            var result=await _userPerformanceService.GetById(id);
+            var result = await _userAuthService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("add")]
+        public IActionResult Add(UserAuth userAuth)
+        {
+            var result = _userAuthService.Add(userAuth);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("delete")]
+        public IActionResult Delete(UserAuth userAuth)
+        {
+            var result = _userAuthService.Delete(userAuth);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("update")]
+        public IActionResult Update(UserAuth userAuth)
+        {
+            var result = _userAuthService.Update(userAuth);
             if (result.Success)
             {
                 return Ok(result);
