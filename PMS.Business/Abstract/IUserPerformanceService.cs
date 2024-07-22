@@ -1,4 +1,5 @@
-﻿using PMS.Core.Utilities.Results;
+﻿using PMS.Core.Entities.Concrete;
+using PMS.Core.Utilities.Results;
 using PMS.Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace PMS.Business.Abstract
 
 
         Task<IDataResult<List<UserPerformance>>> GetAll();
-        Task<IDataResult<UserPerformance>> GetById(int id); 
+        Task<IDataResult<UserPerformance>> GetById(int id);
+        Task<IDataResult<UserPerformance>> GetByEmail(string email); 
     }
 }

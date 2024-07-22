@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PMS.Core.Entities.Concrete;
 using PMS.Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace PMS.DataAccess.EntityFramework.Context
         }
 
         public DbSet<Address> ADDRESS { get; set; }
-        public DbSet<Claim> CLAIM { get; set; } 
+        public DbSet<ClaimUser> CLAIM { get; set; } 
         public DbSet<Evaluate> EVALUATE { get; set; }
         public DbSet<EvaluateQuestion> EVALUATE_QUESTION { get; set; } 
         public DbSet<Position> POSITION { get; set; } 

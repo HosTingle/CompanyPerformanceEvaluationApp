@@ -1,4 +1,5 @@
 ﻿using PMS.Business.Abstract;
+using PMS.Core.Entities.Concrete;
 using PMS.Core.Utilities.Results;
 using PMS.DataAccess.Abstract;
 using PMS.Entity.Concrete;
@@ -19,29 +20,29 @@ namespace PMS.Business.Concrete
             _claimDal = claimDal;
         }
 
-        public IResult Add(Claim claim)
+        public IResult Add(ClaimUser claim)
         {
             _claimDal.Add(claim);
             return new SuccessResult("Eklendi");
         }
 
-        public IResult Delete(Claim claim)
+        public IResult Delete(ClaimUser claim)
         {
             _claimDal.Delete(claim);
             return new SuccessResult("Silindi");
         }
 
-        public async Task<IDataResult<List<Claim>>> GetAll()
+        public async Task<IDataResult<List<ClaimUser>>> GetAll()
         {
-            return new SuccessDataResult<List<Claim>>(await _claimDal.GetAll(), "Verileri Getirildi");
+            return new SuccessDataResult<List<ClaimUser>>(await _claimDal.GetAll(), "Verileri Getirildi");
         }
 
-        public async Task<IDataResult<Claim>> GetById(int id)
+        public async Task<IDataResult<ClaimUser>> GetById(int id)
         {
-            return new SuccessDataResult<Claim>(await _claimDal.Get(x=>x.CLAIMID == id));
+            return new SuccessDataResult<ClaimUser>(await _claimDal.Get(x=>x.CLAIMID == id));
         }
 
-        public IResult Update(Claim claim)
+        public IResult Update(ClaimUser claim)
         {
             _claimDal.Update(claim);
             return new SuccessResult("Güncellendi");

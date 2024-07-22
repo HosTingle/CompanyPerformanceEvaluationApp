@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Business.Abstract;
+using PMS.Core.Entities.Concrete;
 using PMS.Entity.Concrete;
 
 namespace PMS.WebApi.Controllers
@@ -26,28 +27,6 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("add")]
-        public IActionResult Add(UserPerformance userPerformance) 
-        {
-            
-            var result = _userPerformanceService.Add(userPerformance);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpPost("update")]
-        public IActionResult Update(UserPerformance userPerformance) 
-        {
-
-            var result = _userPerformanceService.Update(userPerformance);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
         [HttpPost("delete")]
         public IActionResult Delete(UserPerformance userPerformance)
         {
@@ -63,6 +42,16 @@ namespace PMS.WebApi.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var result=await _userPerformanceService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getbyemail")]
+        public async Task<IActionResult> GetByEmail(string email)  
+        {
+            var result = await _userPerformanceService.GetByEmail(email); 
             if (result.Success)
             {
                 return Ok(result);

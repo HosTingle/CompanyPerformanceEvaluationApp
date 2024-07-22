@@ -1,4 +1,5 @@
-﻿using PMS.Core.Utilities.Results;
+﻿using PMS.Core.Entities.Concrete;
+using PMS.Core.Utilities.Results;
 using PMS.Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,13 @@ namespace PMS.Business.Abstract
 {
     public interface IClaimService
     {
-        IResult Add(Claim claim);
-        IResult Delete(Claim claim);
+        IResult Add(ClaimUser claim);
+        IResult Delete(ClaimUser claim);
 
-        IResult Update(Claim claim);
+        IResult Update(ClaimUser claim);
 
-        Task<IDataResult<Claim>> GetById(int id); 
+        Task<IDataResult<ClaimUser>> GetById(int id); 
 
-        Task<IDataResult<List<Claim>>> GetAll();
+        Task<IDataResult<List<ClaimUser>>> GetAll();
     }
 }

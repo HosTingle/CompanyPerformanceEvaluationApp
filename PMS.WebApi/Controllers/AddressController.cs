@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Business.Abstract;
+using PMS.Core.Entities.Concrete;
 using PMS.Entity.Concrete;
 
 namespace PMS.WebApi.Controllers

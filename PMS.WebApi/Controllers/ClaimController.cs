@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Business.Abstract;
+using PMS.Core.Entities.Concrete;
 using PMS.Entity.Concrete;
 
 namespace PMS.WebApi.Controllers
@@ -36,7 +37,7 @@ namespace PMS.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPost("add")]
-        public IActionResult Add(Claim claim)
+        public IActionResult Add(ClaimUser claim)
         {
             var result =_claimService.Add(claim);
             if (result.Success)
@@ -46,7 +47,7 @@ namespace PMS.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPost("update")]
-        public IActionResult Update(Claim claim)
+        public IActionResult Update(ClaimUser claim)
         {
             var result = _claimService.Update(claim);
             if (result.Success)
@@ -56,7 +57,7 @@ namespace PMS.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPost("delete")]
-        public IActionResult Delete(Claim claim) 
+        public IActionResult Delete(ClaimUser claim) 
         {
             var result = _claimService.Delete(claim);
             if (result.Success)

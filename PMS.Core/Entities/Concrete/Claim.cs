@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PMS.Entity.Concrete
+namespace PMS.Core.Entities.Concrete
 {
-    public class Claim : IEntity
+    public class ClaimUser : IEntity  
     {
         [Key]
         public int CLAIMID { get; set; }

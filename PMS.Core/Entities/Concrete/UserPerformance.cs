@@ -6,19 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PMS.Entity.Concrete
+namespace PMS.Core.Entities.Concrete
 {
-    public class UserAuth : IEntity
+    public class UserPerformance : IEntity
     {
         [Key]
-        public int USERAUTHID { get; set; }
         public int USERID { get; set; }
 
-        public string USERNAME { get; set; }
+        public string NAME { get; set; }
 
-        public string PASSWORDHASH {  get; set; }
+        public string EMAIL { get; set; }
 
-        public string PASSWORDSALT {  get; set; }
+        public DateTime BIRTHDATE { get; set; }
 
+        public string PHONE { get; set; }
     }
 }

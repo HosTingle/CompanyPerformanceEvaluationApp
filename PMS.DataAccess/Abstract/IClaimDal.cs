@@ -1,4 +1,5 @@
 ﻿using PMS.Core.DataAccess;
+using PMS.Core.Entities.Concrete;
 using PMS.Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PMS.DataAccess.Abstract
 {
-    public interface IClaimDal:IEntityRepository<Claim>
+    public interface IClaimDal:IEntityRepository<ClaimUser>
     {
     }
 }

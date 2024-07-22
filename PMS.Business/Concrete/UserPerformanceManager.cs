@@ -1,4 +1,5 @@
 ﻿using PMS.Business.Abstract;
+using PMS.Core.Entities.Concrete;
 using PMS.Core.Utilities.Results;
 using PMS.DataAccess.Abstract;
 using PMS.Entity.Concrete;
@@ -39,6 +40,10 @@ namespace PMS.Business.Concrete
         public async Task<IDataResult<UserPerformance>> GetById(int id)
         {
             return new SuccessDataResult<UserPerformance>(await _userPerformanceDal.Get(x=>x.USERID==id)); 
+        }
+        public async Task<IDataResult<UserPerformance>> GetByEmail(string email)   
+        {
+            return new SuccessDataResult<UserPerformance>(await _userPerformanceDal.Get(x => x.EMAIL == email));
         }
 
         public IResult Update(UserPerformance userPerformance)

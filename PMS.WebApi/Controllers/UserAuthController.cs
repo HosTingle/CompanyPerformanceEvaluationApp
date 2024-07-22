@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Business.Abstract;
+using PMS.Core.Entities.Concrete;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 
 namespace PMS.WebApi.Controllers
 {
@@ -66,5 +68,33 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPost("register")] 
+        public IActionResult Register(UserRegisterDto userRegisterDto) 
+        {
+            
+            var result = _userAuthService.Register(userRegisterDto); 
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserLoginDto userLoginDto) 
+        {
+
+            var result = await _userAuthService.Login(userLoginDto);
+            if (!result.Success)
+            {
+                return BadRequest(userLoginDto);
+            }
+            var res=await _userAuthService.CreateAccessToken(result.Data);
+            if (result.Success)
+            {
+                return Ok(res);
+            }
+            return BadRequest(res);
+        }
+
     }
 }

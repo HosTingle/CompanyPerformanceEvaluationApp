@@ -1,4 +1,5 @@
 ﻿using PMS.Core.DataAccess.EntityFramework;
+using PMS.Core.Entities.Concrete;
 using PMS.DataAccess.Abstract;
 using PMS.DataAccess.EntityFramework.Context;
 using PMS.Entity.Concrete;

@@ -1,4 +1,5 @@
-﻿using PMS.Core.Utilities.Results;
+﻿using PMS.Core.Entities.Concrete;
+using PMS.Core.Utilities.Results;
 using PMS.Entity.Concrete;
 using System;
 using System.Collections.Generic;
