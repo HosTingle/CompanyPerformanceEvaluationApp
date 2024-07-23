@@ -10,7 +10,7 @@ import { ApiUrl } from '../constants/api-url';
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl=ApiUrl.GetUserTable+"UserTable";
+  apiUrl=ApiUrl.GetUserTable+"UserAuth/login";
   constructor(private httpClient:HttpClient) {
     
    }

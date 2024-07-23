@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import {DecimalPipe, DatePipe, CurrencyPipe, CommonModule} from '@angular/common';
 import { UserService } from '../../../services/user.service';
 import { UserTable } from '../../../model/UserTable/userTable';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-data-display',
   standalone: true,
@@ -11,18 +12,15 @@ import { UserTable } from '../../../model/UserTable/userTable';
   styleUrl: './data-display.component.css'
 })
 export class DataDisplayComponent implements OnInit{
-  datas:UserTable[]=[];
-  constructor(private userService:UserService) {
+  constructor(
+    private router:Router,
+  ) {
     
   }
 ngOnInit(): void {
-this.fetchData()
 }
 
-fetchData(){
-  this.userService.fetchdata().subscribe((response:any)=>{
-    console.log(response);
-    this.datas=response;
-  });
+logout(){
+  this.router.navigate(["loginpage"]);
 }
 }

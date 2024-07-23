@@ -2,20 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth.service.service';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '../../services/local-storage.service';
 import { ToastrService } from 'ngx-toastr';
-import { Token } from '../../model/token';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true, 
+  selector: 'app-signup',
+  standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.css'
 })
-export class LoginComponent implements OnInit {
-  userLoginForm!: FormGroup;
- datas!:Token;
+export class SignupComponent implements OnInit {
+  userRegisterForm!: FormGroup;
   constructor(
     private authService: AuthServiceService,
     private formBuilder: FormBuilder,
@@ -25,25 +23,27 @@ export class LoginComponent implements OnInit {
  
   ) {}
   ngOnInit(): void {
-    this.createUserLoginForm();
+    this.createUserRegisterForm();
   }
-
-  createUserLoginForm() {
-    this.userLoginForm = this.formBuilder.group({
+  createUserRegisterForm() { 
+    this.userRegisterForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
+      phone:['', Validators.required],
+      date:['', Validators.required],
     });
   }
-  login() {
+  register() {
     if (true) {
-      let loginModel = Object.assign({}, this.userLoginForm.value);
-      this.authService.login(loginModel).subscribe((response:any)=>{
-        if (response.data !=null) {
-          this.toastrService.success('Giriş Başarili', 'Başarili', {
+      let registerModel = Object.assign({}, this.userRegisterForm.value);
+      this.authService.register(registerModel).subscribe((response:any)=>{
+        if (response.success) {
+          this.toastrService.success(response.message, 'Başarili', {  
             positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
           });
-          this.localStorageService.setItem('token', response.data.token);
-          this.router.navigate(["homepage"]);
+          this.router.navigate(["loginpage"]);
         } else {
           this.toastrService.error('Giriş Başarisiz', 'Doğrulama Hatasi', {
             positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
@@ -54,7 +54,5 @@ export class LoginComponent implements OnInit {
   
     } 
   }
-  routeregister(){
-    this.router.navigate(["signuppage"]);
-  }
+
 }

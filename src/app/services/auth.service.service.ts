@@ -5,6 +5,8 @@ import { ApiUrl } from '../constants/api-url';
 import { Observable, Subject } from 'rxjs';
 import { EntityReponseModel } from '../model/entityResponseModel';
 import { Token } from '../model/token';
+import { Register } from '../model/register';
+import { ReponseModel } from '../model/responseModel';
 
 
 @Injectable({
@@ -18,12 +20,16 @@ export class AuthServiceService {
   isLoggedInChanged = new Subject<boolean>();
 
   login(loginModel:Login):Observable<EntityReponseModel<Token>>{
-    let newPath = this.apiUrl + 'Auth/login'
-    return this.httpClient.post<EntityReponseModel<Token>>(newPath,loginModel) 
+    let newPath = this.apiUrl + 'UserAuth/login'
+     return this.httpClient.post<EntityReponseModel<Token>>(newPath,loginModel)
   }
   loggedin(){
     this.loggedIn = true;
     this.isLoggedInChanged.next(true);
+  }
+  register(registerModel:Register):Observable<ReponseModel>{
+    let newPath = this.apiUrl + 'UserAuth/register'
+     return this.httpClient.post<ReponseModel>(newPath,registerModel)
   }
 
 }
