@@ -40,6 +40,10 @@ namespace PMS.Business.Concrete
         {
             return new SuccessDataResult<Position>(await _positionDal.Get(x=>x.POSITIONID==id));
         }
+        public async Task<IDataResult<Position>> GetByName(string name)  
+        {
+            return new SuccessDataResult<Position>(await _positionDal.Get(x => x.POSITIONNAME == name));
+        }
 
         public IResult Update(Position position)
         {

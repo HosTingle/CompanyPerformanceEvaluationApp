@@ -13,5 +13,6 @@ namespace PMS.DataAccess.EntityFramework
 {
     public class EfUserAuthDal:EfEntityRepositoryBase<UserAuth,OracleDbContext>,IUserAuthDal
     {
+     
     }
 }

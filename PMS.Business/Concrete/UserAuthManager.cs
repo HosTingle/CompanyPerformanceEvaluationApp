@@ -18,11 +18,15 @@ namespace PMS.Business.Concrete
     {
         IUserAuthDal _userAuthDal; 
         IUserPerformanceService _userPerformanceService; 
+        IUserPositionDal _userPositionDal;
+        IPositionService _positionService; 
 
-        public UserAuthManager(IUserAuthDal userAuthDal, IUserPerformanceService userPerformanceService) 
+        public UserAuthManager(IUserAuthDal userAuthDal, IUserPerformanceService userPerformanceService,IPositionService positionService, IUserPositionDal userPositionDal) 
         {
             _userAuthDal = userAuthDal;
             _userPerformanceService = userPerformanceService;
+            _positionService = positionService;
+            _userPositionDal = userPositionDal; 
         }
 
         public IResult Add(UserAuth userAuth)
@@ -52,13 +56,23 @@ namespace PMS.Business.Concrete
             _userAuthDal.Update(userAuth);
             return new SuccessResult("Güncellendi");
         }
-        public async Task<IDataResult<TokenResponseViewModel>> CreateAccessToken(UserAuth userAuth)
+        public async Task<IDataResult<TokenResponseViewModel>> CreateAccessToken(UserAuth userAuth,UserPositionDetailDto userPositionDetailDto )
         {
-
-            var accessToken = JwtTokenGenerator.GenerateToken(userAuth);
+            var sa = new Authandpositionmix
+            {
+                PASSWORDHASH = userAuth.PASSWORDHASH,
+                PASSWORDSALT = userAuth.PASSWORDSALT,
+                POSITIONLEVEL=userPositionDetailDto.POSITIONLEVEL,
+                USERAUTHID = userAuth.USERAUTHID,
+                POSITIONNAME=userPositionDetailDto.POSITIONNAME,
+                USERNAME=userAuth.USERNAME,
+                USERID=userAuth.USERID,
+                USERPOSITIONID = userPositionDetailDto.USERPOSITIONID
+            };
+           var accessToken = JwtTokenGenerator.GenerateToken(sa);
             return new SuccessDataResult<TokenResponseViewModel>(accessToken, "Token Üretildi");
         }
-        public IDataResult<UserAuth> Register(UserRegisterDto userRegisterDto) 
+        public IResult Register(UserRegisterDto userRegisterDto) 
         {
             byte[] passwordHash, passwordSalt;
             var user = new UserPerformance
@@ -81,27 +95,32 @@ namespace PMS.Business.Concrete
               
             };
             var result=Add(usera);
+            var position = new UserPosition
+            {
+                POSITIONID=_positionService.GetByName(userRegisterDto.role).Result.Data.POSITIONID,
+                USERID= sa.Result.Data.USERID,
+            };
+            _userPositionDal.Add(position); 
             if (result.Success)
             {
-                return new SuccessDataResult<UserAuth>(usera, "User oluşturuldu");
+                return new SuccessResult("User oluşturuldu");
             }
             else
             {
-                return new ErrorDataResult<UserAuth>(usera, "User oluşturulamadı"); 
+                return new ErrorResult("User oluşturulamadı"); 
             }
-
-
         }
         public async Task<IDataResult<UserAuth>> Login(UserLoginDto userForLoginDto)
         {
             var check=await _userAuthDal.Get(x => x.USERNAME == userForLoginDto.Username);
+
             if (check == null)
             {
                 return new ErrorDataResult<UserAuth>("Username bulunamadı"); 
             }
             if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, check.PASSWORDHASH,check.PASSWORDSALT))
             {
-                return new ErrorDataResult<UserAuth>("Şifre doğru değil");
+                return new ErrorDataResult<UserAuth>("Sifre doğru değil");
             }
             return new SuccessDataResult<UserAuth>(check, "Giris Basarili");
         }

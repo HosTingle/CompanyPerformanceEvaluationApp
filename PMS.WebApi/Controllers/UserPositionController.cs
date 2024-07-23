@@ -22,7 +22,7 @@ namespace PMS.WebApi.Controllers
             var result = await _userPositionService.GetAll();
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -32,7 +32,7 @@ namespace PMS.WebApi.Controllers
             var result = await _userPositionService.GetById(id);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -42,7 +42,7 @@ namespace PMS.WebApi.Controllers
             var result = _userPositionService.Add(userPosition);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -52,7 +52,7 @@ namespace PMS.WebApi.Controllers
             var result = _userPositionService.Update(userPosition);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -62,7 +62,17 @@ namespace PMS.WebApi.Controllers
             var result = _userPositionService.Delete(userPosition);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getalldetails")]
+        public async Task<IActionResult> GetAllDetials(int userid)
+        {
+            var result =await  _userPositionService.GetUserPositionDetails(userid);
+            if (result.Success)
+            {
+                return Ok(result);
             }
             return BadRequest(result);
         }

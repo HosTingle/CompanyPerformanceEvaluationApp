@@ -16,11 +16,10 @@ namespace PMS.Business.Abstract
         IResult Add(UserAuth userAuth);
         IResult Delete(UserAuth userAuth);
         IResult Update(UserAuth userAuth);
-
-        Task<IDataResult<TokenResponseViewModel>> CreateAccessToken(UserAuth userAuth); 
+        Task<IDataResult<TokenResponseViewModel>> CreateAccessToken(UserAuth userAuth,UserPositionDetailDto userPositionDetailDto); 
         Task<IDataResult<List<UserAuth>>> GetAll();
         Task<IDataResult<UserAuth>> GetById(int id);
-        IDataResult<UserAuth> Register(UserRegisterDto userRegisterDto);
+        IResult Register(UserRegisterDto userRegisterDto);
         Task<IDataResult<UserAuth>> Login(UserLoginDto userForLoginDto);
 
 

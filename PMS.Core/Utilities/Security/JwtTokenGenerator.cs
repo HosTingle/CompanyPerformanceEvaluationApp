@@ -13,7 +13,7 @@ namespace PMS.Core.Utilities.Security
 {
     public class JwtTokenGenerator
     {
-        public static TokenResponseViewModel GenerateToken(UserAuth model)
+        public static TokenResponseViewModel GenerateToken(Authandpositionmix model)
         {
             var claims = new List<Claim>();
 
@@ -24,7 +24,8 @@ namespace PMS.Core.Utilities.Security
             if (!string.IsNullOrWhiteSpace(model.USERID.ToString()))
             {
                 claims.Add(new Claim("USERID", model.USERID.ToString()));
-
+                claims.Add(new Claim("POSITIONNAME", model.POSITIONNAME.ToString()));
+                claims.Add(new Claim("POSITIONLEVEL", model.POSITIONLEVEL.ToString()));         
             }
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.key));
             var signinCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

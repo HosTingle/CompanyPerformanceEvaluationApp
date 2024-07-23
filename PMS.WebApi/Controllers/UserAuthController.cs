@@ -12,10 +12,11 @@ namespace PMS.WebApi.Controllers
     public class UserAuthController : ControllerBase
     {
         IUserAuthService _userAuthService;
-
-        public UserAuthController(IUserAuthService userAuthService)
+        IUserPositionService _userpositionService;
+        public UserAuthController(IUserAuthService userAuthService, IUserPositionService userpositionService) 
         {
             _userAuthService = userAuthService;
+            _userpositionService = userpositionService; 
         }
 
         [HttpGet("getall")]
@@ -72,7 +73,7 @@ namespace PMS.WebApi.Controllers
         public IActionResult Register(UserRegisterDto userRegisterDto) 
         {
             
-            var result = _userAuthService.Register(userRegisterDto); 
+            var result = _userAuthService.Register(userRegisterDto);
             if (result.Success)
             {
                 return Ok(result);
@@ -86,15 +87,18 @@ namespace PMS.WebApi.Controllers
             var result = await _userAuthService.Login(userLoginDto);
             if (!result.Success)
             {
-                return BadRequest(userLoginDto);
+                return Ok(result);
             }
-            var res=await _userAuthService.CreateAccessToken(result.Data);
+            var data2= _userpositionService.GetUserPositionDetails(result.Data.USERID);
+           
+            var res=await _userAuthService.CreateAccessToken(result.Data,data2.Result.Data);
             if (result.Success)
             {
                 return Ok(res);
             }
-            return BadRequest(res);
+            return Ok(res);
         }
+      
 
     }
 }
