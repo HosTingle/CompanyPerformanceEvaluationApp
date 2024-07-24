@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Business.Abstract;
 using PMS.Core.Entities.Concrete;
@@ -18,7 +19,7 @@ namespace PMS.WebApi.Controllers
             _userAuthService = userAuthService;
             _userpositionService = userpositionService; 
         }
-
+        [Authorize]
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
@@ -90,7 +91,6 @@ namespace PMS.WebApi.Controllers
                 return Ok(result);
             }
             var data2= _userpositionService.GetUserPositionDetails(result.Data.USERID);
-           
             var res=await _userAuthService.CreateAccessToken(result.Data,data2.Result.Data);
             if (result.Success)
             {
