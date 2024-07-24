@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { DataDisplayComponent } from './components/data-display/dataDisplay/data-display.component';
 import { LoginComponent } from "./components/login/login.component";
 
 @Component({
@@ -8,7 +8,7 @@ import { LoginComponent } from "./components/login/login.component";
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, DataDisplayComponent, LoginComponent]
+    imports: [CommonModule,RouterOutlet, LoginComponent]
 })
 export class AppComponent {
   title = 'my-angular-app';

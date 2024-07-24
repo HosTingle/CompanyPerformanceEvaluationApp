@@ -4,7 +4,8 @@ import { AuthServiceService } from '../../services/auth.service.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { ToastrService } from 'ngx-toastr';
-import { Token } from '../../model/token';
+import { Token } from '../../model/UserAuth/token';
+import { UserStoreService } from '../../services/user-store.service';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +23,11 @@ export class LoginComponent implements OnInit {
     private router:Router,
     private toastrService: ToastrService,
     private localStorageService: LocalStorageService,
+    private userStore:UserStoreService
  
   ) {}
   ngOnInit(): void {
+    this.checkloginin();
     this.createUserLoginForm();
   }
 
@@ -35,7 +38,6 @@ export class LoginComponent implements OnInit {
     });
   }
   login() {
-    if (true) {
       let loginModel = Object.assign({}, this.userLoginForm.value);
       this.authService.login(loginModel).subscribe((response:any)=>{
         if (response.data !=null) {
@@ -43,16 +45,24 @@ export class LoginComponent implements OnInit {
             positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
           });
           this.localStorageService.setItem('token', response.data.token);
+          const tokenPayload=this.authService.decodejwt();
+          this.userStore.setFullNameForStore(tokenPayload.USERNAME)
+          this.userStore.setRoleForStore(tokenPayload.POSITIONNAME)
           this.router.navigate(["homepage"]);
         } else {
           this.toastrService.error('Giriş Başarisiz', 'Doğrulama Hatasi', {
             positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
           });
         }
-
       });
+  }
+  checkloginin(){
+    if(this.authService.loggedin()){
+       this.router.navigate(['homepage'])
+    }
+    else{
+    }
   
-    } 
   }
   routeregister(){
     this.router.navigate(["signuppage"]);
