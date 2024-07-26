@@ -29,6 +29,7 @@ namespace PMS.DataAccess.EntityFramework
                        POSITIONLEVEL= a.POSITIONLEVEL,
                        POSITIONNAME= a.POSITIONNAME,
                        USERNAME = au.USERNAME,
+                       USERAUTHID=au.USERAUTHID,
                       
                    };
         }

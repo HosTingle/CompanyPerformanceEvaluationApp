@@ -15,5 +15,6 @@ namespace PMS.Entity.Dtos
         public string POSITIONLEVEL { get; set; }
         public int USERID { get; set; }
         public string USERNAME { get; set; }
+        public int USERAUTHID { get; set; }
     }
 }

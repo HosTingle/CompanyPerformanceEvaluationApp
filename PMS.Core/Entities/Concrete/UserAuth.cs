@@ -19,6 +19,9 @@ namespace PMS.Core.Entities.Concrete
         public byte[] PASSWORDHASH { get; set; }
 
         public byte[] PASSWORDSALT { get; set; }
+        public string? REFRESHTOKEN { get; set; }    
+
+        public DateTime? REFRESHTOKENEXPIRETIME { get; set; }
 
     }
 }

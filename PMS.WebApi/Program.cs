@@ -43,6 +43,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidAudience = JwtTokenDefaults.ValidAudience,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.key)),
+        ClockSkew=TimeSpan.Zero,
     };
 });
 var app = builder.Build();

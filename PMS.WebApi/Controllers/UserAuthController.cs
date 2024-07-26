@@ -1,10 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using PMS.Business.Abstract;
 using PMS.Core.Entities.Concrete;
+using PMS.Core.Utilities.Results;
+using PMS.Core.Utilities.Security;
 using PMS.Entity.Concrete;
 using PMS.Entity.Dtos;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace PMS.WebApi.Controllers
 {
@@ -81,6 +88,7 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
+     
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto) 
         {
@@ -89,16 +97,51 @@ namespace PMS.WebApi.Controllers
             if (!result.Success)
             {
                 return Ok(result);
-            }
+            } 
             var data2= _userpositionService.GetUserPositionDetails(result.Data.USERID);
-            var res=await _userAuthService.CreateAccessToken(result.Data,data2.Result.Data);
+            var res=await _userAuthService.CreateAccessToken(data2.Result.Data,1);
+            var newAccesToken=res.Data.Token; 
+            var newRefreshToken = _userAuthService.GenerateRefreshToken();
+            result.Data.REFRESHTOKEN=newRefreshToken;
+            result.Data.REFRESHTOKENEXPIRETIME=DateTime.Now.AddDays(5);
+            _userAuthService.Update(result.Data);
+            var sa = new TokenApiDto()
+            {
+                AccessToken = newAccesToken,
+                RefreshToken = newRefreshToken
+            };
+        
             if (result.Success)
             {
-                return Ok(res);
+                return Ok(new SuccessDataResult<TokenApiDto>(sa, "Giris Basarili"));
             }
-            return Ok(res);
+            return Ok(new ErrorDataResult<TokenApiDto>(sa, "Giris Basarili"));
         }
-      
-
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh(TokenApiDto tokenApiDto)
+        {
+            if (tokenApiDto is null)
+                return BadRequest("Invalid Client Request");
+            string accessToken = tokenApiDto.AccessToken;
+            string refreshToken = tokenApiDto.RefreshToken;
+            var principal = _userAuthService.GetPrincipleFromExpiredToken(accessToken);
+            var username = principal.Identity?.Name;
+                var users = _userAuthService.GetAll().Result.Data;
+            var user =  users.FirstOrDefault(u => u.USERNAME == username);
+            if (user is null || user.REFRESHTOKEN != refreshToken || user.REFRESHTOKENEXPIRETIME <= DateTime.Now)
+                return BadRequest("Invalid Request");
+            var data2 = _userpositionService.GetUserPositionDetails(user.USERID);
+            var newAccessToken = _userAuthService.CreateAccessToken(data2.Result.Data,1).Result.Data.Token; 
+            var newRefreshToken = _userAuthService.GenerateRefreshToken();
+            user.REFRESHTOKEN = newRefreshToken;
+            _userAuthService.Update(user);
+            return Ok(new TokenApiDto()
+            {
+                AccessToken = newAccessToken,
+                RefreshToken = newRefreshToken,
+            });
+        }
     }
+
+
 }

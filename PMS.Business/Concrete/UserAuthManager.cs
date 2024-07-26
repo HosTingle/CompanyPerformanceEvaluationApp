@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using Microsoft.IdentityModel.Tokens;
 using PMS.Business.Abstract;
 using PMS.Core.Entities.Concrete;
 using PMS.Core.Utilities.Results;
@@ -8,7 +9,10 @@ using PMS.Entity.Concrete;
 using PMS.Entity.Dtos;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,20 +60,18 @@ namespace PMS.Business.Concrete
             _userAuthDal.Update(userAuth);
             return new SuccessResult("Güncellendi");
         }
-        public async Task<IDataResult<TokenResponseViewModel>> CreateAccessToken(UserAuth userAuth,UserPositionDetailDto userPositionDetailDto )
+        public async Task<IDataResult<TokenResponseViewModel>> CreateAccessToken(UserPositionDetailDto userPositionDetailDto,int a)
         {
             var sa = new Authandpositionmix
             {
-                PASSWORDHASH = userAuth.PASSWORDHASH,
-                PASSWORDSALT = userAuth.PASSWORDSALT,
                 POSITIONLEVEL=userPositionDetailDto.POSITIONLEVEL,
-                USERAUTHID = userAuth.USERAUTHID,
                 POSITIONNAME=userPositionDetailDto.POSITIONNAME,
-                USERNAME=userAuth.USERNAME,
-                USERID=userAuth.USERID,
-                USERPOSITIONID = userPositionDetailDto.USERPOSITIONID
+                USERNAME= userPositionDetailDto.USERNAME,
+                USERID= userPositionDetailDto.USERID,
+                USERPOSITIONID = userPositionDetailDto.USERPOSITIONID,
+                USERAUTHID= userPositionDetailDto.USERAUTHID,
             };
-           var accessToken = JwtTokenGenerator.GenerateToken(sa);
+           var accessToken = JwtTokenGenerator.GenerateToken(sa,a);
             return new SuccessDataResult<TokenResponseViewModel>(accessToken, "Token Üretildi");
         }
         public IResult Register(UserRegisterDto userRegisterDto) 
@@ -124,5 +126,39 @@ namespace PMS.Business.Concrete
             }
             return new SuccessDataResult<UserAuth>(check, "Giris Basarili");
         }
+        public string GenerateRefreshToken()
+        {
+            var tokenBytes = RandomNumberGenerator.GetBytes(64);
+            var refreshToken = Convert.ToBase64String(tokenBytes);
+
+            var tokenInUser = GetAll().Result.Data.
+            Any(x => x.REFRESHTOKEN == refreshToken);
+            if (tokenInUser)
+            {
+                return GenerateRefreshToken();
+            }
+            return refreshToken;
+        }
+         public ClaimsPrincipal GetPrincipleFromExpiredToken(string token)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.key));
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = key,
+                ValidateLifetime = false
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken securityToken;
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
+            var jwtSecurityToken = securityToken as JwtSecurityToken;
+            if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                throw new SecurityTokenException("This is Invalid Token");
+            return principal;
+
+        }
+
     }
 }

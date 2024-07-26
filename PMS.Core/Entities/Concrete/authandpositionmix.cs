@@ -14,10 +14,8 @@ namespace PMS.Core.Entities.Concrete
         public string POSITIONLEVEL { get; set; }
         public int USERID { get; set; }
         public string USERNAME { get; set; }
-        public int USERAUTHID { get; set; }
 
-        public byte[] PASSWORDHASH { get; set; }
+        public int USERAUTHID {  get; set; }
 
-        public byte[] PASSWORDSALT { get; set; }
     }
 }
