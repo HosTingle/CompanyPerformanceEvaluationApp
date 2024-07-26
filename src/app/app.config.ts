@@ -2,10 +2,10 @@ import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } fr
 import { provideRouter } from '@angular/router';
 import { HttpClientModule, provideHttpClient, withInterceptors, withFetch } from '@angular/common/http';
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { provideToastr } from 'ngx-toastr';
-
 import { tokenInterceptor } from './interceptors/token.interceptor';
+import { BrowserAnimationsModule, NoopAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 export const appConfig: ApplicationConfig = {
 
   providers: [
@@ -16,6 +16,10 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(HttpClientModule),  
     provideToastr(),
     provideHttpClient(withInterceptors([tokenInterceptor])),
+    BrowserModule,
+    BrowserAnimationsModule,
+    provideAnimations(),
+    NoopAnimationsModule
   ],
   
   

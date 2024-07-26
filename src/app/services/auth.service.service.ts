@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core';
 import { Login } from '../model/UserAuth/login';
 import { ApiUrl } from '../constants/api-url';
 import { Observable, Subject } from 'rxjs';
-import { EntityReponseModel } from '../model/entityResponseModel';
+import { EntityReponseModel } from '../model/responseModels/entityResponseModel';
 import { Token } from '../model/UserAuth/token';
 import { Register } from '../model/UserAuth/register';
-import { ReponseModel } from '../model/responseModel';
+import { ReponseModel } from '../model/responseModels/responseModel';
 import { LocalStorageService } from './local-storage.service';
 import { Route, Router } from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt';
-import { EntityReponseModelL } from '../model/entityListResponseModel';
+import { EntityReponseModelL } from '../model/responseModels/entityListResponseModel';
 import { UserAuthM } from '../model/UserAuth/userauthm';
+import { TokenApiModel } from '../model/UserAuth/tokenApiModel';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,9 @@ export class AuthServiceService {
   private loggedIn:boolean = false;
   isLoggedInChanged = new Subject<boolean>();
 
-  login(loginModel:Login):Observable<EntityReponseModel<Token>>{
+  login(loginModel:Login):Observable<EntityReponseModel<TokenApiModel>>{
     let newPath = this.apiUrl + 'UserAuth/login'
-     return this.httpClient.post<EntityReponseModel<Token>>(newPath,loginModel)
+     return this.httpClient.post<EntityReponseModel<TokenApiModel>>(newPath,loginModel)
   }
   getalluser():Observable<EntityReponseModelL<UserAuthM>>{
     let newPath = this.apiUrl + 'UserAuth/getall'
@@ -44,6 +45,18 @@ export class AuthServiceService {
   register(registerModel:Register):Observable<ReponseModel>{
     let newPath = this.apiUrl + 'UserAuth/register'
      return this.httpClient.post<ReponseModel>(newPath,registerModel)
+  }
+  storeToken(tokenvalue:string){
+    localStorage.setItem('token',tokenvalue)
+  }
+  storeRefreshToken(tokenvalue:string){
+    localStorage.setItem('refreshToken',tokenvalue)
+  }
+  getToken(){
+    return localStorage.getItem('token')
+  }
+  getRefreshToken(){
+    return localStorage.getItem('refreshToken')
   }
   signOut(name:string){
     this.locastorage.removeItem(name);
@@ -62,6 +75,9 @@ export class AuthServiceService {
   getUsernameFromToken(){
     if(this.userPayload)
       return this.userPayload.USERNAME;
+  }
+  renewToken(tokenapi:TokenApiModel){
+    return this.httpClient.post<any>(`${this.apiUrl}UserAuth/refresh`,tokenapi)
   }
 
 }

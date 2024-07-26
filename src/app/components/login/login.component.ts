@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
           this.toastrService.success('Giriş Başarili', 'Başarili', {
             positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
           });
-          this.localStorageService.setItem('token', response.data.token);
+          this.authService.storeToken(response.data.accessToken)
+          this.authService.storeRefreshToken(response.data.refreshToken)
           const tokenPayload=this.authService.decodejwt();
           this.userStore.setFullNameForStore(tokenPayload.USERNAME)
           this.userStore.setRoleForStore(tokenPayload.POSITIONNAME)
