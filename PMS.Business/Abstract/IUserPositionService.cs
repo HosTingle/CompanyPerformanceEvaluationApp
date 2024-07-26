@@ -1,5 +1,6 @@
 ﻿using PMS.Core.Utilities.Results;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace PMS.Business.Abstract
         IResult Update(UserPosition userPosition);
         Task<IDataResult<List<UserPosition>>> GetAll();
         Task<IDataResult<UserPosition>> GetById(int id);
+        Task<IDataResult<UserPositionDetailDto>> GetUserPositionDetails(int userid); 
     }
 }

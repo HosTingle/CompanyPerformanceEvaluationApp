@@ -17,6 +17,7 @@ namespace PMS.Business.Abstract
 
         Task<IDataResult<List<Position>>> GetAll();
         Task<IDataResult<Position>> GetById(int id);
+        Task<IDataResult<Position>> GetByName(string name);  
 
     }
 }

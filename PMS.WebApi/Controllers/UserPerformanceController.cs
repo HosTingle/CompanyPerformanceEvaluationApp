@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Business.Abstract;
 using PMS.Core.Entities.Concrete;
@@ -16,7 +17,7 @@ namespace PMS.WebApi.Controllers
         {
             _userPerformanceService = userPerformanceService;
         }
-
+    
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {

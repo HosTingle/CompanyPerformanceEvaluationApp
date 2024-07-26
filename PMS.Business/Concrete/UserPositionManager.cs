@@ -2,6 +2,7 @@
 using PMS.Core.Utilities.Results;
 using PMS.DataAccess.Abstract;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,11 @@ namespace PMS.Business.Concrete
         {
             _userPositionDal.Update(userPosition);
             return new SuccessResult("Güncellendi");
+        }
+
+        public async Task<IDataResult<UserPositionDetailDto>> GetUserPositionDetails(int userid) 
+        {
+            return new SuccessDataResult<UserPositionDetailDto>(await _userPositionDal.GetUserPositionDetails(userid), "Employee detaylı bilgileri getirildi.");
         }
     }
 }
