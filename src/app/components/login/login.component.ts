@@ -6,6 +6,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { Token } from '../../model/UserAuth/token';
 import { UserStoreService } from '../../services/user-store.service';
+import { ResetPasswordServiceService } from '../../services/reset-password.service.service';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +18,15 @@ import { UserStoreService } from '../../services/user-store.service';
 export class LoginComponent implements OnInit {
   userLoginForm!: FormGroup;
  datas!:Token;
+
   constructor(
     private authService: AuthServiceService,
     private formBuilder: FormBuilder,
     private router:Router,
     private toastrService: ToastrService,
     private localStorageService: LocalStorageService,
-    private userStore:UserStoreService
+    private userStore:UserStoreService,
+ 
  
   ) {}
   ngOnInit(): void {
@@ -67,5 +70,8 @@ export class LoginComponent implements OnInit {
   }
   routeregister(){
     this.router.navigate(["signuppage"]);
+  }
+  forgotPassword(){
+
   }
 }

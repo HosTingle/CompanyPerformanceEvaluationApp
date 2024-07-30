@@ -60,6 +60,7 @@ export class AuthServiceService {
   }
   signOut(name:string){
     this.locastorage.removeItem(name);
+    localStorage.clear();
     this.router.navigate(["loginpage"]);
   }
   decodejwt(){

@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { TokenApiModel } from '../model/UserAuth/tokenApiModel';
 import { AuthServiceService } from '../services/auth.service.service';
+import { UserStoreService } from '../services/user-store.service';
 
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
@@ -36,7 +37,6 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
               switchMap((data:TokenApiModel)=>{
               auth.storeRefreshToken(data.refreshToken);
               auth.storeToken(data.accessToken);
-              localstorage.setItem('token',data.accessToken);
               req = req.clone({
                 setHeaders: {Authorization:`Bearer ${data.accessToken}`}  // "Bearer "+myToken
               })
@@ -47,6 +47,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
                 toast.warning('Warning', 'Token süresi bitti', {
                   positionClass: 'toast-bottom-center' 
                 });
+                localStorage.clear();
                 route.navigate(['loginpage'])
               })
             })
