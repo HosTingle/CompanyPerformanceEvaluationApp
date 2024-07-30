@@ -81,18 +81,18 @@ namespace PMS.Business.Concrete
             {
                 NAME= userRegisterDto.Name,
                 BIRTHDATE=userRegisterDto.BirthDate,
-                EMAIL=userRegisterDto.Email,
                 PHONE=userRegisterDto.Phone,
             };
 
             _userPerformanceService.Add(user);
-            var sa= _userPerformanceService.GetByEmail(userRegisterDto.Email);
+            var sa= _userPerformanceService.GetByEmail(userRegisterDto.Phone);
             HashingHelper.CreatePasswordHash(userRegisterDto.Password, out passwordHash, out passwordSalt);
             var usera = new UserAuth
             {
                 USERID= sa.Result.Data.USERID,
                 PASSWORDHASH=passwordHash,
                 PASSWORDSALT=passwordSalt,
+                EMAIL=userRegisterDto.Email,    
                 USERNAME=userRegisterDto.UserName,
               
             };
@@ -139,6 +139,7 @@ namespace PMS.Business.Concrete
             }
             return refreshToken;
         }
+
          public ClaimsPrincipal GetPrincipleFromExpiredToken(string token)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.key));

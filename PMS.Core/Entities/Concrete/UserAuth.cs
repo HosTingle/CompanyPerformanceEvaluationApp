@@ -23,5 +23,11 @@ namespace PMS.Core.Entities.Concrete
 
         public DateTime? REFRESHTOKENEXPIRETIME { get; set; }
 
+        public string? EMAIL { get; set; }
+
+        public string? RESETPASSTOKEN { get; set; }
+
+        public DateTime? RESETPASSEXPIRE {  get; set; }  
+
     }
 }
