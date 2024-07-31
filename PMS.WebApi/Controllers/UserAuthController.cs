@@ -21,6 +21,7 @@ namespace PMS.WebApi.Controllers
     [ApiController]
     public class UserAuthController : ControllerBase
     {
+
         IUserAuthService _userAuthService;
         IUserPositionService _userpositionService;
         IEmailService _emailService;
@@ -30,6 +31,8 @@ namespace PMS.WebApi.Controllers
             _userpositionService = userpositionService; 
             _emailService = emailService;
         }
+
+
 
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
@@ -41,6 +44,7 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(int id)
         {

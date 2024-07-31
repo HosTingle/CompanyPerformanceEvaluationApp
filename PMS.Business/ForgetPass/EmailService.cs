@@ -75,7 +75,7 @@ namespace PMS.Business.ForgetPass
         public async Task<IResult> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
             byte[] passwordHash, passwordSalt;
-            var newToken = resetPasswordDto.EmailToken.Replace("", "+");
+            var newToken = resetPasswordDto.EmailToken.Replace("+", "");
             var user = await _userAuthDal.Get(x => x.EMAIL == resetPasswordDto.Email);
             if (user is null)
             {
