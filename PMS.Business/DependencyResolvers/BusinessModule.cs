@@ -3,6 +3,8 @@ using Autofac.Extras.DynamicProxy;
 using Castle.DynamicProxy;
 using PMS.Business.Abstract;
 using PMS.Business.Concrete;
+using PMS.Business.ForgetPass;
+using PMS.Core.Utilities.ForgetPass;
 using PMS.Core.Utilities.Interceptors;
 using PMS.DataAccess.Abstract;
 using PMS.DataAccess.EntityFramework;
@@ -50,6 +52,8 @@ namespace PMS.Business.DependencyResolvers
 
             builder.RegisterType<AddressManager>().As<IAddressService>().SingleInstance();
             builder.RegisterType<EfAddressDal>().As<IAddressDal>().SingleInstance();
+
+            builder.RegisterType<EmailService>().As<IEmailService>().SingleInstance();
 
 
 

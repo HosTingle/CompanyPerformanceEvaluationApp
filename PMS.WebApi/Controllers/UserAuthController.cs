@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PMS.Business.Abstract;
 using PMS.Core.Entities.Concrete;
+using PMS.Core.Utilities.ForgetPass;
 using PMS.Core.Utilities.Results;
 using PMS.Core.Utilities.Security;
 using PMS.Entity.Concrete;
@@ -19,14 +21,19 @@ namespace PMS.WebApi.Controllers
     [ApiController]
     public class UserAuthController : ControllerBase
     {
+
         IUserAuthService _userAuthService;
         IUserPositionService _userpositionService;
-        public UserAuthController(IUserAuthService userAuthService, IUserPositionService userpositionService) 
+        IEmailService _emailService;
+        public UserAuthController(IUserAuthService userAuthService, IUserPositionService userpositionService,IEmailService emailService) 
         {
             _userAuthService = userAuthService;
             _userpositionService = userpositionService; 
+            _emailService = emailService;
         }
-        [Authorize]
+
+
+
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
@@ -37,6 +44,7 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -134,6 +142,7 @@ namespace PMS.WebApi.Controllers
             var newAccessToken = _userAuthService.CreateAccessToken(data2.Result.Data,1).Result.Data.Token; 
             var newRefreshToken = _userAuthService.GenerateRefreshToken();
             user.REFRESHTOKEN = newRefreshToken;
+
             _userAuthService.Update(user);
             return Ok(new TokenApiDto()
             {
@@ -141,7 +150,27 @@ namespace PMS.WebApi.Controllers
                 RefreshToken = newRefreshToken,
             });
         }
+        [HttpPost("send-rest-email/{email}")]
+        public async Task<IActionResult> SendEmail(string email)
+        {
+            var result =await _emailService.SendToMail(email);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("rest-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            var result = await _emailService.ResetPassword(resetPasswordDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
+    }
     }
 
-
-}

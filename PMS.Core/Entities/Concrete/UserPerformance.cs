@@ -15,7 +15,6 @@ namespace PMS.Core.Entities.Concrete
 
         public string NAME { get; set; }
 
-        public string EMAIL { get; set; }
 
         public DateTime BIRTHDATE { get; set; }
 

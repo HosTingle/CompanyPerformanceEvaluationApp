@@ -41,9 +41,9 @@ namespace PMS.Business.Concrete
         {
             return new SuccessDataResult<UserPerformance>(await _userPerformanceDal.Get(x=>x.USERID==id)); 
         }
-        public async Task<IDataResult<UserPerformance>> GetByEmail(string email)   
+        public async Task<IDataResult<UserPerformance>> GetByEmail(string phone)    
         {
-            return new SuccessDataResult<UserPerformance>(await _userPerformanceDal.Get(x => x.EMAIL == email));
+            return new SuccessDataResult<UserPerformance>(await _userPerformanceDal.Get(x => x.PHONE == phone));
         }
 
         public IResult Update(UserPerformance userPerformance)
