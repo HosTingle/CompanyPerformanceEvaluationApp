@@ -1,0 +1,21 @@
+<form [formGroup]="userResetForm" >
+    <div class="container"  >
+      <img width="160" height="25" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Vak%C4%B1fbank_logo.svg/2560px-Vak%C4%B1fbank_logo.svg.png" alt="Vakıfbank Logo">
+    </div>
+    <div class="form-group">
+      <label for="username">New Password</label>
+      <input type="password" id="password" class="form-control form-control-lg" formControlName="password" autocomplete="email" />
+      <small *ngIf="userResetForm.controls['password'].dirty && userResetForm.hasError('required','password')" class="text-danger"> New Password is required</small>
+    </div>
+    <div class="form-group">
+      <label for="password">Password Confirm</label>
+      <input type="password" id="passwordConfirm" class="form-control form-control-lg" formControlName="passwordConfirm" autocomplete="current-password" />
+      <small *ngIf="userResetForm.controls['passwordConfirm'].dirty && userResetForm.hasError('required','passwordConfirm')" class="text-danger"> Confirm Password is required</small>
+
+    </div>
+
+ 
+    <div class="form-group button-container">
+        <button type="button" class="btn btn-primary" (click)=" reset()">Reset</button>
+      </div>
+  </form>

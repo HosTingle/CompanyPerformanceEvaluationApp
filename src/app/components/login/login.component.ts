@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth.service.service';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '../../services/local-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { Token } from '../../model/UserAuth/token';
 import { UserStoreService } from '../../services/user-store.service';
-import { ResetPasswordServiceService } from '../../services/reset-password.service.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +22,6 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router:Router,
     private toastrService: ToastrService,
-    private localStorageService: LocalStorageService,
     private userStore:UserStoreService,
  
  

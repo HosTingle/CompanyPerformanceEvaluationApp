@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ResetPasswordServiceService } from '../../services/reset-password.service.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgotpass',
@@ -19,6 +20,7 @@ export class ForgotpassComponent implements OnInit {
   constructor(    private formBuilder: FormBuilder,
     private resetServices:ResetPasswordServiceService,
     private toastrService: ToastrService,
+    private router:Router,
   ) {
 
   }
@@ -43,20 +45,26 @@ export class ForgotpassComponent implements OnInit {
       
       this.resetServices.sendResetPasswordLink(this.resetPasswordEmail).subscribe({
         next:(res)=>{
-          this.toastrService.success('Succes', '', {
-            positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
+          this.toastrService.success("E-posta Gönderildi, Lütfen E-posta'nızı kontrol edin Kontrol Edin", 'Başarılı', {
+            positionClass: 'toast-bottom-center'
           });
-          this.resetPasswordEmail="";
           const buttonRef=document.getElementById("closeBtn");
           buttonRef?.click();
+          this.router.navigate(["loginpage"]);
+
         },
         error:(err)=>{
-          this.toastrService.error('Error', 'Doğrulama Hatasi', {
+          this.toastrService.error('Böyle Bir E-mail Yok.', 'Başarısız', {
             positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
           });
         }
       }
   );
+    }
+    else{
+      this.toastrService.error('Geçerli Bir E-mail Girin', 'Başarısız', {
+        positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
+      });
     }
   }
 

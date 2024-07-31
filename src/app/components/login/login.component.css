@@ -37,7 +37,7 @@
   }
   
   form {
-    height: 520px;
+    height: 480px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -158,3 +158,11 @@
 
 
   }
+  .forgot-password-link-custom {
+    margin-top: 20px; /* Adjust as needed */
+    margin-left: 27%; /* Adjust as needed */
+    padding-top: 5px; /* Adjust as needed */
+
+    /* You can adjust left/right margins/paddings as well */
+  }
+  

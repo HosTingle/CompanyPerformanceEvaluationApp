@@ -37,7 +37,7 @@
   }
   
   form {
-    height: 300px;
+    height: 450px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -60,7 +60,7 @@
   }
   
   form h3 {
-    font-size: 11px;
+    font-size: 32px;
     font-weight: 500;
     line-height: 42px;
     text-align: center;
@@ -69,13 +69,13 @@
   label {
     display: block;
     margin-top: 30px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
   }
   
   input {
     display: block;
-    height: 50px;
+    height: 40px;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.07);
     border-radius: 3px;
@@ -90,9 +90,8 @@
   }
   
   button {
-    margin-top: 30px;
-    margin-left: 5px;
-    margin-right: 5px;
+    display: block;
+    margin: 30px auto; /* shorthand for margin-top, margin-right, margin-bottom, and margin-left */
     width: 45%;
     background-color: #0d6cfa;
     color: #fff;
@@ -131,60 +130,13 @@
   }
   
   .form-check-label {
-    font-size: 13px; /* Etiketin yazı boyutu */
+    font-size: 20px; /* Etiketin yazı boyutu */
     color: #0e0000; /* Etiketin yazı rengi */
   }
   .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 5vh;
-  }
-  .form-group{
-    font-size: 12px;
+    height: 2vh;
   }
   
-  .form-inline {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .forgot-password-link {
-    margin-left: auto;
-    padding-left: 15px;
-    margin-top: auto;
-    
-
-
-  }
-  .container {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-
-  
-  .form-control {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 1px;
-  }
-  
-  .btn {
-    padding: 10px 20px;
-    border: none;
-
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    color: white;
-  }
- 

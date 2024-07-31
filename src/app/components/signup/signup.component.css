@@ -37,7 +37,7 @@
   }
   
   form {
-    height: 756px;
+    height: 580px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -117,7 +117,7 @@
   .form-check {
     display: flex;
     align-items: center; /* Checkbox ve etiketin dikeyde ortalanmasını sağlar */
-    margin-bottom: 5px; /* Checkbox ve etiket arasındaki boşluk */
+    margin-bottom: 2px; /* Checkbox ve etiket arasındaki boşluk */
   }
   
   .form-check-input {
@@ -139,4 +139,8 @@
     align-items: center;
     height: 2vh;
   }
+  .form-group {
+    margin-top: 8%
+  }
+  
   

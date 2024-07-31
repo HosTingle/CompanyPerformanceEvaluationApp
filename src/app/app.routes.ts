@@ -7,6 +7,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { authGuard } from './guards/auth.guard';
 import { ForgotpassComponent } from './components/forgotpass/forgotpass.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 export const routes: Routes = [ 
   { path: '', redirectTo: 'loginpage', pathMatch: 'full' }, // Boş path'i loginpage'e yönlendir
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {path:"homepage", component:HomepageComponent,canActivate:[authGuard]},
     {path:"signuppage", component:SignupComponent},
     {path:"forgotpage", component:ForgotpassComponent},
+    {path:"reset-password",component:ResetComponent}
 
 ];
 @NgModule({

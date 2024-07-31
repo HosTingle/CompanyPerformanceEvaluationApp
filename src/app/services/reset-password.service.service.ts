@@ -22,8 +22,8 @@ export class ResetPasswordServiceService {
     let newPath = this.apiUrl + `UserAuth/send-rest-email/${email}`
      return this.httpClient.post<ReponseModel>(newPath,email) 
   }
-  resetPassword(resetPasswordobj:ResetPassword){
-        let newPath = this.apiUrl + `UserAuth/reset-password`
-    return this.httpClient.post<any>(newPath,resetPasswordobj);
+  resetPassword(resetPasswordobj:ResetPassword):Observable<ReponseModel>{
+        let newPath = this.apiUrl + 'UserAuth/rest-password'
+    return this.httpClient.post<ReponseModel>(newPath,resetPasswordobj);
   }
 }
