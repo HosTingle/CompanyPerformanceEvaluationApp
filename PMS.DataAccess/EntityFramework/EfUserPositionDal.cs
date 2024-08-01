@@ -21,9 +21,9 @@ namespace PMS.DataAccess.EntityFramework
                    join au in context.USER_AUTH on u.USERID equals au.USERID 
                    join a in context.POSITION on e.POSITIONID equals a.POSITIONID
                    where e.USERID ==userId
-
                    select new UserPositionDetailDto
                    {
+                      
                        USERPOSITIONID = e.USERPOSITIONID,
                        USERID = u.USERID,
                        POSITIONLEVEL= a.POSITIONLEVEL,

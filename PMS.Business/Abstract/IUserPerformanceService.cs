@@ -1,6 +1,7 @@
 ﻿using PMS.Core.Entities.Concrete;
 using PMS.Core.Utilities.Results;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace PMS.Business.Abstract
 
         Task<IDataResult<List<UserPerformance>>> GetAll();
         Task<IDataResult<UserPerformance>> GetById(int id);
-        Task<IDataResult<UserPerformance>> GetByEmail(string email); 
+        Task<IDataResult<UserPerformance>> GetByEmail(string email);
+        Task<IDataResult<UserPerformanceDetailDto>> GetByIdDetail(int id);
+        IResult UpdateUserInfo(UserUpdateDto userUpdateDto);
     }
 }

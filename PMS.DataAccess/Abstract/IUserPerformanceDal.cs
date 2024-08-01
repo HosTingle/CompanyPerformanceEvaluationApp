@@ -1,6 +1,7 @@
 ﻿using PMS.Core.DataAccess;
 using PMS.Core.Entities.Concrete;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace PMS.DataAccess.Abstract
 {
     public interface IUserPerformanceDal:IEntityRepository<UserPerformance>
     {
+        Task<UserPerformanceDetailDto> GetUserPerformanceDetails(int userid);
     }
 }
