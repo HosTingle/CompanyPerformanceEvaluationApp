@@ -1,0 +1,65 @@
+<ng-container *ngIf="bol===true">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="container">
+<app-sidebar>
+    
+</app-sidebar>
+    <div class="main">
+      
+        <h2>KIMLIK BILGILERI</h2>
+        <div class="card">
+            <input type="text" id="exampleInput" name="exampleInput" formControlName="adsas">
+          <i class="fa fa-pencil-alt fa-xs edit" (click)="changebol()"></i>
+            <div class="card-body">
+                <app-questionspage>
+
+                </app-questionspage>
+             
+            </div>
+        </div>
+
+    
+    </div>
+  
+      </div>
+
+  </ng-container>
+  <ng-container *ngIf="bol===false">
+
+
+
+          
+                 
+                        <div class="container">
+                            <app-sidebar>
+
+                            </app-sidebar>
+                            <div class="main">
+                              
+                                <h2>KIMLIK BILGILERI</h2>
+                                <div class="card">
+                                    <i class="fa fa-check fa-xs editt" (click)="changebol()"></i>
+                                    <div class="card-body">
+                                        <input type="text" id="exampleInput" name="exampleInput" formControlName="adsas">
+                                        <i class="fa fa-times fa-xs edit" (click)="changebol()"></i>
+                                        <app-updateuserpage>
+                                        </app-updateuserpage>
+                                    </div>
+                                </div>
+                        
+                            
+                            </div>
+                          
+                              </div>
+              
+            
+    
+        
+      
+
+
+  </ng-container>

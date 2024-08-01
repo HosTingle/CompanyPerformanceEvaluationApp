@@ -5,6 +5,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ResetPassword } from '../../model/UserAuth/resetPasswordModel';
 import { ResetPasswordServiceService } from '../../services/reset-password.service.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthServiceService } from '../../services/auth.service.service';
 
 @Component({
   selector: 'app-reset',
@@ -19,7 +20,7 @@ export class ResetComponent implements OnInit {
   userResetForm!: FormGroup;
   resetPasswordObj=new ResetPassword()
   constructor(
-
+    private authService: AuthServiceService,
     private formBuilder: FormBuilder,
     private activitatedRoute:ActivatedRoute,
     private resetServices:ResetPasswordServiceService,
@@ -28,6 +29,7 @@ export class ResetComponent implements OnInit {
  
   ) {}
   ngOnInit(): void {
+    this.authService.checkloginin();
     this.createUserResetPassForm();
     this.activitatedRoute.queryParams.subscribe(val=>{
       this.emailToReset=val['email'];

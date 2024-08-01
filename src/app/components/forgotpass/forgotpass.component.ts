@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ResetPasswordServiceService } from '../../services/reset-password.service.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../../services/auth.service.service';
 
 @Component({
   selector: 'app-forgotpass',
@@ -21,10 +22,12 @@ export class ForgotpassComponent implements OnInit {
     private resetServices:ResetPasswordServiceService,
     private toastrService: ToastrService,
     private router:Router,
+    private authService: AuthServiceService,
   ) {
 
   }
   ngOnInit(): void {
+    this.authService.checkloginin();
     this.createforgotForm();
   }
   checkValidEmail(event:string){

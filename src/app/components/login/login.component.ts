@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
  
   ) {}
   ngOnInit(): void {
-    this.checkloginin();
+    this.authService.checkloginin();
     this.createUserLoginForm();
   }
 
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
           const tokenPayload=this.authService.decodejwt();
           this.userStore.setFullNameForStore(tokenPayload.USERNAME)
           this.userStore.setRoleForStore(tokenPayload.POSITIONNAME)
+          this.userStore.setUserIdStore(tokenPayload.USERID)
           this.router.navigate(["homepage"]);
         } else {
           this.toastrService.error('Giriş Başarisiz', 'Doğrulama Hatasi', {
@@ -57,18 +58,9 @@ export class LoginComponent implements OnInit {
         }
       });
   }
-  checkloginin(){
-    if(this.authService.loggedin()){
-       this.router.navigate(['homepage'])
-    }
-    else{
-    }
-  
-  }
+
   routeregister(){
     this.router.navigate(["signuppage"]);
   }
-  forgotPassword(){
 
-  }
 }

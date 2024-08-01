@@ -13,6 +13,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import { EntityReponseModelL } from '../model/responseModels/entityListResponseModel';
 import { UserAuthM } from '../model/UserAuth/userauthm';
 import { TokenApiModel } from '../model/UserAuth/tokenApiModel';
+import { UserDetail } from '../model/UserAuth/userDetail';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,11 @@ export class AuthServiceService {
   getalluser():Observable<EntityReponseModelL<UserAuthM>>{
     let newPath = this.apiUrl + 'UserAuth/getall'
     return this.httpClient.get<EntityReponseModelL<UserAuthM>>(newPath)
+   
+  }
+  getuser(id:number){
+    let newPath = this.apiUrl + `UserPerformance/getbyiddetail?id=${id}`;
+    return this.httpClient.get<EntityReponseModelL<UserDetail>>(newPath)
    
   }
   loggedin():boolean{
@@ -77,8 +83,20 @@ export class AuthServiceService {
     if(this.userPayload)
       return this.userPayload.USERNAME;
   }
+  getUserIdFromToken(){
+    if(this.userPayload)
+      return this.userPayload.USERID;
+  }
   renewToken(tokenapi:TokenApiModel){
     return this.httpClient.post<any>(`${this.apiUrl}UserAuth/refresh`,tokenapi)
+  }
+  checkloginin(){
+    if(this.loggedin()){
+       this.router.navigate(['homepage'])
+    }
+    else{
+    }
+  
   }
 
 }

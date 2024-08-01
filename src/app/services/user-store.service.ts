@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UserStoreService {
   private USERNAME$=new BehaviorSubject<string>("");
   private POSITIONNAME$=new BehaviorSubject<string>("");
+  private USERID$ = new BehaviorSubject<number>(0); 
   constructor() {
 
     
@@ -23,5 +24,11 @@ export class UserStoreService {
   }
   public setFullNameForStore(USERNAME:string){
     this.USERNAME$.next(USERNAME);
+  }
+  public getUserIdStore(){
+    return this.USERID$.asObservable();
+  }
+  public setUserIdStore(USERID:number){
+    this.USERID$.next(USERID);
   }
 }

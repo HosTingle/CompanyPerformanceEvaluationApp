@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="profilepage.component.css">
+
+    <!-- FontAwesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar top -->
+    <div class="navbar-top">
+     
+        <div class="title">
+            <img width="160" height="25" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Vak%C4%B1fbank_logo.svg/2560px-Vak%C4%B1fbank_logo.svg.png" alt="Vakıfbank Logo">
+          </div>
+
+     
+
+        <!-- Navbar -->
+        <ul>
+            <li>
+                <a href="homepage">
+                    <i class="fa fa-arrow-left fa-2x"></i>
+                </a>
+            </li>
+          
+           
+        </ul>
+ 
+        <!-- End -->
+    </div>
+    <!-- End -->
+
+    <!-- Sidenav -->
+    <div class="sidenav">
+          <div class="container">
+  </div>
+        <div class="profile">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8A2wOvDj7sAobit1mD4lCc6ilEaBm_CF3AQ&s" alt="" width="120" height="100">
+
+            <div class="name">
+                {{user.name}}
+            </div>
+            <div class="job">
+                {{role}}
+            </div>
+        </div>
+
+        <div class="sidenav-url">
+            <div class="url">
+                <a href="#profile" >Profil</a>
+                <hr align="center">
+            </div>
+            <div class="url">
+                <a href="#settings">Ayarlar</a>
+                <hr align="center">
+            </div>
+        </div>
+    </div>
+    <!-- End -->
+
+    <!-- Main -->
+    <div class="main">
+        <h2>KIMLIK</h2>
+        <div class="card">
+            <div class="card-body">
+                <i class="fa fa-pen fa-xs edit"></i>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>İsim</td>
+                            <td>:</td>
+                            <td>{{user.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>E-mail</td>
+                            <td>:</td>
+                            <td>{{user.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Adres</td>
+                            <td>:</td>
+                            <td>{{user.city}}, {{user.country}}</td>
+                        </tr>
+                        <tr>
+                            <td>Telefon</td>
+                            <td>:</td>
+                            <td>{{user.phone}}</td>
+                        </tr>
+     
+                        <tr>
+                            <td>Doğum Tarihi</td>
+                            <td>:</td>
+                            <td>{{user.birthdate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    
+    </div>
+    <!-- End -->
+</body>
+</html>

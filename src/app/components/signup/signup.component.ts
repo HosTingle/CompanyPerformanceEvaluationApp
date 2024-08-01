@@ -20,10 +20,10 @@ export class SignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router:Router,
     private toastrService: ToastrService,
-    private localStorageService: LocalStorageService,
  
   ) {}
   ngOnInit(): void {
+    this.authService.checkloginin();
     this.createUserRegisterForm();
   }
   createUserRegisterForm() { 
