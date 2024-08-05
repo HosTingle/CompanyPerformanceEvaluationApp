@@ -9,6 +9,7 @@ namespace PMS.Entity.Dtos
 {
     public class UserUpdateDto:IDto
     {
+        public int userid {  get; set; }
         public string Name {  get; set; }
 
         public string Email { get; set; }

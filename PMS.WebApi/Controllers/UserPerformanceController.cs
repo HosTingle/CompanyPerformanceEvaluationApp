@@ -73,7 +73,7 @@ namespace PMS.WebApi.Controllers
         }
         [HttpPost("UpdateUserInfo")] 
         public IActionResult UpdateUserInfo(UserUpdateDto userUpdateDto) 
-        {
+        { 
 
             var result = _userPerformanceService.UpdateUserInfo(userUpdateDto);
             if (result.Success)

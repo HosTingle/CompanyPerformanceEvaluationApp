@@ -20,7 +20,7 @@ namespace PMS.Business.Abstract
         Task<IDataResult<List<UserPerformance>>> GetAll();
         Task<IDataResult<UserPerformance>> GetById(int id);
         Task<IDataResult<UserPerformance>> GetByEmail(string email);
-        Task<IDataResult<UserPerformanceDetailDto>> GetByIdDetail(int id);
+        Task<IDataResult<GetByIdUserPerformanceDetailDto>> GetByIdDetail(int id);
         IResult UpdateUserInfo(UserUpdateDto userUpdateDto);
     }
 }

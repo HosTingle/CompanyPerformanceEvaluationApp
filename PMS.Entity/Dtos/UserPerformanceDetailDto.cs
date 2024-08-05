@@ -13,7 +13,7 @@ namespace PMS.Entity.Dtos
         public string NAME { get; set; }
         public string EMAIL { get; set; } 
 
-        public DateOnly BIRTHDATE { get; set; }
+        public DateTime BIRTHDATE { get; set; }
 
         public string PHONE { get; set; }
         public string COUNTRY { get; set; }

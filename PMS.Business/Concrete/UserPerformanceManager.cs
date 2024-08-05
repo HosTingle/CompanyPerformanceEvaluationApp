@@ -32,15 +32,15 @@ namespace PMS.Business.Concrete
         }
         public IResult UpdateUserInfo(UserUpdateDto userUpdateDto)
         {
-            var result=GetByEmail(userUpdateDto.Phone).Result.Data;
-            var adres=_addressDal.Get(x => x.USERID == result.USERID).Result; 
+
+            var adres=_addressDal.Get(x => x.USERID == userUpdateDto.userid).Result; 
             var ass = new Address
             {
                 ADDRESSDETAIL=adres.ADDRESSDETAIL,
-                USERID= adres.USERID,
+                USERID= userUpdateDto.userid,
                 ADDRESSID=adres.ADDRESSID,
-                CITY= adres.CITY,
-                COUNTRY= adres.COUNTRY,
+                CITY= userUpdateDto.City,
+                COUNTRY= userUpdateDto.Country,
                 STATE=adres.STATE,
                 
             };
@@ -49,13 +49,14 @@ namespace PMS.Business.Concrete
             {
                 var sa = new UserPerformance
                 {
-                    USERID = result.USERID,
-                    BIRTHDATE = result.BIRTHDATE,
-                    NAME = result.NAME,
-                    PHONE = result.PHONE,
+        
+                    BIRTHDATE =  userUpdateDto.Birthdate,
+                    NAME = userUpdateDto.Name,
+                    PHONE = userUpdateDto.Phone,
+                    USERID=userUpdateDto.userid,
                 };
 
-                var res = Update(sa); 
+                var res = Update(sa);
                 if (res is SuccessResult)
                 {
                     return new SuccessResult("Güncelleme gerçekleşti");
@@ -89,9 +90,21 @@ namespace PMS.Business.Concrete
         {
             return new SuccessDataResult<UserPerformance>(await _userPerformanceDal.Get(x => x.PHONE == phone));
         }
-        public async Task<IDataResult<UserPerformanceDetailDto>> GetByIdDetail(int id) 
+        public async Task<IDataResult<GetByIdUserPerformanceDetailDto>> GetByIdDetail(int id) 
         {
-            return new SuccessDataResult<UserPerformanceDetailDto>(await _userPerformanceDal.GetUserPerformanceDetails(id), "Userperformans detaylı bilgileri getirildi.");
+            var result = await _userPerformanceDal.GetUserPerformanceDetails(id);
+            var sa = new GetByIdUserPerformanceDetailDto
+            {
+                BIRTHDATE=DateOnly.FromDateTime(result.BIRTHDATE),
+                CITY=result.CITY,
+                COUNTRY=result.COUNTRY,
+                EMAIL=result.EMAIL,
+                NAME=result.NAME,
+                PHONE=result.PHONE,
+                USERID=result.USERID,
+            };
+
+            return new SuccessDataResult<GetByIdUserPerformanceDetailDto>(sa, "Userperformans detaylı bilgileri getirildi.");
         }
 
         public IResult Update(UserPerformance userPerformance)
