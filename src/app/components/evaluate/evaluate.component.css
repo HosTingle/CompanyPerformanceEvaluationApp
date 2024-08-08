@@ -1,0 +1,223 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    
+    background-color: #fff;
+  }
+  app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    
+  }
+  
+  .corner-text{
+    flex-direction: row;
+    font-weight: bold;
+    margin-top: 1%;
+    margin-left: 1%;
+    
+      display: flex;
+      align-items: center; /* Dikeyde ortalamak için */
+
+  }
+  .colored-text a {
+    color: white; /* Metin rengini kırmızı yapar */
+
+}
+  .corner-text p {
+    margin: 0 20px 0 0; /* Sağ tarafa 20px boşluk ekler */
+}
+  .container {
+    position: relative; /* Konumlandırma için gerekli */
+    margin-top: 4%;
+    margin-left: 26.1%;
+    max-width: 63%;
+    background-color: #f8be30;
+
+  }
+  .colored-text {
+    color: #eeefef; /* Metin rengini kırmızı yapar */
+}
+  .red-rectangle {
+    background-color: #f8be30;
+     padding: 3%;
+    display: flex;
+    flex-direction: row;
+    gap: 20%;
+    margin: 3%;
+  }
+  
+
+
+  .action-button {
+    position: absolute;
+    bottom: 10px; /* Alt kenara 10px uzaklık */
+    right: 10px; /* Sağ kenara 10px uzaklık */
+    padding: 10px 20px;
+    background-color: #fff;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+  }
+  
+  .action-button:hover {
+    background-color: #eeefef;
+  }
+  #cars {
+    width: 200%; /* Ekran genişliğinin %50'si */
+}
+  .dropdown {
+    display: flex;
+    flex-direction:column;
+    margin-bottom: 20px;
+    gap: 5px; /* Etiket ve seçim kutusu arasına boşluk ekler */
+  }
+  .button-like {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white; /* Metin rengini beyaz yapar */
+
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Alt çizgi kaldırılır */
+    cursor: pointer;
+    text-align: center;
+}
+.btn {
+  border: none;
+  background-color: inherit;
+
+
+
+}
+
+.btn:hover {background: #f8be30;}
+
+.success {color: #fff;}
+
+
+
+
+
+.table-responsive {
+  max-width: 65%; /* Burada istediğiniz genişliği belirleyin */
+  margin-left: 25%;
+/* Ortalamak için */
+}
+
+/* Tablo satırlarının arka plan ve metin rengi */
+
+.datatable-container {
+margin: 12px;
+padding: 12px;
+border: 1px solid #ddd;
+
+font-family: Arial, sans-serif;
+background-color: #fff;
+}
+
+
+
+.filter-container {
+margin-bottom: 15px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+input[type="text"] {
+padding: 10px;
+width: 70%;
+box-sizing: border-box;
+border: 1px solid #ddd;
+border-radius: 4px;
+font-size: 16px;
+}
+
+.action-buttons {
+display: flex;
+gap: 20px;
+align-items: center;
+margin-right: 2%;
+}
+
+button {
+padding: 8px 15px;
+border: none;
+border-radius: 4px;
+color: #fff;
+font-size: 14px;
+cursor: pointer;
+transition: background-color 0.3s, box-shadow 0.3s;
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.clear-button {
+margin: 12%;
+background-color: #333;
+}
+
+.clear-button:hover {
+background-color: #333;
+}
+
+
+
+table {
+width: 100%;
+
+}
+
+th, td {
+padding: 6px 2px;
+text-align: left;
+border-bottom: 1px solid #ddd;
+}
+
+th {
+background-color: #f8be30;
+position: relative;
+}
+
+th button {
+background: none;
+border: none;
+cursor: pointer;
+font-size: 20px;
+margin-left: 5px;
+font-weight: bold;
+}
+
+
+
+
+.namaks{
+margin-left: 8%;
+}
+.enamaks{
+margin-left: 20%;
+}
+.eenamaks{
+margin-left: 23%;
+}
+.namaksse{
+margin-left: 15%;
+}
+.namaksss{
+  margin-left: 15%;
+}
+
+
+

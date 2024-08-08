@@ -5,11 +5,12 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../services/auth.service.service';
 import { UserStoreService } from '../../services/user-store.service';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [HttpClientModule,DecimalPipe, DatePipe, CurrencyPipe,CommonModule],
+  imports: [HttpClientModule, DecimalPipe, DatePipe, CurrencyPipe, CommonModule, SidebarComponent],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })

@@ -1,0 +1,80 @@
+
+    
+    <div class="table-responsive">
+        <div class="datatable-container">
+          
+            <div class="filter-container">
+              <input type="text" [(ngModel)]="searchTerm" placeholder="Arama yapın..." />
+              <div class="action-buttons">
+                <button class="clear-button" (click)="clearSearch()">Temizle</button>
+        
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>
+           
+                 </th>
+                  <th>
+                    <div class="namaks"> 
+                      İsim
+                    </div>
+                    
+                    <button *ngIf="sortColumn === 'name'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('name')">&#9660;</button>
+                    <button *ngIf="sortColumn !== 'name'" (click)="sort('name')">&#9650;</button>
+                  </th>
+                  <th>
+                    <div class="eenamaks"> 
+                      Email
+                    </div>
+                    <div class="enamaks"> 
+                      <button *ngIf="sortColumn === 'email'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('email')">&#9660;</button>
+                      <button *ngIf="sortColumn !== 'email'" (click)="sort('email')">&#9650;</button>
+                    </div>
+           
+                  </th>
+                  <th>
+               
+                  <div class="namaks"> 
+                    Telefon-No
+                  </div>
+                  <div class="namaksse"> 
+                    <button *ngIf="sortColumn === 'phone'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('phone')">&#9660;</button>
+                    <button *ngIf="sortColumn !== 'phone'" (click)="sort('phone')">&#9650;</button>
+                  </div>
+
+                  </th>
+                  <th>
+      
+                    <div class="namaks"> 
+                      Şehir
+                    </div >
+                      <button *ngIf="sortColumn === 'city'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('city')">&#9660;</button>
+                      <button *ngIf="sortColumn !== 'city'" (click)="sort('city')">&#9650;</button>
+                    </th>
+                    <th>
+      
+                      <div class="namaks"> 
+                       Role
+                      </div >
+                        <button *ngIf="sortColumn === 'role'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('role')">&#9660;</button>
+                        <button *ngIf="sortColumn !== 'role'" (click)="sort('role')">&#9650;</button>
+                      </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of filteredUsers">
+                  <button class="clear-button" >Görüntüle</button>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.phone }}</td>
+                  <td>{{ user.city }}</td>
+                  <td>{{ user.role }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <button class="action-button" (click)="filterItems()">Ara</button> 
+    </div>
+

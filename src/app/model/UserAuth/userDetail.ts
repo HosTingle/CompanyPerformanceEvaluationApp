@@ -6,4 +6,5 @@ export class UserDetail{
     phone!:string;
     country!:string;
     city!:string;
+    role!:string;
 }

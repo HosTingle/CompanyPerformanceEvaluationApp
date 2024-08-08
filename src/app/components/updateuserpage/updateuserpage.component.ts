@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserStoreService } from '../../services/user-store.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { UserDetail } from '../../model/UserAuth/userDetail';
 
 @Component({
   selector: 'app-updateuserpage',
@@ -17,8 +19,10 @@ export class UpdateuserpageComponent {
   id!:number;
   public user:any=[];
   role!:string;
+  userdet=new UserDetail();
   constructor(
     private authService: AuthServiceService,
+    private userser:UserService,
     private formBuilder: FormBuilder,
     private activitatedRoute:ActivatedRoute,
     private toast:ToastrService,
@@ -32,12 +36,10 @@ export class UpdateuserpageComponent {
   logout(){
     this.authService.signOut("token");
   }
-  updateuser(){
-
-  }
   routeback(){
     this.router.navigate(["profilepage"])
   }
+
   getuser(){
     this.userstor.getUserIdStore()
   .subscribe(val=>{
@@ -53,7 +55,8 @@ export class UpdateuserpageComponent {
       
       next:(res)=>{
         this.user=res.data
-        this.userupdateForm = this.formBuilder.group({
+        this.userupdateForm = this.formBuilder.group({ 
+          userid:[this.user.userid,Validators.required],
           name: [this.user.name, Validators.required],
           email: [this.user.email, Validators.required],
           country: [this.user.country, Validators.required],
@@ -64,6 +67,29 @@ export class UpdateuserpageComponent {
       },
       error:(err)=>{
         this.toast.error('Bilgiler yüklenemedi.', 'Başarısız', {
+          positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
+        });
+      }
+    })
+  }
+  updateuser(){
+    this.userdet.userid=this.userupdateForm.value.userid;
+    this.userdet.birthdate=this.userupdateForm.value.birthdate;
+    this.userdet.city=this.userupdateForm.value.city;
+    this.userdet.country=this.userupdateForm.value.country;
+    this.userdet.email=this.userupdateForm.value.email;
+    this.userdet.name=this.userupdateForm.value.name;
+    this.userdet.phone=this.userupdateForm.value.phone;
+    this.userser.updateuserinfo(this.userdet).subscribe({
+      
+      next:(res)=>{
+        this.toast.success('Bilgiler güncellendi.', 'Başarılı', {
+          positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
+        });
+        this.router.navigate(["homepage"])
+      },
+      error:(err)=>{
+        this.toast.error('Bilgiler güncellenmedi.', 'Başarısız', {
           positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
         });
       }

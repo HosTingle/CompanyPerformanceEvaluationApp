@@ -1,9 +1,8 @@
-
+<input type="text" id="exampleInput" name="exampleInput" formControlName="name">
+<i class="fa fa-check fa-xs editt" (click)=" updateuser()" ></i>
 <form [formGroup]="userupdateForm">
-
-
       <table>
-         
+       
         <tbody>
             <tr>
                 <td>İsim</td>
@@ -20,9 +19,6 @@
                 <td>Ülke</td>
                 <td>:</td>
                 <td>        <input type="text" id="exampleInput" name="exampleInput" formControlName="country"></td>
-
-        
-        
             </tr>
             <tr>
                 <td>Şehir</td>
@@ -42,7 +38,7 @@
             <tr>
                 <td>Doğum Tarihi</td>
                 <td>:</td>
-                <td>      <input type="date" id="dateInput" value="{{user.birthdate}}"></td>
+                <td>      <input type="date" id="dateInput" formControlName="birthdate"></td>
           
           
             </tr>

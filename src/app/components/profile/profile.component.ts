@@ -17,4 +17,7 @@ export class ProfileComponent {
   changebol(){
     this.bol= !this.bol
   }
+  edituser(){
+    
+  }
 }

@@ -1,0 +1,114 @@
+.profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.profile-info p {
+  margin: 0; /* Paragrafların dış boşluklarını sıfırlar */
+  padding: 0; /* Paragrafların iç boşluklarını sıfırlar */
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.custom-dialog {
+  border-radius: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contaner {
+  width: 80%; /* Kapsayıcı genişliğini artırır */
+  margin: 0 auto; /* Ortalar */
+}
+
+.dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-icon {
+  cursor: pointer;
+}
+
+.okso {
+  font-weight: bold;
+}
+
+.table-responsive {
+  max-width: 100%; /* Kapsayıcıyı tam genişlikte yapar */
+  overflow-x: auto; /* Yatay kaydırma çubuğu ekler */
+}
+
+.datatable-container {
+  width: 100%; /* Kapsayıcının genişliğini artırır */
+  
+}
+
+table {
+  width: 100%; /* Tabloyu tam genişlikte yapar */
+  table-layout: fixed; /* Tablonun kolon genişliklerini sabitler */
+}
+
+th {
+  background-color: #f8be30;
+  width: auto; /* Başlık hücrelerinin genişliğini içeriğe göre ayarlar */
+}
+
+th, td {
+  padding: 10px; /* Hücreler arasına boşluk ekler */
+  text-align: left; /* Metin hizalamasını sola yapar */
+}
+
+th:nth-child(1), td:nth-child(1) {
+  width: 20%;
+}
+
+th:nth-child(2), td:nth-child(2) {
+  width: 40%;
+}
+
+th:nth-child(3), td:nth-child(3) {
+  width: 30%;
+}
+.action-buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-right: 2%;
+  }
+.mar-dialog {
+  margin-bottom: 5%;
+  display: flex;
+  justify-content: flex-end; /* Butonu sağ tarafa hizalar */
+}
+
+.custom-button {
+  background-color: #f8be30; /* Butonun rengini değiştirir */
+  color: white; /* Buton metin rengini beyaz yapar */
+  padding: 8px 16px; /* İç boşlukları ayarlar */
+  border: none; /* Buton kenarlarını kaldırır */
+  border-radius: 4px; /* Butona köşeleri yuvarlatır */
+  cursor: pointer; /* Butona tıklanabilir işaretçiyi ekler */
+}
+
+

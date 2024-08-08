@@ -6,7 +6,17 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { provideToastr } from 'ngx-toastr';
 import { tokenInterceptor } from './interceptors/token.interceptor';
 import { BrowserAnimationsModule, NoopAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { ExcelModule, GridModule, PDFModule } from '@progress/kendo-angular-grid';
+import { InputsModule } from "@progress/kendo-angular-inputs";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DialogModule } from '@angular/cdk/dialog';
+import { MatIconModule } from '@angular/material/icon';
 export const appConfig: ApplicationConfig = {
+
 
   providers: [
     provideRouter(routes),
@@ -19,7 +29,19 @@ export const appConfig: ApplicationConfig = {
     BrowserModule,
     BrowserAnimationsModule,
     provideAnimations(),
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    GridModule,
+    InputsModule,
+    PDFModule,
+    ExcelModule,
+    provideAnimationsAsync(),
+    MatDialogModule,
+    MatInputModule,
+    MatInputModule,
+    FormsModule,MatFormFieldModule ,
+    DialogModule,
+    MatIconModule
+    
   ],
   
   

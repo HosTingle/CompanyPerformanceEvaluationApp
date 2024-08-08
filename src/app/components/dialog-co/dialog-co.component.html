@@ -1,0 +1,77 @@
+<div class="contaner">
+ 
+  <h6 mat-dialog-title class="dialog-title">
+    Kişi Değerlendirme
+    <mat-icon class="right-icon" (click)="onNoClick()">close</mat-icon>
+  </h6>
+
+
+  <div mat-dialog-content>
+    <div class="profile">
+      <img class="profile-pic" src="https://cdn.prod.website-files.com/639ff8596ae419fae300b099/641017314cc67fbb88c517a7_good-linkedin-profile-photo-right-expression-1000x1000.jpeg" alt="Profile Picture">
+      <div class="profile-info">
+        <p class="okso">Ad Soyad</p>
+      <p>{{data.name}}</p>
+
+      </div>
+    </div>
+    <div class="evaluation">
+      <h4>Değerlendirme Soruları</h4>
+   
+      <div class="table-responsive">
+        <div class="datatable-container">
+          
+    
+            <table>
+              <thead>
+                <tr>
+           
+                  <th>
+                    <div class="namaks"> 
+                      İsim
+                    </div>
+                    
+                    <button *ngIf="sortColumn === 'name'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('name')">&#9660;</button>
+                    <button *ngIf="sortColumn !== 'name'" (click)="sort('name')">&#9650;</button>
+                  </th>
+                  <th>
+                    <div class="eenamaks"> 
+                      Email
+                    </div>
+                    <div class="enamaks"> 
+                      <button *ngIf="sortColumn === 'email'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('email')">&#9660;</button>
+                      <button *ngIf="sortColumn !== 'email'" (click)="sort('email')">&#9650;</button>
+                    </div>
+           
+                  </th>
+             
+                    <th>
+      
+                      <div class="namaksss"> 
+                       Role
+                      </div >
+                        <button *ngIf="sortColumn === 'role'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('role')">&#9660;</button>
+                        <button *ngIf="sortColumn !== 'role'" (click)="sort('role')">&#9650;</button>
+                      </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of filteredUsers">
+         
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+            
+                  <td>{{ user.role }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    
+    </div>
+    </div>
+  </div>
+  <div class="mar-dialog"> 
+    <button class="custom-button" >Kaydet</button>
+  </div>
+      
+</div>

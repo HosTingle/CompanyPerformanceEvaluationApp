@@ -17,11 +17,11 @@
       <li><a href="#" class="logo">
         <span class="nav-item">DashBoard</span>
       </a></li>
-      <li><a href="#">
+      <li><a href="homepage">
         <i class="fas fa-home"></i>
         <span class="nav-item">Anasayfa</span>
       </a></li>
-      <li><a href="#">
+      <li><a href="evaluatepage">
         <i class="fas fa-tasks"></i>
         <span class="nav-item">Değerlendirme</span>
       </a></li>
@@ -45,7 +45,7 @@
       <li>
         <button class="logout" style="background: none; border: none; cursor: pointer;">
             <i class="fas fa-sign-out-alt"></i>
-            <span class="nav-item" >Çikiş yap</span> 
+            <span class="nav-item" (click)="logout()" >Çikiş yap</span> 
         </button>
     </li>
     </ul>

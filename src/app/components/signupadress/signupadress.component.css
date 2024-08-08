@@ -1,0 +1,146 @@
+*, *:before, *:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #080710;
+  }
+  
+  .background {
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+  }
+  
+  .background .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+  }
+  
+  .shape:first-child {
+    background: linear-gradient(#1845ad, #23a2f6);
+    left: -80px;
+    top: -80px;
+  }
+  
+  .shape:last-child {
+    background: linear-gradient(to right, #ff512f, #f09819);
+    right: -30px;
+    bottom: -80px;
+  }
+  
+  form {
+    height: 580px;
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.13);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+  }
+  
+  form * {
+    font-family: 'Poppins', sans-serif;
+    color: #0e0000;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+  }
+  
+  form h3 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  input {
+    display: block;
+    height: 40px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+  
+  ::placeholder {
+    color: #0e0000;
+  }
+  
+  button {
+    display: block;
+    margin: 30px auto; /* shorthand for margin-top, margin-right, margin-bottom, and margin-left */
+    width: 45%;
+    background-color: #0d6cfa;
+    color: #fff;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button.btn-secondary {
+    background-color: #6c757d;
+  }
+  
+  button.btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  button.btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+  .form-check {
+    display: flex;
+    align-items: center; /* Checkbox ve etiketin dikeyde ortalanmasını sağlar */
+    margin-bottom: 2px; /* Checkbox ve etiket arasındaki boşluk */
+  }
+  
+  .form-check-input {
+    margin-right: 10px; /* Checkbox ile etiket arasındaki boşluk */
+    width: 20px; /* Checkbox'ın genişliği */
+    height: 20px; /* Checkbox'ın yüksekliği */
+    vertical-align: middle; /* Checkbox ile etiketin aynı hizaya gelmesini sağlar */
+    margin-top: 25px;
+    margin-left: 20px;
+  }
+  
+  .form-check-label {
+    font-size: 20px; /* Etiketin yazı boyutu */
+    color: #0e0000; /* Etiketin yazı rengi */
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2vh;
+  }
+  .form-group {
+    margin-top: 8%
+  }
+  
+  

@@ -1,0 +1,107 @@
+
+
+  .table-responsive {
+    max-width: 65%; /* Burada istediğiniz genişliği belirleyin */
+    margin-left: 25%;
+ /* Ortalamak için */
+}
+
+/* Tablo satırlarının arka plan ve metin rengi */
+
+.datatable-container {
+  margin: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+
+
+.filter-container {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 70%;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-right: 2%;
+}
+
+button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.clear-button {
+  margin: 12%;
+  background-color: #333;
+}
+
+.clear-button:hover {
+  background-color: #333;
+}
+
+
+
+table {
+  width: 100%;
+
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f8be30;
+  position: relative;
+}
+
+th button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+
+
+
+.namaks{
+  margin-left: 7%;
+}
+.enamaks{
+  margin-left: 20%;
+}
+.eenamaks{
+  margin-left: 23%;
+}
+.namaksse{
+  margin-left: 15%;
+}

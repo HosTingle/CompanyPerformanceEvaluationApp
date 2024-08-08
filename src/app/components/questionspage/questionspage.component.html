@@ -1,7 +1,5 @@
 
-
-
-
+      
       <table>
         <tbody>
             <tr>
@@ -12,6 +10,7 @@
             <tr>
                 <td>E-mail</td>
                 <td>:</td>
+                
                 <td>{{user.email}}</td>
             </tr>
             <tr>
@@ -33,7 +32,7 @@
             <tr>
                 <td>Doğum Tarihi</td>
                 <td>:</td>
-                <td>{{user.birthdate}}</td>
+                <td>{{user.birthdate | date: 'dd/MM/yyyy'}}</td>
             </tr>
         </tbody>
     </table>

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { CommonModule } from '@angular/common';
+import { Register } from '../../model/UserAuth/register';
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +16,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SignupComponent implements OnInit {
   userRegisterForm!: FormGroup;
+  usereg!:Register;
   constructor(
     private authService: AuthServiceService,
     private formBuilder: FormBuilder,
@@ -36,24 +38,19 @@ export class SignupComponent implements OnInit {
       date:['', Validators.required],
     });
   }
-  register() {
-    if (true) {
-      let registerModel = Object.assign({}, this.userRegisterForm.value);
-      this.authService.register(registerModel).subscribe((response:any)=>{
-        if (response.success) {
-          this.toastrService.success(response.message, 'Başarili', {  
-            positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
-          });
-          this.router.navigate(["loginpage"]);
-        } else {
-          this.toastrService.error('Giriş Başarisiz', 'Doğrulama Hatasi', {
-            positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
-          });
-        }
+  navigateToAddressPage() {
+    if (!this.usereg) {
+      this.usereg = new Register();
+    }
+    this.usereg.name = this.userRegisterForm.get('name')?.value;
+    this.usereg.email = this.userRegisterForm.get('email')?.value;
+    this.usereg.username = this.userRegisterForm.get('username')?.value;
+    this.usereg.password = this.userRegisterForm.get('password')?.value;
+    this.usereg.phone = this.userRegisterForm.get('phone')?.value;
+    this.usereg.date = this.userRegisterForm.get('date')?.value;
 
-      });
-  
-    } 
+    this.authService.setMyClassInstance(this.usereg);
+    this.router.navigate(['signadresspage']);
   }
 
 }

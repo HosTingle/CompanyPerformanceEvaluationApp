@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfilepageComponent } from './profilepage.component';
+import { DatatablepageComponent } from './datatablepage.component';
 
-describe('ProfilepageComponent', () => {
-  let component: ProfilepageComponent;
-  let fixture: ComponentFixture<ProfilepageComponent>;
+describe('DatatablepageComponent', () => {
+  let component: DatatablepageComponent;
+  let fixture: ComponentFixture<DatatablepageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProfilepageComponent]
+      imports: [DatatablepageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProfilepageComponent);
+    fixture = TestBed.createComponent(DatatablepageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -22,11 +22,19 @@ export class AuthServiceService {
 
   apiUrl = ApiUrl.localurl;
   private userPayload:any;
+  userregister!:Register;
   constructor(private httpClient:HttpClient,
     private locastorage:LocalStorageService,
     private router:Router
   ) { 
   this.userPayload=this.decodejwt()
+  }
+  setMyClassInstance(instance: Register) {
+    this.userregister = instance;
+  }
+
+  getMyClassInstance(): Register {
+    return this.userregister;
   }
   private loggedIn:boolean = false;
   isLoggedInChanged = new Subject<boolean>();
@@ -36,7 +44,7 @@ export class AuthServiceService {
      return this.httpClient.post<EntityReponseModel<TokenApiModel>>(newPath,loginModel)
   }
   getalluser():Observable<EntityReponseModelL<UserAuthM>>{
-    let newPath = this.apiUrl + 'UserAuth/getall'
+    let newPath = this.apiUrl + 'UserPerformance/geallperformancedetail'
     return this.httpClient.get<EntityReponseModelL<UserAuthM>>(newPath)
    
   }
