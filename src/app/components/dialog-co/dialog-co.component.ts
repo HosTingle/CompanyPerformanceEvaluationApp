@@ -65,8 +65,6 @@ export class DialogCoComponent {
       else if(this.copyusers.length != 0){
         this.users=this.copyusers
       }
-   
-  
       this.visible=true;
     }
     

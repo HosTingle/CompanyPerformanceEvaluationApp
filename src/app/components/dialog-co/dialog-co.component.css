@@ -41,6 +41,7 @@
 }
 
 .dialog-title {
+  margin-top: 2%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,17 +79,8 @@ th, td {
   padding: 10px; /* Hücreler arasına boşluk ekler */
   text-align: left; /* Metin hizalamasını sola yapar */
 }
-
-th:nth-child(1), td:nth-child(1) {
-  width: 20%;
-}
-
-th:nth-child(2), td:nth-child(2) {
-  width: 40%;
-}
-
 th:nth-child(3), td:nth-child(3) {
-  width: 30%;
+  width: 15%;
 }
 .action-buttons {
   display: flex;
@@ -97,7 +89,7 @@ th:nth-child(3), td:nth-child(3) {
   margin-right: 2%;
   }
 .mar-dialog {
-  margin-bottom: 5%;
+  margin-bottom: 2%;
   display: flex;
   justify-content: flex-end; /* Butonu sağ tarafa hizalar */
 }
