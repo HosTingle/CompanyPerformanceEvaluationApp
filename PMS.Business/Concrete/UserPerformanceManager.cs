@@ -81,11 +81,15 @@ namespace PMS.Business.Concrete
         {
             return new SuccessDataResult<List<UserPerformance>>(await _userPerformanceDal.GetAll(),"Veriler Getirildi"); 
         }
-
+        public async Task<IDataResult<List<UserPerformanceDetailAllDto>>> GetAllPerformanceDetail() 
+        {
+            return new SuccessDataResult<List<UserPerformanceDetailAllDto>>( await _userPerformanceDal.GetUserPerformanceDetailsList(), "Veriler Getirildi");
+        }
         public async Task<IDataResult<UserPerformance>> GetById(int id)
         {
             return new SuccessDataResult<UserPerformance>(await _userPerformanceDal.Get(x=>x.USERID==id)); 
         }
+  
         public async Task<IDataResult<UserPerformance>> GetByEmail(string phone)    
         {
             return new SuccessDataResult<UserPerformance>(await _userPerformanceDal.Get(x => x.PHONE == phone));
@@ -112,5 +116,6 @@ namespace PMS.Business.Concrete
             _userPerformanceDal.Update(userPerformance);
             return new SuccessResult("Güncellendi");
         }
+       
     }
 }

@@ -71,6 +71,16 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("geallperformancedetail")]
+        public async Task<IActionResult> GetAllPerformanceDetail() 
+        {
+            var result = await _userPerformanceService.GetAllPerformanceDetail();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
         [HttpPost("UpdateUserInfo")] 
         public IActionResult UpdateUserInfo(UserUpdateDto userUpdateDto) 
         { 

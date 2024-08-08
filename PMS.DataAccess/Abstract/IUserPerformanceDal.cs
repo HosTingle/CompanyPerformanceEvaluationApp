@@ -13,5 +13,6 @@ namespace PMS.DataAccess.Abstract
     public interface IUserPerformanceDal:IEntityRepository<UserPerformance>
     {
         Task<UserPerformanceDetailDto> GetUserPerformanceDetails(int userid);
+        Task<List<UserPerformanceDetailAllDto>> GetUserPerformanceDetailsList();
     }
 }

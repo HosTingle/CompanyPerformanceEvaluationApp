@@ -35,6 +35,27 @@ namespace PMS.DataAccess.EntityFramework
                       
                    };
         }
+        private IQueryable<UserPerformanceDetailAllDto> GetUserPerformanceQueryList(OracleDbContext context) 
+        {
+            return from e in context.USER_PERFORMANCE
+                   join ad in context.ADDRESS on e.USERID equals ad.USERID
+                   join au in context.USER_AUTH on ad.USERID equals au.USERID
+                   join up in context.USER_POSITION on au.USERID equals up.USERID
+                   join p in context.POSITION on up.POSITIONID equals p.POSITIONID
+                   select new UserPerformanceDetailAllDto
+                   {
+                       USERID = e.USERID,
+                       NAME = e.NAME,
+                       EMAIL = au.EMAIL,
+                       BIRTHDATE = e.BIRTHDATE,
+                       PHONE = e.PHONE,
+                       CITY = ad.CITY,
+                       COUNTRY = ad.COUNTRY,
+                       ROLE=p.POSITIONNAME,
+
+
+                   };
+        }
         public async Task<UserPerformanceDetailDto> GetUserPerformanceDetails(int userid) 
         {
             using (OracleDbContext context = new OracleDbContext())
@@ -43,7 +64,16 @@ namespace PMS.DataAccess.EntityFramework
                 return  result;
             }
         }
+        public async Task<List<UserPerformanceDetailAllDto>> GetUserPerformanceDetailsList() 
+        {
+            using (OracleDbContext context = new OracleDbContext())
+            {
+                var result = GetUserPerformanceQueryList(context);
+                return await result.ToListAsync();
+            }
+        }
 
-   
+
+
     }
 }
