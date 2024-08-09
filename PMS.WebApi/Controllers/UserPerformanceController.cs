@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PMS.Business.Abstract;
 using PMS.Core.Entities.Concrete;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 
 namespace PMS.WebApi.Controllers
 {
@@ -29,7 +30,7 @@ namespace PMS.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPost("delete")]
-        public IActionResult Delete(UserPerformance userPerformance)
+        public IActionResult Delete(UserInfo userPerformance)
         {
              
             var result = _userPerformanceService.Delete(userPerformance); 
@@ -59,5 +60,38 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getbyiddetail")]
+        public async Task<IActionResult> GetByIdDetail(int id) 
+        {
+            var result = await _userPerformanceService.GetByIdDetail(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("geallperformancedetail")]
+        public async Task<IActionResult> GetAllPerformanceDetail() 
+        {
+            var result = await _userPerformanceService.GetAllPerformanceDetail();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("UpdateUserInfo")] 
+        public IActionResult UpdateUserInfo(UserUpdateDto userUpdateDto) 
+        { 
+
+            var result = _userPerformanceService.UpdateUserInfo(userUpdateDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }

@@ -38,7 +38,7 @@ namespace PMS.Business.Concrete
 
         public async Task<IDataResult<Evaluate>> GetById(int id)
         {
-            return new SuccessDataResult<Evaluate>(await _evaluateDal.Get(x=>x.EVALUATIONID==id));
+            return new SuccessDataResult<Evaluate>(await _evaluateDal.Get(x=>x.EVALUATEID==id),"Veri Getirildi");
         }
 
         public IResult Update(Evaluate evaluate)

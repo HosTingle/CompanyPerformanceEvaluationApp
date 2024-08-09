@@ -39,7 +39,7 @@ namespace PMS.Business.Concrete
 
         public async Task<IDataResult<ClaimUser>> GetById(int id)
         {
-            return new SuccessDataResult<ClaimUser>(await _claimDal.Get(x=>x.CLAIMID == id));
+            return new SuccessDataResult<ClaimUser>(await _claimDal.Get(x=>x.CLAIMID == id),"Veri Getirildi");
         }
 
         public IResult Update(ClaimUser claim)

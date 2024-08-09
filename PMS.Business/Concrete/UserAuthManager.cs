@@ -24,13 +24,14 @@ namespace PMS.Business.Concrete
         IUserPerformanceService _userPerformanceService; 
         IUserPositionDal _userPositionDal;
         IPositionService _positionService; 
-
-        public UserAuthManager(IUserAuthDal userAuthDal, IUserPerformanceService userPerformanceService,IPositionService positionService, IUserPositionDal userPositionDal) 
+        IAddressService _addressService; 
+        public UserAuthManager(IUserAuthDal userAuthDal, IUserPerformanceService userPerformanceService,IPositionService positionService, IUserPositionDal userPositionDal, IAddressService addressService)  
         {
             _userAuthDal = userAuthDal;
             _userPerformanceService = userPerformanceService;
             _positionService = positionService;
             _userPositionDal = userPositionDal; 
+            _addressService = addressService;
         }
 
         public IResult Add(UserAuth userAuth)
@@ -77,7 +78,7 @@ namespace PMS.Business.Concrete
         public IResult Register(UserRegisterDto userRegisterDto) 
         {
             byte[] passwordHash, passwordSalt;
-            var user = new UserPerformance
+            var user = new UserInfo
             {
                 NAME= userRegisterDto.Name,
                 BIRTHDATE=userRegisterDto.BirthDate,
@@ -93,7 +94,7 @@ namespace PMS.Business.Concrete
                 PASSWORDHASH=passwordHash,
                 PASSWORDSALT=passwordSalt,
                 EMAIL=userRegisterDto.Email,    
-                USERNAME=userRegisterDto.UserName,
+                USERNAME=userRegisterDto.Username,
               
             };
             var result=Add(usera);
@@ -105,7 +106,24 @@ namespace PMS.Business.Concrete
             _userPositionDal.Add(position); 
             if (result.Success)
             {
-                return new SuccessResult("User oluşturuldu");
+                var adres = new Address
+                {
+                    ADDRESSDETAIL=userRegisterDto.AddressDetail,
+                    CITY=userRegisterDto.City, 
+                    COUNTRY=userRegisterDto.Country,
+                    STATE=userRegisterDto.State,
+                    USERID = sa.Result.Data.USERID,
+                };
+                var res=_addressService.Add(adres);
+                if (res.Success)
+                {
+                    return new SuccessResult("User oluşturuldu");
+                }
+                else
+                {
+                    return new ErrorResult("User oluşturulamadı,Adress eklenemdi");
+                }
+                
             }
             else
             {
