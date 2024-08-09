@@ -11,19 +11,22 @@ namespace PMS.Entity.Concrete
     public class Evaluate : IEntity
     {
         [Key]
-        public int EVALUATIONID { get; set; }
+        public int EVALUATEID { get; set; }  
 
         public int EVALUATORID { get; set; }
 
         public int EVALUATEEID { get; set; }
 
+        public int EVALQUESTIONID { get; set; }
+        public int TASKID { get; set; }
+        public string FEEDBACKCOMMENT { get; set; }
         public DateTime EVALUATIONDATE { get; set; }
 
-        public int EVALQUESTIONID {  get; set; }
+   
         public int EVALUATESCORE {  get; set; } 
 
-        public int TASKID {  get; set; }    
+       
 
-        public string FEEDBACKCOMMENT {  get; set; }     
+
     }
 }

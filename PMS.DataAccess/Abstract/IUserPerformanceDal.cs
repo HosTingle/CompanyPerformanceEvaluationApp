@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PMS.DataAccess.Abstract
 {
-    public interface IUserPerformanceDal:IEntityRepository<UserPerformance>
+    public interface IUserPerformanceDal:IEntityRepository<UserInfo>
     {
         Task<UserPerformanceDetailDto> GetUserPerformanceDetails(int userid);
         Task<List<UserPerformanceDetailAllDto>> GetUserPerformanceDetailsList();

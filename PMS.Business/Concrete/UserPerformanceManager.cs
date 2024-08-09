@@ -25,7 +25,7 @@ namespace PMS.Business.Concrete
 
         }
 
-        public IResult Add(UserPerformance userPerformance)
+        public IResult Add(UserInfo userPerformance)
         {
             _userPerformanceDal.Add(userPerformance);
             return new SuccessResult("Eklendi");
@@ -47,7 +47,7 @@ namespace PMS.Business.Concrete
             var resb=_addressService.Update(ass);
             if (resb is SuccessResult)
             {
-                var sa = new UserPerformance
+                var sa = new UserInfo
                 {
         
                     BIRTHDATE =  userUpdateDto.Birthdate,
@@ -71,28 +71,28 @@ namespace PMS.Business.Concrete
                 return new ErrorResult("Güncelleme gerçekleşmedi");
             }
         }
-        public IResult Delete(UserPerformance userPerformance)
+        public IResult Delete(UserInfo userPerformance)
         {
             _userPerformanceDal.Delete(userPerformance); 
             return new SuccessResult("Silindi");
         }
 
-        public async Task<IDataResult<List<UserPerformance>>> GetAll()
+        public async Task<IDataResult<List<UserInfo>>> GetAll()
         {
-            return new SuccessDataResult<List<UserPerformance>>(await _userPerformanceDal.GetAll(),"Veriler Getirildi"); 
+            return new SuccessDataResult<List<UserInfo>>(await _userPerformanceDal.GetAll(),"Veriler Getirildi"); 
         }
         public async Task<IDataResult<List<UserPerformanceDetailAllDto>>> GetAllPerformanceDetail() 
         {
             return new SuccessDataResult<List<UserPerformanceDetailAllDto>>( await _userPerformanceDal.GetUserPerformanceDetailsList(), "Veriler Getirildi");
         }
-        public async Task<IDataResult<UserPerformance>> GetById(int id)
+        public async Task<IDataResult<UserInfo>> GetById(int id)
         {
-            return new SuccessDataResult<UserPerformance>(await _userPerformanceDal.Get(x=>x.USERID==id)); 
+            return new SuccessDataResult<UserInfo>(await _userPerformanceDal.Get(x=>x.USERID==id)); 
         }
   
-        public async Task<IDataResult<UserPerformance>> GetByEmail(string phone)    
+        public async Task<IDataResult<UserInfo>> GetByEmail(string phone)    
         {
-            return new SuccessDataResult<UserPerformance>(await _userPerformanceDal.Get(x => x.PHONE == phone));
+            return new SuccessDataResult<UserInfo>(await _userPerformanceDal.Get(x => x.PHONE == phone));
         }
         public async Task<IDataResult<GetByIdUserPerformanceDetailDto>> GetByIdDetail(int id) 
         {
@@ -111,7 +111,7 @@ namespace PMS.Business.Concrete
             return new SuccessDataResult<GetByIdUserPerformanceDetailDto>(sa, "Userperformans detaylı bilgileri getirildi.");
         }
 
-        public IResult Update(UserPerformance userPerformance)
+        public IResult Update(UserInfo userPerformance)
         {
             _userPerformanceDal.Update(userPerformance);
             return new SuccessResult("Güncellendi");

@@ -34,7 +34,7 @@ namespace PMS.Business.Concrete
 
         public async Task<IDataResult<Address>> GetById(int id) 
         {
-            return new SuccessDataResult<Address>(await _addressDal.Get(p => p.ADDRESSID == id));
+            return new SuccessDataResult<Address>(await _addressDal.Get(p => p.ADDRESSID == id),"Getirildi");
         }
 
         public async Task<IDataResult<List<Address>>> GetAll()

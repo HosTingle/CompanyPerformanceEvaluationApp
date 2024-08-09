@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace PMS.DataAccess.EntityFramework
 {
-    public class EfUserPerformanceDal : EfEntityRepositoryBase<UserPerformance, OracleDbContext>, IUserPerformanceDal
+    public class EfUserPerformanceDal : EfEntityRepositoryBase<UserInfo, OracleDbContext>, IUserPerformanceDal
     {
          private IQueryable<UserPerformanceDetailDto> GetUserPerformanceQuery(OracleDbContext context,int userId)  
         {
-            return from e in context.USER_PERFORMANCE
+            return from e in context.USERS_INFO
                    join ad in context.ADDRESS on e.USERID equals ad.USERID 
                    join au in context.USER_AUTH on ad.USERID equals au.USERID
                    where e.USERID ==userId
@@ -37,7 +37,7 @@ namespace PMS.DataAccess.EntityFramework
         }
         private IQueryable<UserPerformanceDetailAllDto> GetUserPerformanceQueryList(OracleDbContext context) 
         {
-            return from e in context.USER_PERFORMANCE
+            return from e in context.USERS_INFO
                    join ad in context.ADDRESS on e.USERID equals ad.USERID
                    join au in context.USER_AUTH on ad.USERID equals au.USERID
                    join up in context.USER_POSITION on au.USERID equals up.USERID

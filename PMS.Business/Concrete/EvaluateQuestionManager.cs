@@ -33,12 +33,12 @@ namespace PMS.Business.Concrete
 
         public async Task<IDataResult<List<EvaluateQuestion>>> GetAll()
         {
-            return new SuccessDataResult<List<EvaluateQuestion>>(await _evaluateQuestionDal.GetAll());
+            return new SuccessDataResult<List<EvaluateQuestion>>(await _evaluateQuestionDal.GetAll(),"Veriler Getirildi");
         }
 
         public async Task<IDataResult<EvaluateQuestion>> GetById(int id)
         {
-            return new SuccessDataResult<EvaluateQuestion>(await _evaluateQuestionDal.Get(x => x.EVALQUESTIONID == id));
+            return new SuccessDataResult<EvaluateQuestion>(await _evaluateQuestionDal.Get(x => x.EVALUATEQUESTIONID == id),"Veri Getirildi");
         }
 
         public IResult Update(EvaluateQuestion evaluateQuestion)

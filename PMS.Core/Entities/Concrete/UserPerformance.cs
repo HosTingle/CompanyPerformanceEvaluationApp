@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PMS.Core.Entities.Concrete
 {
-    public class UserPerformance : IEntity
+    public class UserInfo : IEntity 
     {
         [Key]
         public int USERID { get; set; }

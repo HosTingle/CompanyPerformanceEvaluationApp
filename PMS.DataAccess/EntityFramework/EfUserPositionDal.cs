@@ -17,7 +17,7 @@ namespace PMS.DataAccess.EntityFramework
         private IQueryable<UserPositionDetailDto> GetUserPositionQuery(OracleDbContext context,int userId) 
         {
             return from e in context.USER_POSITION
-                   join u in context.USER_PERFORMANCE on e.USERID equals u.USERID
+                   join u in context.USERS_INFO on e.USERID equals u.USERID
                    join au in context.USER_AUTH on u.USERID equals au.USERID 
                    join a in context.POSITION on e.POSITIONID equals a.POSITIONID
                    where e.USERID ==userId

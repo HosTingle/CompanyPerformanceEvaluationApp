@@ -11,10 +11,10 @@ namespace PMS.Entity.Concrete
     public class EvaluateQuestion : IEntity
     {
         [Key]
-        public int EVALQUESTIONID { get; set; }
+        public int EVALUATEQUESTIONID { get; set; } 
 
-        public string QUESTION {  get; set; }
+        public string EVALUATEQUESTION {  get; set; } 
 
-        public string QUESTIONDESCRIPTION { get; set; }  
+        public string EVALUATEQUESTIONDESCRIPTION { get; set; }   
     }
 }

@@ -78,7 +78,7 @@ namespace PMS.Business.Concrete
         public IResult Register(UserRegisterDto userRegisterDto) 
         {
             byte[] passwordHash, passwordSalt;
-            var user = new UserPerformance
+            var user = new UserInfo
             {
                 NAME= userRegisterDto.Name,
                 BIRTHDATE=userRegisterDto.BirthDate,

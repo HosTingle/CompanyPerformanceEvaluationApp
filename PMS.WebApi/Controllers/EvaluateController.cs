@@ -22,7 +22,7 @@ namespace PMS.WebApi.Controllers
             var result=await _evaluateService.GetAll();
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -32,7 +32,7 @@ namespace PMS.WebApi.Controllers
             var result = await _evaluateService.GetById(id);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -42,7 +42,7 @@ namespace PMS.WebApi.Controllers
             var result =  _evaluateService.Add(evaluate);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -52,7 +52,7 @@ namespace PMS.WebApi.Controllers
             var result = _evaluateService.Delete(evaluate);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -62,7 +62,7 @@ namespace PMS.WebApi.Controllers
             var result = _evaluateService.Update(evaluate); 
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }

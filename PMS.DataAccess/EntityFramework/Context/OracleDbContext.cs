@@ -14,7 +14,7 @@ namespace PMS.DataAccess.EntityFramework.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseOracle("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orclpdb)));User Id=system;Password=tiger;");
+            dbContextOptionsBuilder.UseOracle("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=213.128.70.105)(PORT=1554)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orcl)));User Id=STJ;Password=STJ1234;");
         }
 
         public DbSet<Address> ADDRESS { get; set; }
@@ -23,9 +23,9 @@ namespace PMS.DataAccess.EntityFramework.Context
         public DbSet<EvaluateQuestion> EVALUATE_QUESTION { get; set; } 
         public DbSet<Position> POSITION { get; set; } 
         public DbSet<PositionClaim> POSITION_CLAIM { get; set; } 
-        public DbSet<UserTask> USERTASK { get; set; }
+        public DbSet<UserTask> USER_TASK { get; set; } 
         public DbSet<UserAuth> USER_AUTH { get; set; } 
-        public DbSet<UserPerformance> USER_PERFORMANCE { get; set; } 
+        public DbSet<UserInfo> USERS_INFO { get; set; }  
         public DbSet<UserPosition> USER_POSITION { get; set; } 
     }
 }

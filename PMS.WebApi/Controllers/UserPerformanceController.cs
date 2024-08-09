@@ -30,7 +30,7 @@ namespace PMS.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPost("delete")]
-        public IActionResult Delete(UserPerformance userPerformance)
+        public IActionResult Delete(UserInfo userPerformance)
         {
              
             var result = _userPerformanceService.Delete(userPerformance); 
