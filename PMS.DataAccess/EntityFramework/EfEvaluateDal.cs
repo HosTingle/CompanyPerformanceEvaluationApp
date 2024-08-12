@@ -12,6 +12,13 @@ namespace PMS.DataAccess.EntityFramework
 {
     public class EfEvaluateDal:EfEntityRepositoryBase<Evaluate,OracleDbContext>,IEvaluateDal
     {
-
+        public void AddRange(IEnumerable<Evaluate> evaluates)
+        {
+            using (var context = new OracleDbContext())
+            {
+                context.Set<Evaluate>().AddRange(evaluates);
+                context.SaveChanges();
+            }
+        }
     }
 }

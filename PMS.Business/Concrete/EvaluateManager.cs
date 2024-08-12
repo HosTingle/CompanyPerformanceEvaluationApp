@@ -46,5 +46,10 @@ namespace PMS.Business.Concrete
             _evaluateDal.Update(evaluate);
             return new SuccessResult("Güncellendi");
         }
+        public IResult AddRange(List<Evaluate> evaluates)
+        {
+            _evaluateDal.AddRange(evaluates);
+            return new SuccessResult("Veriler topluca eklendi");
+        }
     }
 }

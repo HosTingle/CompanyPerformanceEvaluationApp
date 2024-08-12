@@ -10,6 +10,6 @@ namespace PMS.DataAccess.Abstract
 {
     public interface IUserTaskDal:IEntityRepository<UserTask> 
     {
-
+        Task<List<UserTask>> GetUserTaskById(int userid);
     }
 }

@@ -12,10 +12,10 @@ namespace PMS.Business.Abstract
     {
         IResult Add(Evaluate evaluate);
         IResult Delete(Evaluate evaluate);
-        IResult Update(Evaluate evaluate); 
-
+        IResult Update(Evaluate evaluate);
+        IResult AddRange(List<Evaluate> evaluates);
         Task<IDataResult<List<Evaluate>>>GetAll();
-        Task<IDataResult<Evaluate>> GetById(int id); 
-
+        Task<IDataResult<Evaluate>> GetById(int id);
+  
     }
 }

@@ -15,6 +15,6 @@ namespace PMS.Business.Abstract
         IResult Update(UserTask userTask); 
         Task<IDataResult<List<UserTask>>> GetAll();
         Task<IDataResult<UserTask>> GetById(int id);
-
+        Task<IDataResult<List<UserTask>>> GetAllById(int id); 
     }
 }

@@ -30,9 +30,7 @@ namespace PMS.DataAccess.EntityFramework
                       BIRTHDATE=e.BIRTHDATE,
                       PHONE=e.PHONE,
                       CITY=ad.CITY,
-                      COUNTRY=ad.COUNTRY,
-                      
-                      
+                      COUNTRY=ad.COUNTRY
                    };
         }
         private IQueryable<UserPerformanceDetailAllDto> GetUserPerformanceQueryList(OracleDbContext context) 

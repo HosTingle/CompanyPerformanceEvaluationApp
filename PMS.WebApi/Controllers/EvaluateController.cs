@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Business.Abstract;
+using PMS.Business.Concrete;
 using PMS.Entity.Concrete;
 
 namespace PMS.WebApi.Controllers
@@ -60,6 +61,16 @@ namespace PMS.WebApi.Controllers
         public IActionResult Update(Evaluate evaluate) 
         {
             var result = _evaluateService.Update(evaluate); 
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("addRange")]
+        public IActionResult AddRange(List<Evaluate> evaluates)
+        {
+            var result = _evaluateService.AddRange(evaluates);
             if (result.Success)
             {
                 return Ok(result);

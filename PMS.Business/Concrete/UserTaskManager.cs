@@ -46,5 +46,9 @@ namespace PMS.Business.Concrete
             _userTaskDal.Update(userTask);
             return new SuccessResult("Güncellendi");
         }
+        public async Task<IDataResult<List<UserTask>>> GetAllById(int id)
+        {
+            return new SuccessDataResult<List<UserTask>>(await _userTaskDal.GetUserTaskById(id),"Userlar görevleri getirildi");
+        }
     }
 }

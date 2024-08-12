@@ -10,6 +10,6 @@ namespace PMS.DataAccess.Abstract
 {
     public interface IEvaluateDal:IEntityRepository<Evaluate>
     {
-
+        void AddRange(IEnumerable<Evaluate> evaluates);
     }
 }
