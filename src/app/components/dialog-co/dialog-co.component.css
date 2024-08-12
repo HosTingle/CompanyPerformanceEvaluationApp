@@ -1,50 +1,27 @@
 .profile {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .profile-pic {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   margin-right: 20px;
 }
 
-.full-width {
-  width: 100%;
-}
-
 .profile-info p {
-  margin: 0; /* Paragrafların dış boşluklarını sıfırlar */
-  padding: 0; /* Paragrafların iç boşluklarını sıfırlar */
-}
-
-.close-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
-}
-
-.custom-dialog {
-  border-radius: 0;
-  width: 100%;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.contaner {
-  width: 80%; /* Kapsayıcı genişliğini artırır */
-  margin: 0 auto; /* Ortalar */
+  margin: 0;
+  padding: 0;
 }
 
 .dialog-title {
-  margin-top: 2%;
+  margin-top: 1%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: bold;
 }
 
 .right-icon {
@@ -56,51 +33,337 @@
 }
 
 .table-responsive {
-  max-width: 100%; /* Kapsayıcıyı tam genişlikte yapar */
-  overflow-x: auto; /* Yatay kaydırma çubuğu ekler */
+
+  max-width: 140%; /* Tabloyu genişlet */
 }
 
 .datatable-container {
-  width: 100%; /* Kapsayıcının genişliğini artırır */
   
+  width: 100%; /* Kapsayıcının genişliğini artırır */
 }
 
 table {
-  width: 100%; /* Tabloyu tam genişlikte yapar */
-  table-layout: fixed; /* Tablonun kolon genişliklerini sabitler */
-}
 
+  width: 100%; /* Tabloyu tam genişlikte yapar */
+}
 th {
   background-color: #f8be30;
-  width: auto; /* Başlık hücrelerinin genişliğini içeriğe göre ayarlar */
+
+}
+th, td {
+  border-right: 1px solid #ddd; /* Dikey çizgileri ekler */
+  border-bottom: 1px solid #ddd;
+  padding: 10px; 
+  text-align: left; 
 }
 
-th, td {
-  padding: 10px; /* Hücreler arasına boşluk ekler */
-  text-align: left; /* Metin hizalamasını sola yapar */
-}
 th:nth-child(3), td:nth-child(3) {
   width: 15%;
 }
-.action-buttons {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  margin-right: 2%;
-  }
+
 .mar-dialog {
   margin-bottom: 2%;
+  margin-right: 2%;
   display: flex;
-  justify-content: flex-end; /* Butonu sağ tarafa hizalar */
+  justify-content: flex-end;
 }
 
 .custom-button {
-  background-color: #f8be30; /* Butonun rengini değiştirir */
-  color: white; /* Buton metin rengini beyaz yapar */
-  padding: 8px 16px; /* İç boşlukları ayarlar */
-  border: none; /* Buton kenarlarını kaldırır */
-  border-radius: 4px; /* Butona köşeleri yuvarlatır */
-  cursor: pointer; /* Butona tıklanabilir işaretçiyi ekler */
+  background-color: #f8be30; 
+  color: white; 
+  padding: 8px 16px; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; 
+}
+
+th button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 5px;
+  font-weight: bold;
+
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  margin-right: 12%;
+  font-size: 12px;
+}
+.contaner{
+  margin: 1%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 
+
+
+
+.wrapper {
+
+  background: #fdfbff;
+  margin: 30px;
+
+
+
+}
+
+.task-input {
+  position: relative;
+  height: 52px;
+  padding: 0 25px;
+}
+
+.task-input ion-icon {
+  position: absolute;
+  top: 50%;
+  color: #999;
+  font-size: 25px;
+  transform: translate(17px, -50%);
+}
+
+.task-input input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 0 20px 0 53px;
+  border: 1px solid #999;
+}
+
+.task-input input:focus,
+.task-input input.active {
+  padding-left: 52px;
+  border: 2px solid #f8be30;
+}
+
+.task-input input::placeholder {
+  color: #bfbfbf;
+}
+
+.controls,
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controls {
+  padding: 18px 25px;
+  border-bottom: 1px solid #ccc;
+}
+
+.filters span {
+  margin: 0 8px;
+  font-size: 17px;
+  color: #444444;
+  cursor: pointer;
+}
+
+.filters span:first-child {
+  margin-left: 0;
+}
+
+.filters span.active {
+  color: #f8be30;
+}
+
+.clear-btn {
+  border: none;
+  opacity: 0.6;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 7px 13px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  pointer-events: none;
+
+  background: #f8be30;
+}
+
+.clear-btn.active {
+  opacity: 0.9;
+  pointer-events: auto;
+}
+
+.clear-btn:active {
+  transform: scale(0.93);
+}
+
+.task-box li {
+  margin-top: 20px;
+  margin-bottom: 20px; /* Her öğenin arasına 10px boşluk ekler */
+  
+  position: relative; /* Ellipsis ikonunu sağa yerleştirmek için gerekli */
+  padding-right: 20px; /* İkon ile metin arasına boşluk ekler */
+}
+
+.ellipsis-icon {
+  position: absolute;
+  right: 0; /* Sağ tarafa yerleştirir */
+  top: 10%;
+  transform: translateY(-50%); /* İkonu dikey olarak ortalar */
+  cursor: pointer; /* İkon üzerine gelince işaretçiyi el şeklinde yapar */
+  color: #333; /* İkon rengi */
+  font-size: 34px;
+
+}
+
+.task-box.overflow {
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.task-box::-webkit-scrollbar {
+  width: 5px;
+}
+
+.task-box::-webkit-scrollbar-track {
+  background: #f12711;
+  border-radius: 25px;
+}
+
+.task-box::-webkit-scrollbar-thumb {
+  background: #e6e6e6;
+  border-radius: 25px;
+}
+
+.task-box .task {
+  list-style: none;
+  font-size: 17px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  align-items: flex-start;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-box .task:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.task-box .task label {
+  display: flex;
+  align-items: flex-start;
+}
+
+.task label input {
+  margin-top: 7px;
+  accent-color: #f12711;
+}
+
+.task label p {
+  user-select: none;
+  margin-left: 12px;
+  word-wrap: break-word;
+}
+
+.task label p.checked {
+  text-decoration: line-through;
+}
+
+.task-box .settings {
+  position: relative;
+}
+
+.settings :where(i, li) {
+  cursor: pointer;
+}
+
+.settings .task-menu {
+  position: absolute;
+  right: -5px;
+  bottom: -65px;
+  padding: 5px 0;
+  background: #fff;
+  border-radius: 4px;
+  transform: scale(0);
+  transform-origin: top right;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+.task-box .task:last-child .task-menu {
+  bottom: 0;
+  transform-origin: bottom right;
+}
+
+.task-box .task:first-child .task-menu {
+  bottom: -65px;
+  transform-origin: top right;
+}
+
+.task-menu.show {
+  transform: scale(1);
+}
+
+.task-menu li {
+  height: 25px;
+  font-size: 16px;
+  margin-bottom: 2px;
+  padding: 17px 15px;
+  cursor: pointer;
+  justify-content: flex-start;
+}
+
+.task-menu li:last-child {
+  margin-bottom: 0;
+}
+
+.settings li:hover {
+  background: #f5f5f5;
+}
+
+.settings li i {
+  padding-right: 8px;
+}
+
+@media (max-width: 400px) {
+  body {
+    padding: 0 10px;
+  }
+  .wrapper {
+    padding: 20px 0;
+  }
+  .filters span {
+    margin: 0 5px;
+  }
+  .task-input {
+    padding: 0 20px;
+  }
+  .controls {
+    padding: 18px 20px;
+  }
+  .task-box {
+    margin-top: 20px;
+    margin-right: 5px;
+    padding: 0 15px 10px 20px;
+  }
+  .task label input {
+    margin-top: 4px;
+  }
+}
+.status-icon {
+  margin-right: 13px;
+
+  vertical-align: middle;
+  color: #4CAF50; /* Green for completed tasks */
+}
+
+.task-box li.completed .status-icon {
+  color: #FFC107; /* Yellow for pending tasks */
+}

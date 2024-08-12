@@ -15,8 +15,12 @@ body{
   display: flex;
 
 }
-.dogukan{
-  margin-left: 10%;
+
+.myimage {
+  width: 50%;
+  height: 3%;
+  aspect-ratio: 1280 / 720;
+   margin-left: 13%;
   margin-top: 10%;
 }
 nav{

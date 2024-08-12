@@ -37,11 +37,10 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     MatDialogModule,
     MatInputModule,
-    MatInputModule,
     FormsModule,MatFormFieldModule ,
     DialogModule,
-    MatIconModule
-    
+    MatIconModule,
+ 
   ],
   
   

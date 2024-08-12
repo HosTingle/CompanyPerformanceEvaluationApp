@@ -37,8 +37,8 @@ body, html {
   .container {
     position: relative; /* Konumlandırma için gerekli */
     margin-top: 4%;
-    margin-left: 26.1%;
-    max-width: 63%;
+    margin-left: 25.8%;
+    max-width: 63.5%;
     background-color: #f8be30;
 
   }
@@ -165,7 +165,7 @@ gap: 5px;
 }
 
 .clear-button {
-margin: 12%;
+margin: 5%;
 background-color: #333;
 }
 
@@ -176,19 +176,34 @@ background-color: #333;
 
 
 table {
-width: 100%;
-
+  width: 100%;
+  border-collapse: collapse; /* Hücre kenarlıklarının üst üste gelmesini engeller */
 }
+
+table th,
+table td {
+  border-right: 1px solid #ddd; /* Dikey çizgileri ekler */
+  border-bottom: 1px solid #ddd;
+  padding: 8px; /* Hücreler arasında boşluk sağlar */
+  text-align: left; /* Metin hizalaması */
+}
+
+table th:last-child,
+table td:last-child {
+  border-right: none; /* Son sütunda sağ kenarlığı kaldırır */
+}
+
+
 
 th, td {
 padding: 6px 2px;
 text-align: left;
-border-bottom: 1px solid #ddd;
+
 }
 
 th {
 background-color: #f8be30;
-position: relative;
+
 }
 
 th button {
@@ -201,23 +216,22 @@ font-weight: bold;
 }
 
 
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the text and the button */
+  margin-right: 12%;
+}
+
+th button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
 
 
-.namaks{
-margin-left: 8%;
-}
-.enamaks{
-margin-left: 20%;
-}
-.eenamaks{
-margin-left: 23%;
-}
-.namaksse{
-margin-left: 15%;
-}
-.namaksss{
-  margin-left: 15%;
-}
 
 
 

@@ -7,19 +7,30 @@ import { CommonModule } from '@angular/common';
 import { UserDetail } from '../../model/UserAuth/userDetail';
 import { UserStoreService } from '../../services/user-store.service';
 import { AuthServiceService } from '../../services/auth.service.service';
-
+import { PositionService } from '../../services/position.service';
+import { Evalquestion } from '../../model/evalquestion';
+import { Task } from '../../model/task';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { DatatablepageComponent } from '../datatablepage/datatablepage.component';
+import { FormsModule } from '@angular/forms';
+import { Tasks } from '../../model/tasks';
+import { MatMenuModule } from '@angular/material/menu';
+import { Evaluate } from '../../model/evaluate';
 @Component({
   selector: 'app-dialog-co',
   standalone: true,
-  imports: [MatFormFieldModule,MatInputModule,MatIconModule,CommonModule],
+  imports: [MatFormFieldModule,MatInputModule,MatIconModule,CommonModule,SidebarComponent, DatatablepageComponent,FormsModule,MatMenuModule],
   templateUrl: './dialog-co.component.html',
   styleUrl: './dialog-co.component.css'
 })
 export class DialogCoComponent {
   constructor(
+    
+    private positionser:PositionService,
     public dialogRef: MatDialogRef<DialogCoComponent>,
-    private authservice:AuthServiceService,
-    private storeservice:UserStoreService,
+    private userstor:UserStoreService,
+    private authService:AuthServiceService,
+    
     @Inject(MAT_DIALOG_DATA) public data: UserDetail
   ) {
     }
@@ -27,72 +38,36 @@ export class DialogCoComponent {
     onNoClick(): void {
       this.dialogRef.close();
     }
-    public USERNAME:string="";
-    public role:string="";
-    public users:any=[];
-    public userscity:any=[];
-    public copyusers:any=[];
+    selectedtaskid!:number;
+    id!:number;
+    newTask: string = '';
+    tasks: Task[] = [];
+    evaluate:Evaluate[]=[];
+    currentFilter: string = 'all';
+    evalQuestionList: Evalquestion[] = [];
+    public usertasks:Tasks[] = [];;
     public filteredItems:any = [];
     searchTerm: string = '';
-    sortColumn: keyof UserDetail = 'name';
+    sortColumn: keyof Evalquestion = 'evaluatequestion';
     sortOrder: 'asc' | 'desc' = 'asc';
     visible:boolean=false;
-    selectedRole: string = '';
-    selectedCity: string = '';
-    selectedPerson: string = '';
-    roleList: string[] = ['user', 'Stajyer', 'calisan', 'Yönetici'];
-    cityList: string[] = ['İstanbul', 'Ankara', 'İzmir']; 
     userNames: string[] = [];
-  
-    clearSelections() {
-      this.selectedRole = '';
-      this.selectedCity = '';
-      this.selectedPerson = '';
-    }
-
-    getUsers(){
-      this.users=this.copyusers;
-      if(this.selectedRole!='' || this.selectedCity!='' || this.selectedPerson!=''){
-     
-          this.users = this.users.filter((user: UserDetail) => {
-            return (
-              (!this.selectedCity || user.city === this.selectedCity) &&
-              (!this.selectedRole || user.role === this.selectedRole) &&
-              (!this.selectedPerson || user.name === this.selectedPerson)
-            );
-          });
-      }
-      else if(this.copyusers.length != 0){
-        this.users=this.copyusers
-      }
-      this.visible=true;
-    }
-    
+    openmenu:boolean=false;
     ngOnInit(): void {
-      this.getalluser();
-    }
-    getalluser(){
-      this.authservice.getalluser().subscribe(async (response:any)=>{
-        if (response.data !=null) {
-          this.users=await response.data;
-          this.userNames = this.users.map((user: UserDetail)  => user.name);
-          console.log(this.userNames);
-          this.copyusers=this.users;
-          console.log(response.data);
-        } 
-      });
   
+      this.getallEvaluateQuestion();
+      this.getuser();
     }
     
-    get filteredUsers(): UserDetail[] {
-      return this.users
-        .filter((user: UserDetail) =>
-          user.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        user.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        user.phone.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        user.city.toLowerCase().includes(this.searchTerm.toLowerCase())
-        )
-        .sort((a: UserDetail, b: UserDetail) => {
+    
+ 
+    
+    get kilteruser(): Evalquestion[] {
+      return this.evalQuestionList
+        .filter((user: Evalquestion) =>
+          user.evaluatequestion.toLowerCase().includes(this.searchTerm.toLowerCase()
+        ))
+        .sort((a: Evalquestion, b: Evalquestion) => {
           if (!this.sortColumn) return 0;
     
           const aValue = a[this.sortColumn];
@@ -104,7 +79,7 @@ export class DialogCoComponent {
         });
     }
     
-    sort(column: keyof UserDetail) {
+    sort(column: keyof Evalquestion) {
       if (this.sortColumn === column) {
         this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
       } else {
@@ -112,24 +87,79 @@ export class DialogCoComponent {
         this.sortOrder = 'asc';
       }
     }
-    
-    clearSearch() {
-      this.searchTerm = '';
+
+ 
+ 
+    getallEvaluateQuestion(){
+      this.positionser.getEvalQuestioions().subscribe(
+        (response:any)=>{
+         if (response.data !=null) {
+          this.evalQuestionList=response.data
+         } 
+       });
     }
-    
-    
-    filterItems(): void {
-      this.users = this.users.filter((user: UserDetail)  => user.city === 'Ankara');
-      console.log(this.filterItems)
+    degerlendir(id:number){
+      this.selectedtaskid=id;
+      this.visible=!this.visible;
     }
-    onCitySelected(){
-      this.users=this.copyusers;
-      this.userscity = this.users.filter((user: UserDetail) => {
-        return (
-          (!this.selectedCity || user.city === this.selectedCity) &&
-          (!this.selectedRole || user.role === this.selectedRole) 
-        );
+    getuser(){
+      this.userstor.getUserIdStore()
+      .subscribe(val=>{
+        const USERNAMEFromToken=this.authService.getUserIdFromToken()
+        this.id=val || USERNAMEFromToken
       });
-      this.userNames = this.userscity.map((user: UserDetail)  => user.name);
+      
+     
+        this.positionser.getByIdTasks(this.id).
+        subscribe({
+      
+          next:(res)=>{
+            this.usertasks=res.data;
+    
+          },
+          error:(err)=>{
+         
+          }
+        })
+
+
+      };
+
+    addTask(event: KeyboardEvent): void {
+      if (event.key === "Enter" && this.newTask.trim() !== '') {
+        this.tasks.push({
+          text: this.newTask.trim(), completed: false,
+          id: 0
+        });
+        this.newTask = '';
+      }
     }
+  
+    toggleTask(task: Task): void {
+      task.completed = !task.completed;
+    }
+  
+    clearAllTasks(): void {
+      this.tasks = [];
+    }
+  
+    filterTasks(filter: string): void {
+      this.currentFilter = filter;
+    }
+  
+    filteredTasks(): Tasks[] {
+      if (this.currentFilter === 'all') {
+        return this.usertasks;
+      } else if (this.currentFilter === 'pending') {
+        return this.usertasks.filter(task => task.status === 'T');
+      } else if (this.currentFilter === 'completed') {
+        return this.usertasks.filter(task => task.status === 'F');
+      }
+      return this.usertasks;
+    }
+
+ 
+
   }
+
+

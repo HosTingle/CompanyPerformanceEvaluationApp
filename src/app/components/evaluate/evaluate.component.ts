@@ -8,6 +8,8 @@ import { AuthServiceService } from '../../services/auth.service.service';
 import { UserStoreService } from '../../services/user-store.service';
 import{MatDialog} from '@angular/material/dialog';
 import { DialogCoComponent } from '../dialog-co/dialog-co.component';
+import { Position } from '../../model/position';
+import { PositionService } from '../../services/position.service';
 
 @Component({
   selector: 'app-evaluate',
@@ -31,24 +33,46 @@ export class EvaluateComponent {
   selectedRole: string = '';
   selectedCity: string = '';
   selectedPerson: string = '';
-  roleList: string[] = ['user', 'Stajyer', 'calisan', 'Yönetici'];
-  cityList: string[] = ['İstanbul', 'Ankara', 'İzmir']; 
+  roleList: Position[] = [];
+  cityList: string[] = []; 
   userNames: string[] = [];
   constructor(
     private authservice:AuthServiceService,
-    public matdialog:MatDialog
+    public matdialog:MatDialog,
+    private positionser:PositionService
   ) {}
-
+  ngOnInit(): void {
+    this.getalluser();
+    this.getpositions();
+    this.getcitys();
+  }
   clearSelections() {
+
     this.selectedRole = '';
     this.selectedCity = '';
     this.selectedPerson = '';
+    this.onCitySelected();
   }
   openDialog(user: UserDetail) {
     this.matdialog.open(DialogCoComponent, {
       data: user
     });
-    console.log(user);
+  }
+  getpositions(){
+    this.positionser.getPositions().subscribe(
+       (response:any)=>{
+        if (response.data !=null) {
+          this.roleList= response.data;
+        } 
+      });
+  }
+  getcitys(){
+    this.positionser.getCityList().subscribe(
+       (response:any)=>{
+        if (response.data !=null) {
+          this.cityList= response.data;
+        } 
+      });
   }
   getUsers(){
     this.users=this.copyusers;
@@ -65,22 +89,18 @@ export class EvaluateComponent {
     else if(this.copyusers.length != 0){
       this.users=this.copyusers
     }
- 
-
     this.visible=true;
   }
   
-  ngOnInit(): void {
-    this.getalluser();
-  }
+ 
   getalluser(){
     this.authservice.getalluser().subscribe(async (response:any)=>{
       if (response.data !=null) {
         this.users=await response.data;
         this.userNames = this.users.map((user: UserDetail)  => user.name);
-        console.log(this.userNames);
+
         this.copyusers=this.users;
-        console.log(response.data);
+
       } 
     });
 
@@ -122,7 +142,6 @@ export class EvaluateComponent {
   
   filterItems(): void {
     this.users = this.users.filter((user: UserDetail)  => user.city === 'Ankara');
-    console.log(this.filterItems)
   }
   onCitySelected(){
     this.users=this.copyusers;
@@ -134,4 +153,5 @@ export class EvaluateComponent {
     });
     this.userNames = this.userscity.map((user: UserDetail)  => user.name);
   }
+  
 }
