@@ -100,7 +100,7 @@ namespace PMS.Business.Concrete
             var result=Add(usera);
             var position = new UserPosition
             {
-                POSITIONID=_positionService.GetByName("user").Result.Data.POSITIONID,
+                POSITIONID=_positionService.GetByName("Kullanıcı").Result.Data.POSITIONID,
                 USERID= sa.Result.Data.USERID,
             };
             _userPositionDal.Add(position); 

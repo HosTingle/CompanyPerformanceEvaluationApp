@@ -1,5 +1,6 @@
 ﻿using PMS.Core.Utilities.Results;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace PMS.Business.Abstract
         IResult Delete(UserTask userTask);
         IResult Update(UserTask userTask); 
         Task<IDataResult<List<UserTask>>> GetAll();
-        Task<IDataResult<UserTask>> GetById(int id);
-        Task<IDataResult<List<UserTask>>> GetAllById(int id); 
+        Task<IDataResult<UserTask>> GetById(int id); 
+        Task<IDataResult<List<UserTaskDateDto>>> GetAllById(int id); 
     }
 }

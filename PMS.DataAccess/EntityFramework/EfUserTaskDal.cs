@@ -35,7 +35,8 @@ namespace PMS.DataAccess.EntityFramework
         {
             using (OracleDbContext context = new OracleDbContext())
             {
-                return await GetUserTaskQuery(context, userid).ToListAsync();
+                var result = await GetUserTaskQuery(context, userid).ToListAsync();
+                return result;
                  
             }
         }

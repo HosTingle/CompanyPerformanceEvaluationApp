@@ -1,7 +1,9 @@
 ﻿using PMS.Business.Abstract;
 using PMS.Core.Utilities.Results;
 using PMS.DataAccess.Abstract;
+using PMS.DataAccess.EntityFramework;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,9 +48,26 @@ namespace PMS.Business.Concrete
             _userTaskDal.Update(userTask);
             return new SuccessResult("Güncellendi");
         }
-        public async Task<IDataResult<List<UserTask>>> GetAllById(int id)
-        {
-            return new SuccessDataResult<List<UserTask>>(await _userTaskDal.GetUserTaskById(id),"Userlar görevleri getirildi");
+        public async Task<IDataResult<List<UserTaskDateDto>>> GetAllById(int id)
+        { 
+            var result =await  _userTaskDal.GetUserTaskById(id);
+            var userTaskDateDtoList = new List<UserTaskDateDto>();
+
+            foreach (var userTask in result)
+            {
+                var sa = new UserTaskDateDto
+                {
+                    DUEDATE = DateOnly.FromDateTime(userTask.DUEDATE),
+                    TASKNAME = userTask.TASKNAME,
+                    DESCRIPTION = userTask.DESCRIPTION,
+                    STATUS = userTask.STATUS,
+                    TASKID = userTask.TASKID,
+                    USERID = userTask.USERID,
+                };
+
+                userTaskDateDtoList.Add(sa);
+            }
+            return new SuccessDataResult<List<UserTaskDateDto>>(userTaskDateDtoList, "Userlar görevleri getirildi");
         }
     }
 }
