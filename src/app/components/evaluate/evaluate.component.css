@@ -37,10 +37,10 @@ body, html {
   .container {
     position: relative; /* Konumlandırma için gerekli */
     margin-top: 4%;
-    margin-left: 25.8%;
-    max-width: 63.5%;
+    margin-left: 25%;
+    max-width: 65%;
     background-color: #f8be30;
-
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
   .colored-text {
     color: #eeefef; /* Metin rengini kırmızı yapar */
@@ -112,6 +112,7 @@ body, html {
 .table-responsive {
   max-width: 65%; /* Burada istediğiniz genişliği belirleyin */
   margin-left: 25%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 /* Ortalamak için */
 }
 
@@ -120,7 +121,7 @@ body, html {
 .datatable-container {
 margin: 12px;
 padding: 12px;
-border: 1px solid #ddd;
+
 
 font-family: Arial, sans-serif;
 background-color: #fff;

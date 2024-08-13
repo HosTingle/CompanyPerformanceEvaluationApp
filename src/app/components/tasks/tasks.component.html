@@ -1,0 +1,92 @@
+<app-sidebar></app-sidebar>
+<div class="container">
+    <div class="red-rectangle">
+        <div class="container-box">
+            <p class="zaa">Görev Sayısı</p>
+            <div class="container-box-text">
+              <div class="icon-wrapper">
+                <i class="fas fa-tasks"></i>
+            </div>
+                <p class="cop">{{toplams}}</p> 
+            </div>
+        </div>
+        <div class="container-box">
+            <p class="zaa">Devam Eden</p>
+            <div class="container-box-textb">
+              <div class="icon-wrapper">
+                <i class="fas fa-clock"></i>
+            </div>
+                <p class="cop">{{countF}}</p> 
+           
+            </div>
+        </div>
+        <div class="container-box">
+            <p class="zaa">Biten Görev</p>
+            <div class="container-box-textf">
+              <div class="icon-wrapper">
+                <i class="fas fa-check"></i>
+            </div>
+                <p class="cop">{{countT}}</p> 
+          
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <div class="corner-text">
+        <p>Görevler</p>
+    </div>
+    <div class="datatable-container">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        <div class="header-content">
+                            <span>Görev</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="header-content">
+                            <span>Durum</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="header-content">
+                            <span></span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="header-content">
+                            <span></span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of usertasks">
+                    <td>
+                        <i class="fas fa-tasks"></i> 
+                    </td>
+                    <td>{{ user.taskname }}</td>
+                    <td>
+                        {{ user.status === 'T' ? 'Devam Ediyor' : user.status === 'F' ? 'Tamamlandı' : '' }}
+                    </td>
+                    <td>
+                        <ng-container *ngIf="user.status === 'T'; else done">
+                            <mat-icon (click)="taskfinish(user)">check</mat-icon>
+                        </ng-container>
+                        <ng-template #done>
+                            <ng-container *ngIf="user.status === 'F'"></ng-container>
+                        </ng-template>
+                    </td>
+                    <td></td>
+                    <td>
+                        <mat-icon (click)="viewTaskDetail(user)"> info </mat-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

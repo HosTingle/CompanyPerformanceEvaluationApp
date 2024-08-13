@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { Tasks } from '../../model/tasks';
 import { MatMenuModule } from '@angular/material/menu';
 import { Evaluate } from '../../model/evaluate';
+import { EvaluateSelection } from '../../model/evaluateselection';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-dialog-co',
   standalone: true,
@@ -30,7 +32,7 @@ export class DialogCoComponent {
     public dialogRef: MatDialogRef<DialogCoComponent>,
     private userstor:UserStoreService,
     private authService:AuthServiceService,
-    
+    private toastrService: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: UserDetail
   ) {
     }
@@ -38,11 +40,13 @@ export class DialogCoComponent {
     onNoClick(): void {
       this.dialogRef.close();
     }
+    
     selectedtaskid!:number;
+    evaluatenumber!:number;
     id!:number;
     newTask: string = '';
     tasks: Task[] = [];
-    evaluate:Evaluate[]=[];
+    evaluateList:Evaluate[]=[];
     currentFilter: string = 'all';
     evalQuestionList: Evalquestion[] = [];
     public usertasks:Tasks[] = [];;
@@ -53,16 +57,31 @@ export class DialogCoComponent {
     visible:boolean=false;
     userNames: string[] = [];
     openmenu:boolean=false;
+    selectedEvaluations: EvaluateSelection[] = [];
     ngOnInit(): void {
-  
       this.getallEvaluateQuestion();
       this.getuser();
     }
-    
-    
- 
-    
+    toggleSelection(evaluatequestionid: number, puan: number, event: any) {
+      if (event.target.checked) {
+        this.selectedEvaluations.push(new EvaluateSelection(evaluatequestionid, puan));
+      } else {
+        const index = this.selectedEvaluations.findIndex(e => e.evaluatequestionid === evaluatequestionid);
+        if (index !== -1) {
+          this.selectedEvaluations.splice(index, 1);
+        }
+      }
+    }
+  
+    updatePuan(evaluatequestionid: number, puan: number) {
+      const evaluation = this.selectedEvaluations.find(e => e.evaluatequestionid === evaluatequestionid);
+      if (evaluation) {
+        evaluation.puan = puan;
+      }
+    }
+
     get kilteruser(): Evalquestion[] {
+      
       return this.evalQuestionList
         .filter((user: Evalquestion) =>
           user.evaluatequestion.toLowerCase().includes(this.searchTerm.toLowerCase()
@@ -87,7 +106,36 @@ export class DialogCoComponent {
         this.sortOrder = 'asc';
       }
     }
+    addQuestionAnswers(){
+     for (let i = 0; i < this.selectedEvaluations.length; i++) {
+      const evaluate = new Evaluate();
+      evaluate.evaluatorid = this.id;
+      evaluate.evaluateeid = this.data.userid;
+      evaluate.evalquestionid =this.selectedEvaluations[i].evaluatequestionid;
+      evaluate.taskid = this.selectedtaskid;
+      evaluate.feedbackcomment = `asdasdasd`;
+      evaluate.evaluationdate = new Date();
+      evaluate.evaluatescore = this.selectedEvaluations[i].puan; 
 
+      this.evaluateList.push(evaluate); 
+    }
+    this.positionser.addRangeEvaluate(this.evaluateList).
+    subscribe(
+      (response:any)=>{
+       if (response.success) {
+        this.toastrService.success('Değerlendirmeler Eklendi', 'Başarılı', {
+    
+        });
+        this.onNoClick();
+       } 
+       else{
+        this.toastrService.error('Değerlendirmeler Eklenemedi', 'Başarısız', {
+    
+        });
+        this.onNoClick();
+       }
+     });
+    }
  
  
     getallEvaluateQuestion(){

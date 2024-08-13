@@ -10,12 +10,14 @@ import { Tasks } from '../model/tasks';
 import { Evaluate } from '../model/evaluate';
 import { EntityReponseModel } from '../model/responseModels/entityResponseModel';
 import { ReponseModel } from '../model/responseModels/responseModel';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PositionService {
-
+  private taskSource = new BehaviorSubject<Tasks | null>(null);
+  currentTask = this.taskSource.asObservable();
   apiUrl = ApiUrl.localurl;
   constructor(
     private httpClient:HttpClient,
@@ -39,8 +41,15 @@ export class PositionService {
     let newPath = this.apiUrl + `UserTask/getallbyid?id=${id}`;
     return this.httpClient.get<EntityReponseModelL<Tasks>>(newPath)
   }
-  addRangeEvaluate(evaluate: Evaluate[]){
+  addRangeEvaluate(evaluate: Evaluate[]):Observable<ReponseModel>{
     let newPath = this.apiUrl + `Evaluate/addRange`;
     return this.httpClient.post<ReponseModel>(newPath,evaluate)
+  }
+  changeTask(task: Tasks) {
+    this.taskSource.next(task);
+  }
+  updateusertask(usetask:Tasks){
+    let newPath = this.apiUrl + `UserTask/update`;
+    return this.httpClient.post<ReponseModel>(newPath,usetask)
   }
 }

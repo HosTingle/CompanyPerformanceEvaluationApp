@@ -16,6 +16,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AnalyticComponent } from './components/analytic/analytic.component';
 import { EvaluateComponent } from './components/evaluate/evaluate.component';
 import { SignupadressComponent } from './components/signupadress/signupadress.component';
+import { TasksComponent } from './components/tasks/tasks.component';
+import { TaskdetailComponent } from './components/taskdetail/taskdetail.component';
 
 export const routes: Routes = [ 
   { path: '', redirectTo: 'loginpage', pathMatch: 'full' }, 
@@ -30,6 +32,8 @@ export const routes: Routes = [
     {path:'analyticpage',component:AnalyticComponent},
     {path:'evaluatepage',component:EvaluateComponent},
     {path:'signadresspage',component:SignupadressComponent},
+    {path:'taskspage',component:TasksComponent},
+    { path:'taskspage/:id',component:TaskdetailComponent},
   { path: '**', redirectTo: '/404' },
 
 
