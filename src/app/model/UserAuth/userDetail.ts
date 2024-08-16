@@ -7,4 +7,6 @@ export class UserDetail{
     country!:string;
     city!:string;
     role!:string;
+    imageurl!:string;
+    teamname!:string;
 }

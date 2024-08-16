@@ -23,6 +23,7 @@ export class DatatablepageComponent implements OnInit {
   public role:string="";
   public users:any=[];
   public filteredItems:any = [];
+  id!:number;
   searchTerm: string = '';
   sortColumn: keyof UserDetail = 'name';
   sortOrder: 'asc' | 'desc' = 'asc';
@@ -33,11 +34,16 @@ export class DatatablepageComponent implements OnInit {
 
   ) {}
 ngOnInit(): void {
+  this.storeservice.getUserIdStore()
+  .subscribe(val=>{
+    const USERNAMEFromToken=this.authservice.getUserIdFromToken()
+    this.id=val || USERNAMEFromToken
+  });
   this.getalluser();
 
 }
 getalluser(){
-  this.authservice.getalluser().subscribe((response:any)=>{
+  this.authservice.getalluser(this.id).subscribe((response:any)=>{
     if (response.data !=null) {
       this.users=response.data;
       console.log(response.data);

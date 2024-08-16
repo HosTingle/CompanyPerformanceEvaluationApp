@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { DatatablepageComponent } from "../datatablepage/datatablepage.component";
 import { CommonModule } from '@angular/common';
@@ -18,13 +18,16 @@ import { PositionService } from '../../services/position.service';
   templateUrl: './evaluate.component.html',
   styleUrl: './evaluate.component.css'
 })
-export class EvaluateComponent {
+export class EvaluateComponent implements OnInit {
   public USERNAME:string="";
   public role:string="";
+  teamname:string="";
   username:string="";
+  id!:number;
   public users:any=[];
   public userscity:any=[];
   public copyusers:any=[];
+  public filterusers:any=[];
   public filteredItems:any = [];
   searchTerm: string = '';
   sortColumn: keyof UserDetail = 'name';
@@ -39,12 +42,32 @@ export class EvaluateComponent {
   constructor(
     private authservice:AuthServiceService,
     public matdialog:MatDialog,
-    private positionser:PositionService
+    private positionser:PositionService,
+    private userstor:UserStoreService
   ) {}
   ngOnInit(): void {
+    this.workstore();
     this.getalluser();
     this.getpositions();
     this.getcitys();
+
+  }
+  workstore(){
+    this.userstor.getUserIdStore()
+    .subscribe(val=>{
+      const USERNAMEFromToken=this.authservice.getUserIdFromToken()
+      this.id=val || USERNAMEFromToken
+    });
+    this.userstor.getRoleFromStore()
+  .subscribe(val=>{
+    const getRoleFromToken=this.authservice.getRoleFromToken();
+    this.role=val || getRoleFromToken
+  })
+  this.userstor.getTeamNameStore()
+  .subscribe(val=>{
+    const getTeamNameFromToken=this.authservice.getTeamNameFromToken();
+    this.teamname=val || getTeamNameFromToken
+  });
   }
   clearSelections() {
 
@@ -52,6 +75,7 @@ export class EvaluateComponent {
     this.selectedCity = '';
     this.selectedPerson = '';
     this.onCitySelected();
+
   }
   openDialog(user: UserDetail) {
     this.matdialog.open(DialogCoComponent, {
@@ -80,7 +104,7 @@ export class EvaluateComponent {
    
         this.users = this.users.filter((user: UserDetail) => {
           return (
-            (!this.selectedCity || user.city === this.selectedCity) &&
+            (!this.selectedCity || user.teamname === this.selectedCity) &&
             (!this.selectedRole || user.role === this.selectedRole) &&
             (!this.selectedPerson || user.name === this.selectedPerson)
           );
@@ -91,18 +115,26 @@ export class EvaluateComponent {
     }
     this.visible=true;
   }
-  
- 
+
+
   getalluser(){
-    this.authservice.getalluser().subscribe(async (response:any)=>{
+    this.authservice.getalluser(this.id).subscribe(async (response:any)=>{
       if (response.data !=null) {
         this.users=await response.data;
-        this.userNames = this.users.map((user: UserDetail)  => user.name);
-
+ 
+        if(this.role=="Yonetici"){
+          this.filterusers= this.users.filter((user: UserDetail) => {
+            return (
+              ( user.teamname === this.teamname)
+            );
+          });
+          this.users= this.filterusers;
+          this.userNames = this.users.map((user: UserDetail)  => user.name);
+        }
         this.copyusers=this.users;
-
       } 
     });
+ 
 
   }
   
@@ -140,14 +172,12 @@ export class EvaluateComponent {
   }
   
   
-  filterItems(): void {
-    this.users = this.users.filter((user: UserDetail)  => user.city === 'Ankara');
-  }
+
   onCitySelected(){
-    this.users=this.copyusers;
+    this.users= this.filterusers;
     this.userscity = this.users.filter((user: UserDetail) => {
       return (
-        (!this.selectedCity || user.city === this.selectedCity) &&
+        (!this.selectedCity || user.teamname === this.selectedCity) &&
         (!this.selectedRole || user.role === this.selectedRole) 
       );
     });

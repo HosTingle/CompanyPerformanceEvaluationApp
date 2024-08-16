@@ -3,20 +3,39 @@
         <img width="160" height="25" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Vak%C4%B1fbank_logo.svg/2560px-Vak%C4%B1fbank_logo.svg.png" alt="Vakıfbank Logo">
     </div>
     <div class="form-group" style="margin-bottom: 20px;">
-        <input type="text" id="country" class="form-control form-control-lg" placeholder="Ülke " formControlName="country" />
-    </div>
-    <div class="form-group" style="margin-bottom: 20px;">
-        <input type="text" id="city" class="form-control form-control-lg" placeholder="Şehir" formControlName="city"  />
-    </div>
-    <div class="form-group" style="margin-bottom: 20px;">
-        <input type="text" id="state" class="form-control form-control-lg" placeholder="İlçe" formControlName="state" />
-    </div>
+        <select id="city" class="form-control form-control-lg custom-select" formControlName="country" style="display: block; width: 100%; font-size: 1rem;  color: #333; background-color: #ededed; ">
+          <option value="" disabled selected>Ülke</option> 
+          <option value="Türkiye">Türkiye</option>
+        </select>
+        <small *ngIf="userRegisterAddressForm.controls['country'].dirty && userRegisterAddressForm.hasError('required', 'country')" class="text-danger">
+          Takım Id required
+        </small>
+      </div>
+      <div class="form-group" style="margin-bottom: 20px;">
+        <select id="city" class="form-control form-control-lg custom-select" formControlName="city" style="display: block; width: 100%; font-size: 1rem; color: #333; background-color: #ededed;">
+          <option value="" disabled selected>Şehir</option>
+          <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+        </select>
+        <small *ngIf="userRegisterAddressForm.controls['city'].dirty && userRegisterAddressForm.hasError('required', 'city')" class="text-danger">
+          Şehir gerekli
+        </small>
+      </div>
+      
+      <div class="form-group" style="margin-bottom: 20px;">
+        <select id="state" class="form-control form-control-lg custom-select" formControlName="state" style="display: block; width: 100%; font-size: 1rem; color: #333; background-color: #ededed;">
+          <option value="" disabled selected>İlçe</option>
+          <option *ngFor="let district of filteredDistricts" [value]="district">{{ district }}</option>
+        </select>
+        <small *ngIf="userRegisterAddressForm.controls['state'].dirty && userRegisterAddressForm.hasError('required', 'state')" class="text-danger">
+          İlçe gerekli
+        </small>
+      </div>
     <div class="form-group" style="margin-bottom: 20px;">
         <input type="text" id="addresDetail" class="form-control form-control-lg" placeholder="Adres detayı" formControlName="addressDetail" />
     </div>
     
     <div class="form-group button-container">
-        <button type="button" class="btn btn-primary" (click)="register()" >Sign Up</button>
+        <button type="button" class="btn btn-primary" (click)="register()" >Kayıt Ol</button>
     </div>
   </form>
   

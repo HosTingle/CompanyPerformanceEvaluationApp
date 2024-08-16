@@ -142,5 +142,16 @@
   .form-group {
     margin-top: 8%
   }
-  
+  .custom-select {
+    display: block;
+    width: 100%;
+    padding: .415rem 0.5rem;
+
+
+    border-radius: .25rem;
+    appearance: none;
+    -webkit-appearance: none; /* Safari için */
+    -moz-appearance: none; /* Firefox için */
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
   

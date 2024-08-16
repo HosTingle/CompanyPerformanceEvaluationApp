@@ -18,6 +18,7 @@ import { EvaluateComponent } from './components/evaluate/evaluate.component';
 import { SignupadressComponent } from './components/signupadress/signupadress.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskdetailComponent } from './components/taskdetail/taskdetail.component';
+import { HelppageComponent } from './components/helppage/helppage.component';
 
 export const routes: Routes = [ 
   { path: '', redirectTo: 'loginpage', pathMatch: 'full' }, 
@@ -34,6 +35,7 @@ export const routes: Routes = [
     {path:'signadresspage',component:SignupadressComponent},
     {path:'taskspage',component:TasksComponent},
     { path:'taskspage/:id',component:TaskdetailComponent},
+    { path:'helppage',component:HelppageComponent},
   { path: '**', redirectTo: '/404' },
 
 

@@ -4,9 +4,10 @@ export class Register{
     username!:string;
     password!:string;
     phone!:string;
-    date!:Date;
+    birthDate!:Date;
     country!:string;
     city!:string;
     state!:string;
     addressDetail!:string;
+    teamid!:string;
 }

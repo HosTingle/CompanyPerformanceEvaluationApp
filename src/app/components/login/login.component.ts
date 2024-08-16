@@ -47,9 +47,12 @@ export class LoginComponent implements OnInit {
           this.authService.storeToken(response.data.accessToken)
           this.authService.storeRefreshToken(response.data.refreshToken)
           const tokenPayload=this.authService.decodejwt();
+          let intValue: number = parseInt(tokenPayload.POSITIONLEVEL, 10); // 10 is the radix for decimal
           this.userStore.setFullNameForStore(tokenPayload.USERNAME)
           this.userStore.setRoleForStore(tokenPayload.POSITIONNAME)
+          this.userStore.setPositionLevelForStore(intValue)
           this.userStore.setUserIdStore(tokenPayload.USERID)
+          this.userStore.setTeamNameStore(tokenPayload.TEAMNAME)
           this.router.navigate(["homepage"]);
         } else {
           this.toastrService.error('Giriş Başarisiz', 'Doğrulama Hatasi', {

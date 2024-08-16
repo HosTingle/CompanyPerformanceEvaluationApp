@@ -43,8 +43,8 @@ export class AuthServiceService {
     let newPath = this.apiUrl + 'UserAuth/login'
      return this.httpClient.post<EntityReponseModel<TokenApiModel>>(newPath,loginModel)
   }
-  getalluser():Observable<EntityReponseModelL<UserAuthM>>{
-    let newPath = this.apiUrl + 'UserPerformance/geallperformancedetail'
+  getalluser(num:number):Observable<EntityReponseModelL<UserAuthM>>{
+    let newPath = this.apiUrl + `UserPerformance/geallperformancedetail?id=${num}`
     return this.httpClient.get<EntityReponseModelL<UserAuthM>>(newPath)
    
   }
@@ -87,6 +87,10 @@ export class AuthServiceService {
     if(this.userPayload)
       return this.userPayload.POSITIONNAME;
   }
+  getUserLevelFromToken(){
+    if(this.userPayload)
+      return this.userPayload.POSITIONLEVEL;
+  }
   getUsernameFromToken(){
     if(this.userPayload)
       return this.userPayload.USERNAME;
@@ -94,6 +98,10 @@ export class AuthServiceService {
   getUserIdFromToken(){
     if(this.userPayload)
       return this.userPayload.USERID;
+  }
+  getTeamNameFromToken(){
+    if(this.userPayload)
+      return this.userPayload.TEAMNAME;
   }
   renewToken(tokenapi:TokenApiModel){
     return this.httpClient.post<any>(`${this.apiUrl}UserAuth/refresh`,tokenapi)

@@ -35,7 +35,8 @@ export class SignupComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       phone:['', Validators.required],
-      date:['', Validators.required],
+      birthDate:['', Validators.required],
+      teamid:['', Validators.required],
     });
   }
   navigateToAddressPage() {
@@ -47,10 +48,17 @@ export class SignupComponent implements OnInit {
     this.usereg.username = this.userRegisterForm.get('username')?.value;
     this.usereg.password = this.userRegisterForm.get('password')?.value;
     this.usereg.phone = this.userRegisterForm.get('phone')?.value;
-    this.usereg.date = this.userRegisterForm.get('date')?.value;
-
-    this.authService.setMyClassInstance(this.usereg);
-    this.router.navigate(['signadresspage']);
+    this.usereg.birthDate = this.userRegisterForm.get('birthDate')?.value;
+    this.usereg.teamid = this.userRegisterForm.get('teamid')?.value;
+    const isAnyEmpty = Object.values(this.usereg).some(value => value === null || value === undefined || value === '')
+    if(isAnyEmpty){
+      this.toastrService.error('Lütfen bilgileri giriniz!', 'Başarısız');
+    }
+    else{
+      this.authService.setMyClassInstance(this.usereg);
+      this.router.navigate(['signadresspage']);
+    }
+   
   }
 
 }

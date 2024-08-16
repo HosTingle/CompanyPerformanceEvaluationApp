@@ -18,6 +18,7 @@ export class HomepageComponent implements OnInit{
   public USERNAME:string="";
   public role:string="";
   public users:any=[];
+  id!:number;
   constructor(
     private router:Router,
     private localStorageService: LocalStorageService,
@@ -30,7 +31,7 @@ this.getuser();
 
 }
 getalluser(){
-  this.authservice.getalluser().subscribe((response:any)=>{
+  this.authservice.getalluser(this.id).subscribe((response:any)=>{
     if (response.data !=null) {
       this.users=response.data;
       console.log(response.data);
@@ -48,8 +49,11 @@ getuser(){
     const getRoleFromToken=this.authservice.getRoleFromToken();
     this.role=val || getRoleFromToken
   })
+  this.storeservice.getUserIdStore()
+  .subscribe(val=>{
+    const USERNAMEFromToken=this.authservice.getUserIdFromToken()
+    this.id=val || USERNAMEFromToken
+  });
 }
-logout(){
-  this.authservice.signOut("token");
-}
+
 }

@@ -30,7 +30,7 @@ export class PositionService {
    
   }
   getCityList(){
-    let newPath = this.apiUrl + `Address/getallCityList`;
+    let newPath = this.apiUrl + `UserPerformance/getallTeamList`;
     return this.httpClient.get<EntityReponseModelL<string>>(newPath)
   }
   getEvalQuestioions(){

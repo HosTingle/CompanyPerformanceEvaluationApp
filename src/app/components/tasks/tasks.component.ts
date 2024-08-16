@@ -67,7 +67,7 @@ export class TasksComponent {
       subscribe({
     
         next:(res)=>{
-          this.usertasks=res.data;
+        this.usertasks=res.data;
           this.toplams=this.usertasks.length;
          this.countF = this.usertasks.filter(task => task.status === 'F').length;
           this.countT = this.usertasks.filter(task => task.status === 'T').length;
@@ -80,7 +80,7 @@ export class TasksComponent {
 
     };
   getalluser(){
-    this.authservice.getalluser().subscribe(async (response:any)=>{
+    this.authservice.getalluser(this.id).subscribe(async (response:any)=>{
       if (response.data !=null) {
         this.users=await response.data;
         this.userNames = this.users.map((user: UserDetail)  => user.name);

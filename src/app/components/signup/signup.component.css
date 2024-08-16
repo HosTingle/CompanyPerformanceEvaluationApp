@@ -37,7 +37,7 @@
   }
   
   form {
-    height: 580px;
+    height: 640px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -50,7 +50,18 @@
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
   }
-  
+  .custom-select {
+    display: block;
+    width: 100%;
+    padding: .125rem 0.3rem;
+
+
+    border-radius: .25rem;
+    appearance: none;
+    -webkit-appearance: none; /* Safari için */
+    -moz-appearance: none; /* Firefox için */
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
   form * {
     font-family: 'Poppins', sans-serif;
     color: #0e0000;
@@ -93,7 +104,7 @@
     display: block;
     margin: 30px auto; /* shorthand for margin-top, margin-right, margin-bottom, and margin-left */
     width: 45%;
-    background-color: #0d6cfa;
+    background-color: #f8be30;
     color: #fff;
     padding: 15px 0;
     font-size: 18px;
@@ -137,7 +148,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 2vh;
+    height: 2.2vh;
   }
   .form-group {
     margin-top: 8%

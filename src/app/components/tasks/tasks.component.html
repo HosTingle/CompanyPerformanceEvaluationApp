@@ -16,7 +16,7 @@
               <div class="icon-wrapper">
                 <i class="fas fa-clock"></i>
             </div>
-                <p class="cop">{{countF}}</p> 
+                <p class="cop">{{countT}}</p> 
            
             </div>
         </div>
@@ -26,13 +26,13 @@
               <div class="icon-wrapper">
                 <i class="fas fa-check"></i>
             </div>
-                <p class="cop">{{countT}}</p> 
+                <p class="cop">{{countF}}</p> 
           
             </div>
         </div>
     </div>
 </div>
-
+<ng-container *ngIf="usertasks != null && usertasks.length > 0">
 <div class="table-responsive">
     <div class="corner-text">
         <p>Görevler</p>
@@ -90,3 +90,12 @@
         </table>
     </div>
 </div>
+</ng-container>
+<ng-container *ngIf="usertasks != null && usertasks.length == 0">
+    <div class="table-responsive">
+        <div class="corner-textt">
+            <p>Herhangi bir Görev bulunamadı</p>
+        </div>
+        
+    </div>
+    </ng-container>

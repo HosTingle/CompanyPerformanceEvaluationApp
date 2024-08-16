@@ -18,6 +18,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Evaluate } from '../../model/evaluate';
 import { EvaluateSelection } from '../../model/evaluateselection';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-dialog-co',
   standalone: true,
@@ -32,6 +34,7 @@ export class DialogCoComponent {
     public dialogRef: MatDialogRef<DialogCoComponent>,
     private userstor:UserStoreService,
     private authService:AuthServiceService,
+    private router:Router,
     private toastrService: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: UserDetail
   ) {
@@ -61,6 +64,7 @@ export class DialogCoComponent {
     ngOnInit(): void {
       this.getallEvaluateQuestion();
       this.getuser();
+      this.getusertask();
     }
     toggleSelection(evaluatequestionid: number, puan: number, event: any) {
       if (event.target.checked) {
@@ -72,7 +76,12 @@ export class DialogCoComponent {
         }
       }
     }
+    viewTaskDetail(usertask: Tasks) {
+      this.dialogRef.close();
+      this.positionser.changeTask(usertask);
+      this.router.navigate([`taskspage/${usertask.taskid}`]);
   
+    }
     updatePuan(evaluatequestionid: number, puan: number) {
       const evaluation = this.selectedEvaluations.find(e => e.evaluatequestionid === evaluatequestionid);
       if (evaluation) {
@@ -158,20 +167,23 @@ export class DialogCoComponent {
       });
       
      
-        this.positionser.getByIdTasks(this.id).
-        subscribe({
       
-          next:(res)=>{
-            this.usertasks=res.data;
-    
-          },
-          error:(err)=>{
-         
-          }
-        })
-
 
       };
+    getusertask(){
+      this.positionser.getByIdTasks(this.data.userid).
+      subscribe({
+    
+        next:(res)=>{
+          this.usertasks=res.data;
+  
+        },
+        error:(err)=>{
+       
+        }
+      })
+
+    }
 
     addTask(event: KeyboardEvent): void {
       if (event.key === "Enter" && this.newTask.trim() !== '') {
