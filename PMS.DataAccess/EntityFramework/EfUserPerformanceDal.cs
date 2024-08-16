@@ -30,16 +30,20 @@ namespace PMS.DataAccess.EntityFramework
                       BIRTHDATE=e.BIRTHDATE,
                       PHONE=e.PHONE,
                       CITY=ad.CITY,
-                      COUNTRY=ad.COUNTRY
+                      COUNTRY=ad.COUNTRY,
+                      IMAGEURL=e.IMAGEURL,
+                      TEAMNAME=e.TEAMNAME
+                      
                    };
         }
-        private IQueryable<UserPerformanceDetailAllDto> GetUserPerformanceQueryList(OracleDbContext context) 
+        private IQueryable<UserPerformanceDetailAllDto> GetUserPerformanceQueryList(OracleDbContext context, int userId) 
         {
             return from e in context.USERS_INFO
                    join ad in context.ADDRESS on e.USERID equals ad.USERID
                    join au in context.USER_AUTH on ad.USERID equals au.USERID
                    join up in context.USER_POSITION on au.USERID equals up.USERID
                    join p in context.POSITION on up.POSITIONID equals p.POSITIONID
+                   where e.USERID != userId // Kendi kullanıcınızı filtreleyin
                    select new UserPerformanceDetailAllDto
                    {
                        USERID = e.USERID,
@@ -49,9 +53,9 @@ namespace PMS.DataAccess.EntityFramework
                        PHONE = e.PHONE,
                        CITY = ad.CITY,
                        COUNTRY = ad.COUNTRY,
-                       ROLE=p.POSITIONNAME,
-
-
+                       ROLE = p.POSITIONNAME,
+                       IMAGEURL = e.IMAGEURL,
+                       TEAMNAME = e.TEAMNAME
                    };
         }
         public async Task<UserPerformanceDetailDto> GetUserPerformanceDetails(int userid) 
@@ -62,15 +66,29 @@ namespace PMS.DataAccess.EntityFramework
                 return  result;
             }
         }
-        public async Task<List<UserPerformanceDetailAllDto>> GetUserPerformanceDetailsList() 
+        public async Task<List<UserPerformanceDetailAllDto>> GetUserPerformanceDetailsList(int userid) 
         {
             using (OracleDbContext context = new OracleDbContext())
             {
-                var result = GetUserPerformanceQueryList(context);
+                var result = GetUserPerformanceQueryList(context,userid);
                 return await result.ToListAsync();
             }
         }
-
+        private async Task<List<string>> GetCityListQuery(OracleDbContext context)
+        {
+            return await context.USERS_INFO
+            .Select(a => a.TEAMNAME)
+            .Distinct()
+            .ToListAsync();
+        }
+        public async Task<List<string>> GetCityList()
+        {
+            using (OracleDbContext context = new OracleDbContext())
+            {
+                var result = await GetCityListQuery(context);
+                return result;
+            }
+        }
 
 
     }

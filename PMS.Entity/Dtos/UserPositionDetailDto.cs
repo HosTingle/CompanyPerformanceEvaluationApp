@@ -16,5 +16,6 @@ namespace PMS.Entity.Dtos
         public int USERID { get; set; }
         public string USERNAME { get; set; }
         public int USERAUTHID { get; set; }
+        public string TEAMNAME { get; set; }
     }
 }

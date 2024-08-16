@@ -19,5 +19,7 @@ namespace PMS.Entity.Dtos
         public string City { get; set; }    
         public string State {  get; set; }  
         public string AddressDetail {  get; set; }
+
+        public string teamid { get; set; } 
     }
 }

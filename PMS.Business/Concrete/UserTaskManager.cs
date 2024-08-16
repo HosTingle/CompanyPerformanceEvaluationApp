@@ -69,5 +69,6 @@ namespace PMS.Business.Concrete
             }
             return new SuccessDataResult<List<UserTaskDateDto>>(userTaskDateDtoList, "Userlar görevleri getirildi");
         }
+
     }
 }

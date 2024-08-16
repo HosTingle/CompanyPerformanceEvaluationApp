@@ -71,6 +71,7 @@ namespace PMS.Business.Concrete
                 USERID= userPositionDetailDto.USERID,
                 USERPOSITIONID = userPositionDetailDto.USERPOSITIONID,
                 USERAUTHID= userPositionDetailDto.USERAUTHID,
+                TEAMNAME=userPositionDetailDto.TEAMNAME
             };
            var accessToken = JwtTokenGenerator.GenerateToken(sa,a);
             return new SuccessDataResult<TokenResponseViewModel>(accessToken, "Token Üretildi");
@@ -80,14 +81,24 @@ namespace PMS.Business.Concrete
             byte[] passwordHash, passwordSalt;
             var user = new UserInfo
             {
-                NAME= userRegisterDto.Name,
-                BIRTHDATE=userRegisterDto.BirthDate,
-                PHONE=userRegisterDto.Phone,
+                NAME = userRegisterDto.Name,
+                BIRTHDATE = userRegisterDto.BirthDate,
+                PHONE = userRegisterDto.Phone,
+                IMAGEURL = "https://st4.depositphotos.com/15648834/23779/v/950/depositphotos_237795810-stock-illustration-unknown-person-silhouette-profile-picture.jpg",
+                TEAMNAME=userRegisterDto.teamid,
             };
 
             _userPerformanceService.Add(user);
             var sa= _userPerformanceService.GetByEmail(userRegisterDto.Phone);
             HashingHelper.CreatePasswordHash(userRegisterDto.Password, out passwordHash, out passwordSalt);
+            Random random = new Random();
+
+            // Belirli bir aralık tanımla
+            int minValue = 30;
+            int maxValue = 100000;
+
+            // Rastgele bir sayı üret (minValue dahil, maxValue hariç)
+            int randomNumber = random.Next(minValue, maxValue);
             var usera = new UserAuth
             {
                 USERID= sa.Result.Data.USERID,
@@ -95,7 +106,8 @@ namespace PMS.Business.Concrete
                 PASSWORDSALT=passwordSalt,
                 EMAIL=userRegisterDto.Email,    
                 USERNAME=userRegisterDto.Username,
-              
+                USERAUTHID= randomNumber
+
             };
             var result=Add(usera);
             var position = new UserPosition

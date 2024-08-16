@@ -54,6 +54,7 @@ namespace PMS.Business.Concrete
                     NAME = userUpdateDto.Name,
                     PHONE = userUpdateDto.Phone,
                     USERID=userUpdateDto.userid,
+                    IMAGEURL = "https://st4.depositphotos.com/15648834/23779/v/950/depositphotos_237795810-stock-illustration-unknown-person-silhouette-profile-picture.jpg",
                 };
 
                 var res = Update(sa);
@@ -81,9 +82,9 @@ namespace PMS.Business.Concrete
         {
             return new SuccessDataResult<List<UserInfo>>(await _userPerformanceDal.GetAll(),"Veriler Getirildi"); 
         }
-        public async Task<IDataResult<List<UserPerformanceDetailAllDto>>> GetAllPerformanceDetail() 
+        public async Task<IDataResult<List<UserPerformanceDetailAllDto>>> GetAllPerformanceDetail(int userid) 
         {
-            return new SuccessDataResult<List<UserPerformanceDetailAllDto>>( await _userPerformanceDal.GetUserPerformanceDetailsList(), "Veriler Getirildi");
+            return new SuccessDataResult<List<UserPerformanceDetailAllDto>>( await _userPerformanceDal.GetUserPerformanceDetailsList(userid), "Veriler Getirildi");
         }
         public async Task<IDataResult<UserInfo>> GetById(int id)
         {
@@ -106,6 +107,8 @@ namespace PMS.Business.Concrete
                 NAME=result.NAME,
                 PHONE=result.PHONE,
                 USERID=result.USERID,
+                IMAGEURL = result.IMAGEURL
+                
             };
 
             return new SuccessDataResult<GetByIdUserPerformanceDetailDto>(sa, "Userperformans detaylı bilgileri getirildi.");
@@ -116,6 +119,10 @@ namespace PMS.Business.Concrete
             _userPerformanceDal.Update(userPerformance);
             return new SuccessResult("Güncellendi");
         }
-       
+        public async Task<IDataResult<List<string>>> GetAllAddress()
+        {
+            var result = await _userPerformanceDal.GetCityList();
+            return new SuccessDataResult<List<string>>(result, "Veriler getirildi");
+        }
     }
 }

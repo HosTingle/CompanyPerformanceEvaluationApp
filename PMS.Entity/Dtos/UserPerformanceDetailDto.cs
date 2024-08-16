@@ -19,7 +19,8 @@ namespace PMS.Entity.Dtos
         public string COUNTRY { get; set; }
 
         public string CITY { get; set; }
-
+        public string IMAGEURL { get; set; }
+        public string TEAMNAME { get; set; } 
     }
 }
 

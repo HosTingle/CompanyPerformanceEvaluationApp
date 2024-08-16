@@ -16,6 +16,7 @@ namespace PMS.Core.Entities.Concrete
         public string USERNAME { get; set; }
 
         public int USERAUTHID {  get; set; }
+        public string TEAMNAME {  get; set; }
 
     }
 }
