@@ -24,6 +24,7 @@ export class EvaluateComponent implements OnInit {
   teamname:string="";
   username:string="";
   id!:number;
+  level!:number;
   public users:any=[];
   public userscity:any=[];
   public copyusers:any=[];
@@ -39,6 +40,7 @@ export class EvaluateComponent implements OnInit {
   roleList: Position[] = [];
   cityList: string[] = []; 
   userNames: string[] = [];
+
   constructor(
     private authservice:AuthServiceService,
     public matdialog:MatDialog,
@@ -67,6 +69,11 @@ export class EvaluateComponent implements OnInit {
   .subscribe(val=>{
     const getTeamNameFromToken=this.authservice.getTeamNameFromToken();
     this.teamname=val || getTeamNameFromToken
+  });
+  this.userstor.getLevelFromStore()
+  .subscribe(val=>{
+    const getUserLevelFromToken=this.authservice.getUserLevelFromToken();
+    this.level=val || getUserLevelFromToken
   });
   }
   clearSelections() {

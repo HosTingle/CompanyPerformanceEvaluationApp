@@ -14,6 +14,7 @@ import { EntityReponseModelL } from '../model/responseModels/entityListResponseM
 import { UserAuthM } from '../model/UserAuth/userauthm';
 import { TokenApiModel } from '../model/UserAuth/tokenApiModel';
 import { UserDetail } from '../model/UserAuth/userDetail';
+import { Evaluate } from '../model/evaluate';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,11 @@ export class AuthServiceService {
   getalluser(num:number):Observable<EntityReponseModelL<UserAuthM>>{
     let newPath = this.apiUrl + `UserPerformance/geallperformancedetail?id=${num}`
     return this.httpClient.get<EntityReponseModelL<UserAuthM>>(newPath)
+   
+  }
+  getbyidevaluateuser(num:number):Observable<EntityReponseModelL<Evaluate>>{
+    let newPath = this.apiUrl + `Evaluate/EvaluateDetail?userid=${num}`
+    return this.httpClient.get<EntityReponseModelL<Evaluate>>(newPath)
    
   }
   getuser(id:number){

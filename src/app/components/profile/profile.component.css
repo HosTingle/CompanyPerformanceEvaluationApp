@@ -1,65 +1,285 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
-*{
-  margin: 0;
-  padding: 0;
-  outline: none;
-  border: none;
-
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-.container{
-  display: flex;
-
-}
-body {
-    background-color: #fff;
-    font-family: Arial;
-    overflow: hidden;
-}
-
-
-
-
-
-
-
 .main {
-    margin-top: 6%;
-    font-size: 28px;
 
-    width: 50%;
-    margin-left: 25%;
+    
+    border-width: 5px;    
+    border-color: rgb(0, 0, 0);
+    background-color: #fff;
+    position: fixed;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    width: 71%;
+    box-sizing: border-box;
+    
+}
+app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    
+  }
+.userPhoto {
+
+    width: 10%;
+    height: auto;
+    position: absolute;
+    left: 100px;
+    top: 10px;
+}
+.profile-pic {
+    font-size: 40px;
+    position: absolute;
+
+    top: 13%;
+    width: 10%;
+    height:  16%;
+
+  }
+.isim {
+    font-size: 40px;
+    position: absolute;
+    left: 11.2%;
+    top:16%;
+    margin: 0px;
+    
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;    
+}
+
+.unvanb {
+    font-size: 20px;
+    position: absolute;
+    left: 12%;
+    top:20%;
+    margin: 0px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;    
+
+}
+.unvan {
+    font-size: 20px;
+    position: absolute;
+    left: 12%;
+    top: 23%;
+    margin: 0px;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;    
+
+}
+.cizgi {
+
+    border-style: solid;
+    border-width: 3px;
+    width: 1000px;
+    position: absolute;
+    left: 240px;
+    top: 47px;
     
 }
 
-.main h2 {
-    color: #333;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 24px;
-    margin-bottom: 10px;
-    margin-left: 38%;
-}
-
-.main .card {
-    background-color: #fff;
-    border-radius: 18px;
-    box-shadow: 1px 1px 8px 0 black;
-
-    padding: 10px 0 20px 50px;
-}
-
-
-
-
-.edit {
+.cikis {
     position: absolute;
-    color: #414141;
-    right: 14%;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+    font-size: 24px;
+    top: 15px;
+
+}
+
+.bilgiler{
+
+    border-width: 2px;
+    border-color: #7b7b7b;
+    position: fixed;
+    left: 28%;
+
+    top: 30%;
+    width:  60%;
+    height: 20%;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+
+    
+}
+
+/*
+.form-group {
+
+
+    
+
+}*/
+
+
+.firstName {
+
+    position: absolute;
+    margin: 10px;
+
+}
+
+.lastName {
+
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    right: 10px;
+}
+
+.telNo {
+
+    position: absolute;
+    margin: 10px;
+    top: 80px;
+
+}
+
+.dogumTarihi {
+
+    position: absolute;
+    margin: 10px;
+    top: 160px;
+}
+
+.eMail {
+
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    right: 10px;
+    top: 80px;
+    overflow: auto;
+
+
+}
+
+.tc {
+    
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    right: 10px;
+    top: 160px;
+    
+
+
+}
+
+.adres {
+
+    position: absolute;
+    margin-left: 10px;
+    margin-bottom: 0px;
+    display: flex;
+    left: 0px;
+    flex-direction: column;
+    bottom: 70px;
 }
 
 
 
+.adres textarea {
+
+    font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+
+}
 
 
+.edit button {
+    background-color: #f8be30; 
+    width: 450px;
+    position: fixed;
+    bottom: 28%;
+    left: 46%;
+    border: none; 
+    color: rgb(0, 0, 0); 
+    padding: 10px 20px; 
+    font-size: 14px; 
+    font-weight: 600; 
+    text-transform: uppercase; /* Yazıyı büyük harfe dönüştürür */
+    border-radius: 4px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.2s; /* Geçiş efektleri */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+}
+.editt button {
+    background-color: #f8be30; 
+    width: 450px;
+    position: fixed;
+    bottom: 20%;
+    left: 46%;
+    border: none; 
+    color: rgb(0, 0, 0); 
+    padding: 10px 20px; 
+    font-size: 14px; 
+    font-weight: 600; 
+    text-transform: uppercase; /* Yazıyı büyük harfe dönüştürür */
+    border-radius: 4px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.2s; /* Geçiş efektleri */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+}
+/* Hover efekti */
+.edit button:hover {
+    background-color: #f5a623;
+    transform: translateY(-2px);
+}
+
+/* Aktif (tıklanmış) durumu */
+.edit button:active {
+    background-color: #e59400; /* Aktif durumda daha koyu sarı */
+    transform: translateY(0); /* Tıklanmış durumda kaydırmayı kaldırır */
+}
+
+/* Butonun odaklanmış hali (klavye ile seçildiğinde) */
+.edit button:focus {
+    outline: none; /* Varsayılan odak çerçevesini kaldırır */
+    box-shadow: 0 0 0 3px rgba(248, 190, 48, 0.5); /* Odak efekti */
+}
+
+
+
+input {
+    width: 400px;
+    padding: 12px;
+    border: 1px solid #ddd; /* Hafif gri kenarlık */
+    border-radius: 6px; 
+    box-sizing: border-box; /* Kenarlıkları içerikte sayar */
+    font-size: 16px; 
+    background-color: #e0e0e0;
+    color: #333; 
+    transition: border-color 0.3s, box-shadow 0.3s; /* Yumuşak geçiş efektleri */
+}
+.inputt{
+    width: 400px;
+    padding: 12px;
+    border: 1px solid #ddd; /* Hafif gri kenarlık */
+    border-radius: 6px; 
+    box-sizing: border-box; /* Kenarlıkları içerikte sayar */
+    font-size: 16px; 
+    background-color: #fff;
+    color: #333; 
+    transition: border-color 0.3s, box-shadow 0.3s; /* Yumuşak geçiş efektleri */
+}
+
+
+textarea {
+    padding: 12px;
+    border: 1px solid #ddd; /* Hafif gri kenarlık */
+    border-radius: 6px; 
+    box-sizing: border-box; /* Kenarlıkları içerikte sayar */
+    font-size: 16px; 
+    background-color: #fff; 
+    color: #333; 
+    transition: border-color 0.3s, box-shadow 0.3s; /* Yumuşak geçiş efektleri */
+    resize: none;
+
+
+}

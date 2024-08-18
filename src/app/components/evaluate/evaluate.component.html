@@ -11,14 +11,17 @@
 
     <div class="red-rectangle">
      
-            <div class="dropdown">
-              <label for="role">Rol</label> 
-              <select name="role" id="role" [(ngModel)]="selectedRole" (change)="onCitySelected()">
-                  <option value="" selected></option>
-                  <option *ngFor="let role of roleList" [value]="role.positionname">{{ role.positionname }}</option>
-            
-                  </select>
-              </div>
+      <div class="dropdown">
+        <label for="role">Rol</label> 
+        <select name="role" id="role" [(ngModel)]="selectedRole" (change)="onCitySelected()">
+          <option value="" selected></option>
+          <ng-container *ngFor="let role of roleList">
+            <option *ngIf="role.positionlevel < level" [value]="role.positionname">
+              {{ role.positionname }}
+            </option>
+          </ng-container>
+        </select>
+      </div>
               <ng-container *ngIf="role==='Ustyönetici'">
           <div class="dropdown">
             <label for="city">Takım</label> 
@@ -106,20 +109,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let user of filteredUsers">
-                <td>
-                  <button class="clear-button" (click)="openDialog(user)" >Görüntüle</button>
-                </td>
-      
-            
-
-                <td><img class="profile-pic" src="{{user.imageurl}}" alt="Profile Picture">{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.phone }}</td>
-                <td>{{ user.teamname }}</td>
-                <td>{{ user.role }}</td>
-             
-              </tr>
+              <ng-container *ngFor="let user of filteredUsers">
+                <tr *ngIf="user.rolelevel < level">
+                  <td>
+                    <button class="clear-button" (click)="openDialog(user)">Görüntüle</button>
+                  </td>
+                  <td><img class="profile-pic" src="{{user.imageurl}}" alt="Profile Picture">{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.phone }}</td>
+                  <td>{{ user.teamname }}</td>
+                  <td>{{ user.role }}</td>
+                </tr>
+              </ng-container>
+              
             </tbody>
           </table>
         </div>

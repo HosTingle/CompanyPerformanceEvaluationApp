@@ -93,6 +93,8 @@ export class TasksComponent {
   }
   taskfinish(usertask:Tasks){
     usertask.status="F";
+    this.countF = this.usertasks.filter(task => task.status === 'F').length;
+    this.countT = this.usertasks.filter(task => task.status === 'T').length;
     this.positionser.updateusertask(usertask).subscribe(async (response:any)=>{
       if (response.data !=null) {
         this.users=await response.data;

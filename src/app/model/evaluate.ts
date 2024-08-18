@@ -7,4 +7,5 @@ export class Evaluate{
     feedbackcomment!:string;
     evaluationdate!:Date;
     evaluatescore!:number;
+    period!:string;
 }

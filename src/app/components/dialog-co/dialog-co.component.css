@@ -1,6 +1,4 @@
-.mat-dialog-container {
-  border-radius: 0 !important; 
-}
+
 .profile {
   display: flex;
   align-items: center;
@@ -44,7 +42,8 @@
 
 .datatable-container {
   
-  width: 100%; /* Kapsayıcının genişliğini artırır */
+  width: 100%; 
+  height: 100%;
 }
 
 table {

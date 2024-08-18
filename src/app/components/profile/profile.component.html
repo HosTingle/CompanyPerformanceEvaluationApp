@@ -1,54 +1,256 @@
 <ng-container *ngIf="bol===true">
-    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <app-sidebar>
 
-<div class="container">
-<app-sidebar>
-    
-</app-sidebar>
-    <div class="main">
+    </app-sidebar>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+ 
+    <div class="main" style="position: fixed;">
+        <img class="profile-pic" src="{{user.imageurl}}" alt="Profile Picture">
+        <p class="isim"> {{user.name}}</p>
+        <p class="unvan"> {{role}}</p>
+        <p class="unvanb" > {{user.teamname}}</p>
+
+        <p 
+        class="personal-info"
+        style="
+          position: absolute;
+          top: 50px;
+          left: 55px;
+          margin: 0;
+          font-size: 25px;
+          font-style: italic;
+          font-weight: bold;
+          font-family: Arial, Helvetica, sans-serif;">
+        Kişisel Bilgiler
+      </p>
       
-        <h2>KIMLIK BILGILERI</h2>
-        <div class="card">
-            <input type="text" id="exampleInput" name="exampleInput" formControlName="adsas">
-          <i class="fa fa-pencil-alt fa-xs edit" (click)="changebol()"></i>
-            <div class="card-body">
-                <app-questionspage>
-
-                </app-questionspage>
-             
+    
+        <hr class="cizgi">
+    
+        
+        
+        <div class="bilgiler" style="align-items: center;">
+    
+            <div class="firstName"> 
+    
+                <label for="first-name" >İsim</label>
+                <br> 
+                <input type="text" id="first-name" name="first-name" value="{{user.name}}" readonly >
+    
             </div>
+    
+            <div class="lastName"> 
+    
+                <label for="last-name" >Telefon</label>
+                <br> 
+                <input type="text" id="last-name" name="last-name"   value="{{user.phone}}" [readonly]="" class="input">
+    
+            </div>
+    
+            <div class="telNo"> 
+    
+                <label for="tel-no" > Doğum Tarihi</label>
+                <br> 
+                <input type="date" id="tel-no" name="tel-no"   value="{{user.birthdate}}" readonly  maxlength="11">
+    
+            </div>
+    
+            <div class="dogumTarihi" > 
+    
+                <label for="tcNo" >Şehir</label>
+                <br> 
+                <input type="text" id="tcNo" name="tcNo"   value="{{user.city}}" readonly maxlength="11">
+    
+            </div>
+            <div class="tc"> 
+    
+                <label for="dogum-tarihi" > Ülke</label>
+                <br> 
+                <input type="datetime" id="dogum-tarihi" name="dogum-tarihi"    value="{{user.country}}" readonly >
+    
+            </div>
+    
+            <div class="eMail"> 
+    
+                <label for="email" >E-Mail</label>
+                <br> 
+                <input type="email" id="email" name="email" value="{{user.email}}" readonly >
+    
+            </div>
+    
+    <!-- <div class="adres" id="address"> 
+                <label for="adress" >Adres:</label>
+                <br>
+                <textarea  type="text" id="adress" name="adress" rows="4" cols="80" readonly> Dr. Adnan Büyükdeniz Cd. No:20, 34768 Ümraniye 
+                 </textarea> <br> 
+            </div>
+     -->
+    
+    
+    
+    
+           
+        <div class="edit" id="editButton"> 
+          <!--  
+                <button *ngIf="!isEditing" (click)="startEdit()">Düzenle</button>
+                        <button *ngIf="isEditing" (click)="save()">Kaydet</button>
+                        <button *ngIf="isEditing" (click)="cancel()">İptal</button>
+          -->
+        
+            <button (click)="changebol()" >Düzenle</button>
+    
+          <!-- <button> Düzenle </button> -->  
+    
+        
+    
         </div>
-
+    
+               
+            
+            
+            
+     
+    
+        </div>
+    
+     
+    
+    
+        
+    
     
     </div>
-  
-      </div>
   </ng-container>
   
   <ng-container *ngIf="bol===false">
-                        <div class="container">
-                            <app-sidebar>
+    <app-sidebar>
 
-                            </app-sidebar>
-                            <div class="main">
-                              
-                                <h2>KIMLIK BILGILERI</h2>
-                                <div class="card">
-                              
-                                    <div class="card-body">
-                                      
-                                        <i class="fa fa-times fa-xs edit" (click)="changebol()"></i>
-                                        <app-updateuserpage>
-                                        </app-updateuserpage>
-                                </div>
-                         </div>
-                        
-                            
-                </div>
-                          
-             </div>
+    </app-sidebar>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <div class="main" style="position: fixed;">
+        <img class="profile-pic" src="{{user.imageurl}}" alt="Profile Picture">
+        <p class="isim"> {{user.name}}</p>
+        <p class="unvan"> {{role}}</p>
+        <p class="unvanb" > {{user.teamname}}</p>
+
+        <p 
+        class="personal-info"
+        style="
+          position: absolute;
+          top: 50px;
+          left: 55px;
+          margin: 0;
+          font-size: 25px;
+          font-style: italic;
+          font-weight: bold;
+          font-family: Arial, Helvetica, sans-serif;">
+        Kişisel Bilgiler
+      </p>
+      
+    
+        <hr class="cizgi">
+    
+        
+        
+        <div class="bilgiler" style="align-items: center;">
+    
+            <div class="firstName"> 
+    
+                <label for="first-name" >İsim</label>
+                <br> 
+                <input class="inputt" type="text" id="first-name" name="first-name" [(ngModel)]="user.name" >
+    
+            </div>
+    
+            <div class="lastName"> 
+    
+                <label for="last-name" >Telefon</label>
+                <br> 
+                <input class="inputt" type="text" id="last-name" name="last-name"   [(ngModel)]="user.phone"  >
+    
+            </div>
+    
+            <div class="telNo"> 
+    
+                <label for="tel-no" > Doğum Tarihi</label>
+                <br> 
+                <input class="inputt" type="date" id="tel-no" name="tel-no"   [(ngModel)]="user.birthdate"  maxlength="11">
+    
+            </div>
+    
+            <div class="dogumTarihi" > 
+    
+                <label for="tcNo" >Şehir</label>
+                <br> 
+                <input class="inputt" type="text" id="tcNo" name="tcNo"   [(ngModel)]="user.city"  maxlength="11">
+    
+            </div>
+            <div class="tc"> 
+    
+                <label for="dogum-tarihi" > Ülke</label>
+                <br> 
+                <input class="inputt" type="datetime" id="dogum-tarihi" name="dogum-tarihi"    [(ngModel)]="user.country">
+    
+            </div>
+    
+            <div class="eMail"> 
+    
+                <label for="email" >E-Mail</label>
+                <br> 
+                <input class="inputt" type="email" id="email" name="email" [(ngModel)]="user.email"  >
+    
+            </div>
+    
+    <!-- <div class="adres" id="address"> 
+                <label for="adress" >Adres:</label>
+                <br>
+                <textarea  type="text" id="adress" name="adress" rows="4" cols="80" readonly> Dr. Adnan Büyükdeniz Cd. No:20, 34768 Ümraniye 
+                 </textarea> <br> 
+            </div>
+     -->
+    
+    
+    
+    
+           
+        <div class="edit" id="editButton"> 
+          <!--  
+                <button *ngIf="!isEditing" (click)="startEdit()">Düzenle</button>
+                        <button *ngIf="isEditing" (click)="save()">Kaydet</button>
+                        <button *ngIf="isEditing" (click)="cancel()">İptal</button>
+          -->
+        
+            <button (click)="updateuser()" >Kaydet</button>
+      
+          <!-- <button> Düzenle </button> -->  
+    
+        
+    
+        </div>
+    
+        <div class="editt" id="Button"> 
+   
+          
+           
+              <button (click)="changebol()" >İptal</button>
+     
+      
+          
+      
+          </div>
+            
+            
+            
+     
+    
+        </div>
+    
+     
+    
+    
+        
+    
+    
+    </div>
   </ng-container>
   

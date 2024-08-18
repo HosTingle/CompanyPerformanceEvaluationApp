@@ -125,7 +125,7 @@ export class DialogCoComponent {
       evaluate.feedbackcomment = `asdasdasd`;
       evaluate.evaluationdate = new Date();
       evaluate.evaluatescore = this.selectedEvaluations[i].puan; 
-
+      evaluate.period="1.Dönem";
       this.evaluateList.push(evaluate); 
     }
     this.positionser.addRangeEvaluate(this.evaluateList).

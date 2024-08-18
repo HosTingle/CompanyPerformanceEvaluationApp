@@ -21,6 +21,18 @@
         <i class="fas fa-home"></i>
         <span class="nav-item">Anasayfa</span>
       </a></li>
+      <li><a href="evaluateresult">
+        <i class="fas fa-check-circle"></i>
+        <span class="nav-item">Değerlendirmeler</span>
+  
+      </a></li>
+      <ng-container *ngIf=" role === 'Yonetici' || role === 'Ustyönetici'">
+      <li><a href="usermanagment">
+        <i class="fas fa-tools"></i> 
+        <span class="nav-item">Yönetim</span>
+  
+      </a></li>
+    </ng-container>
       <ng-container *ngIf=" role === 'Yonetici' || role === 'Ustyönetici'">
       <li><a href="evaluatepage">
         <i class="fas fa-star"></i>
@@ -43,6 +55,7 @@
   
       </a></li>
   
+     
       <li><a href="helppage">
         <i class="fas fa-question-circle"></i>
         <span class="nav-item">Yardım</span>

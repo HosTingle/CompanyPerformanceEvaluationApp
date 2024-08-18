@@ -19,6 +19,8 @@ import { SignupadressComponent } from './components/signupadress/signupadress.co
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskdetailComponent } from './components/taskdetail/taskdetail.component';
 import { HelppageComponent } from './components/helppage/helppage.component';
+import { EvaluateresponsComponent } from './components/evaluaterespons/evaluaterespons.component';
+import { AdminmanagmentComponent } from './components/adminmanagment/adminmanagment.component';
 
 export const routes: Routes = [ 
   { path: '', redirectTo: 'loginpage', pathMatch: 'full' }, 
@@ -36,6 +38,8 @@ export const routes: Routes = [
     {path:'taskspage',component:TasksComponent},
     { path:'taskspage/:id',component:TaskdetailComponent},
     { path:'helppage',component:HelppageComponent},
+    { path:'evaluateresult',component:EvaluateresponsComponent},
+    {path:'usermanagment',component:AdminmanagmentComponent},
   { path: '**', redirectTo: '/404' },
 
 
