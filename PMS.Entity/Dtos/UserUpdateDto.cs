@@ -18,6 +18,7 @@ namespace PMS.Entity.Dtos
         public string City { get; set; }    
         public string Phone {  get; set; } 
 
-        public DateTime Birthdate { get; set; } 
+        public DateTime Birthdate { get; set; }
+        public string Teamname { get; set; }
     }
 }

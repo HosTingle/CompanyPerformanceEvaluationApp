@@ -1,5 +1,6 @@
 ﻿using PMS.Core.Utilities.Results;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,6 @@ namespace PMS.Business.Abstract
         IResult AddRange(List<Evaluate> evaluates);
         Task<IDataResult<List<Evaluate>>>GetAll();
         Task<IDataResult<Evaluate>> GetById(int id);
-  
+        Task<IDataResult<List<GetEvaluateDetailsDto>>> GetAllEvaluateeDetail(int id);
     }
 }

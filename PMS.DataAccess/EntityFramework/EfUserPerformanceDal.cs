@@ -55,7 +55,8 @@ namespace PMS.DataAccess.EntityFramework
                        COUNTRY = ad.COUNTRY,
                        ROLE = p.POSITIONNAME,
                        IMAGEURL = e.IMAGEURL,
-                       TEAMNAME = e.TEAMNAME
+                       TEAMNAME = e.TEAMNAME,
+                       ROLELEVEL=p.POSITIONLEVEL
                    };
         }
         public async Task<UserPerformanceDetailDto> GetUserPerformanceDetails(int userid) 

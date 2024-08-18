@@ -24,7 +24,7 @@ namespace PMS.Entity.Concrete
 
    
         public int EVALUATESCORE {  get; set; } 
-
+        public string PERIOD {  get; set; }
        
 
 

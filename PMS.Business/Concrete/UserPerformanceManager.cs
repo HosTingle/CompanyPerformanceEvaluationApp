@@ -55,6 +55,7 @@ namespace PMS.Business.Concrete
                     PHONE = userUpdateDto.Phone,
                     USERID=userUpdateDto.userid,
                     IMAGEURL = "https://st4.depositphotos.com/15648834/23779/v/950/depositphotos_237795810-stock-illustration-unknown-person-silhouette-profile-picture.jpg",
+                    TEAMNAME=userUpdateDto.Teamname
                 };
 
                 var res = Update(sa);
@@ -107,7 +108,9 @@ namespace PMS.Business.Concrete
                 NAME=result.NAME,
                 PHONE=result.PHONE,
                 USERID=result.USERID,
-                IMAGEURL = result.IMAGEURL
+                IMAGEURL = result.IMAGEURL,
+                TEAMNAME=result.TEAMNAME,
+                
                 
             };
 

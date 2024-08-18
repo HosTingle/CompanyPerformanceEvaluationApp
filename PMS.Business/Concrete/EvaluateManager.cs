@@ -2,6 +2,7 @@
 using PMS.Core.Utilities.Results;
 using PMS.DataAccess.Abstract;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,10 @@ namespace PMS.Business.Concrete
         public async Task<IDataResult<Evaluate>> GetById(int id)
         {
             return new SuccessDataResult<Evaluate>(await _evaluateDal.Get(x=>x.EVALUATEID==id),"Veri Getirildi");
+        }
+        public async Task<IDataResult<List<GetEvaluateDetailsDto>>> GetAllEvaluateeDetail(int id)  
+        {
+            return new SuccessDataResult<List<GetEvaluateDetailsDto>>(await _evaluateDal.GetEvaluateDetailsList(id), "Veri Getirildi"); 
         }
 
         public IResult Update(Evaluate evaluate)
