@@ -13,5 +13,6 @@ namespace PMS.DataAccess.Abstract
     {
         void AddRange(IEnumerable<Evaluate> evaluates);
         Task<List<GetEvaluateDetailsDto>> GetEvaluateDetailsList(int userid);
+        Task<List<GetEvaluateDetailsDto>> GetEvaluateDetailsListt(int userid);
     }
 }

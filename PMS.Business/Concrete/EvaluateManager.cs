@@ -45,7 +45,10 @@ namespace PMS.Business.Concrete
         {
             return new SuccessDataResult<List<GetEvaluateDetailsDto>>(await _evaluateDal.GetEvaluateDetailsList(id), "Veri Getirildi"); 
         }
-
+        public async Task<IDataResult<List<GetEvaluateDetailsDto>>> GetAllEvaluateeDetaill(int id)
+        {
+            return new SuccessDataResult<List<GetEvaluateDetailsDto>>(await _evaluateDal.GetEvaluateDetailsListt(id), "Veri Getirildi");
+        }
         public IResult Update(Evaluate evaluate)
         {
             _evaluateDal.Update(evaluate);

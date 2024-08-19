@@ -18,5 +18,7 @@ namespace PMS.Business.Abstract
         Task<IDataResult<List<Evaluate>>>GetAll();
         Task<IDataResult<Evaluate>> GetById(int id);
         Task<IDataResult<List<GetEvaluateDetailsDto>>> GetAllEvaluateeDetail(int id);
+
+        Task<IDataResult<List<GetEvaluateDetailsDto>>> GetAllEvaluateeDetaill(int id); 
     }
 }

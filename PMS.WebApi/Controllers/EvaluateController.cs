@@ -77,10 +77,20 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("EvaluateDetail")]
+        [HttpGet("EvaluateDetail")]
         public async Task<IActionResult> EvaluateDetailById(int userid) 
         {
             var result =await  _evaluateService.GetAllEvaluateeDetail(userid);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("EvaluatorDetail")]
+        public async Task<IActionResult> EvaluateDetailByIdd(int userid) 
+        {
+            var result = await _evaluateService.GetAllEvaluateeDetaill(userid);
             if (result.Success)
             {
                 return Ok(result);

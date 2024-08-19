@@ -55,5 +55,38 @@ namespace PMS.DataAccess.EntityFramework
                 return await result.ToListAsync();
             }
         }
+        private IQueryable<GetEvaluateDetailsDto> GetEvaluateQueryListt(OracleDbContext context, int userId)
+        {
+            return from e in context.EVALUATE
+                   join au in context.USERS_INFO on e.EVALUATORID equals au.USERID
+                   join auu in context.USERS_INFO on e.EVALUATEEID equals auu.USERID
+                   join ut in context.USER_TASK on e.TASKID equals ut.TASKID
+                   join eq in context.EVALUATE_QUESTION on e.EVALQUESTIONID equals eq.EVALUATEQUESTIONID
+                   where e.EVALUATORID == userId
+                   select new GetEvaluateDetailsDto
+                   {
+                       EVALUATEID = e.EVALUATEID,
+                       EVALUATEENAME = auu.NAME,
+                       EVALUATEEIMAGEURL = auu.IMAGEURL,
+                       EVALUATORNAME = au.NAME,
+                       EVALUATORIMAGEURL = au.IMAGEURL,
+                       EVALUATEQUESTION = eq.EVALUATEQUESTION,
+                       TASKNAME = ut.TASKNAME,
+                       DESCRIPTION = ut.DESCRIPTION,
+                       EVALUATESCORE = e.EVALUATESCORE,
+                       EVALUATIONDATE = e.EVALUATIONDATE,
+                       FEEDBACKCOMMENT = e.FEEDBACKCOMMENT,
+                       PERIOD = e.PERIOD,
+                   };
+        }
+        public async Task<List<GetEvaluateDetailsDto>> GetEvaluateDetailsListt(int userid)
+        {
+
+            using (OracleDbContext context = new OracleDbContext())
+            {
+                var result = GetEvaluateQueryListt(context, userid);
+                return await result.ToListAsync();
+            }
+        }
     }
 }
