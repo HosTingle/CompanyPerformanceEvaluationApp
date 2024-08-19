@@ -15,6 +15,7 @@ import { UserAuthM } from '../model/UserAuth/userauthm';
 import { TokenApiModel } from '../model/UserAuth/tokenApiModel';
 import { UserDetail } from '../model/UserAuth/userDetail';
 import { Evaluate } from '../model/evaluate';
+import { EvaluateDetals } from '../model/evaluatedetail';
 
 @Injectable({
   providedIn: 'root'
@@ -49,9 +50,14 @@ export class AuthServiceService {
     return this.httpClient.get<EntityReponseModelL<UserAuthM>>(newPath)
    
   }
-  getbyidevaluateuser(num:number):Observable<EntityReponseModelL<Evaluate>>{
+  getbyidevaluateuser(num:number):Observable<EntityReponseModelL<EvaluateDetals>>{
     let newPath = this.apiUrl + `Evaluate/EvaluateDetail?userid=${num}`
-    return this.httpClient.get<EntityReponseModelL<Evaluate>>(newPath)
+    return this.httpClient.get<EntityReponseModelL<EvaluateDetals>>(newPath)
+   
+  }
+  getbyidevaluatoruser(num:number):Observable<EntityReponseModelL<EvaluateDetals>>{
+    let newPath = this.apiUrl + `Evaluate/EvaluatorDetail?userid=${num}`
+    return this.httpClient.get<EntityReponseModelL<EvaluateDetals>>(newPath)
    
   }
   getuser(id:number){

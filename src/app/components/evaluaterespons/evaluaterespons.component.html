@@ -1,37 +1,35 @@
-<app-sidebar>
-    
-</app-sidebar>
+<app-sidebar></app-sidebar>
 <div class="container">
+  <div class="filters-container">
     <div class="filter-container">
       <label for="period">Yıl</label>
-      <select id="period" name="period">
-        <option value="2023">2020</option>
-        <option value="2023">2021</option>
-        <option value="2023">2022</option>
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
+      <select id="period" name="period" [(ngModel)]="selectedYear" (change)="filterAndGroupTasks()">
+        <option [ngValue]="2020">2020</option>
+    <option [ngValue]="2021">2021</option>
+    <option [ngValue]="2022">2022</option>
+    <option [ngValue]="2023">2023</option>
+    <option [ngValue]="2024">2024</option>
       </select>
     </div>
     <div class="filter-container">
-        <label for="period">Dönem Seçin:</label>
-        <select id="period" name="period">
-          <option value="1.Dönem">1.Dönem</option>
-          <option value="2.Dönem">2.Dönem</option>
-        </select>
-      </div>
-    <div class="tasks-container">
-      <div class="task">
-        <h3>Görev 1</h3>
-        <p>Görev açıklaması burada olacak. Bu görev 2024 Q1 dönemine ait.</p>
-      </div>
-      <div class="task">
-        <h3>Görev 2</h3>
-        <p>Görev açıklaması burada olacak. Bu görev 2024 Q2 dönemine ait.</p>
-      </div>
-      <div class="task">
-        <h3>Görev 3</h3>
-        <p>Görev açıklaması burada olacak. Bu görev 2024 Q3 dönemine ait.</p>
-      </div>
-      <!-- Daha fazla görev eklenebilir -->
+      <label for="period">Dönem Seçin</label>
+      <select id="period" name="period" [(ngModel)]="selectedPeriod" (change)="filterAndGroupTasks()">
+        <option value="1.Dönem">1.Dönem</option>
+        <option value="2.Dönem">2.Dönem</option>
+      </select>
     </div>
   </div>
+  
+  <div class="tasks-container">
+    <!-- Benzersiz görevler -->
+    <div *ngFor="let task of uniqueTasks" class="task">
+      <div class="task-content">
+        <div class="task-info">
+          <h3 class="h3wig">{{ task.taskname }}</h3> 
+          <p>{{ task.description }}</p>
+        </div>
+        <button class="task-button" (click)="routeevaluate(task.evaluateid,task.taskname,task.period)">Detaylar</button>
+      </div>
+    </div>
+  </div>
+</div>

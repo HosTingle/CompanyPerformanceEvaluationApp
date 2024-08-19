@@ -125,7 +125,15 @@ export class DialogCoComponent {
       evaluate.feedbackcomment = `asdasdasd`;
       evaluate.evaluationdate = new Date();
       evaluate.evaluatescore = this.selectedEvaluations[i].puan; 
-      evaluate.period="1.Dönem";
+      evaluate.evaluationdate = new Date(); // Set the current date
+
+      const month = evaluate.evaluationdate.getMonth() + 1; // getMonth() returns 0-11, so add 1 to get 1-12
+      
+      if (month > 6) {
+        evaluate.period = "2.Dönem"; // If month is greater than 6, it's the second period
+      } else {
+        evaluate.period = "1.Dönem"; // If month is 6 or less, it's the first period
+      }
       this.evaluateList.push(evaluate); 
     }
     this.positionser.addRangeEvaluate(this.evaluateList).

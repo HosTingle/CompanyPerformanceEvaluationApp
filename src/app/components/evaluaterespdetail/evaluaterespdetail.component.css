@@ -1,0 +1,71 @@
+app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    
+  }
+  .evaluate-detail-container {
+    max-width: 65%;
+    margin-left: 25%;
+    margin-top: 1%;
+    margin-bottom: 5%;
+    padding: 30px;
+    background-color: #f8be30;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .evaluate-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+    gap: 10px; /* Space between grid items */
+  }
+  
+  .evaluate-detail {
+    margin-left: 1%;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .evaluate-question-t p {
+    font-weight: bold;
+    font-size: 130%;
+  }
+  .evaluate-score{
+    font-size: 30px;
+  }
+  .evaluatee-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .evaluatee-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .evaluate-meta {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .info-title {
+    font-size: 1.1em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .no-data {
+    text-align: center;
+    color: #888;
+  }
+  

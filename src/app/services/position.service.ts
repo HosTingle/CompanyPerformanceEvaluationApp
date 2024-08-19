@@ -11,12 +11,15 @@ import { Evaluate } from '../model/evaluate';
 import { EntityReponseModel } from '../model/responseModels/entityResponseModel';
 import { ReponseModel } from '../model/responseModels/responseModel';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { EvaluateDetals } from '../model/evaluatedetail';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PositionService {
   private taskSource = new BehaviorSubject<Tasks | null>(null);
+  private evaluateSourceL = new BehaviorSubject<EvaluateDetals[]>([]);
+  currentEvaluates = this.evaluateSourceL.asObservable();
   currentTask = this.taskSource.asObservable();
   apiUrl = ApiUrl.localurl;
   constructor(
@@ -47,6 +50,9 @@ export class PositionService {
   }
   changeTask(task: Tasks) {
     this.taskSource.next(task);
+  }
+  changeEvaluateL(evaluatedetail: EvaluateDetals[]) {
+    this.evaluateSourceL.next(evaluatedetail);
   }
   updateusertask(usetask:Tasks){
     let newPath = this.apiUrl + `UserTask/update`;

@@ -1,0 +1,41 @@
+<app-sidebar></app-sidebar>
+<div class="evaluate-detail-container">
+  <h1 class="task-title">{{ EvaluateDetails[0].taskname }}</h1>
+
+  <div class="evaluate-details">
+    <div *ngIf="EvaluateDetails.length > 0; else noData" class="evaluate-grid">
+      <div *ngFor="let detail of EvaluateDetails" class="evaluate-detail">
+        <div class="evaluate-question-t">
+          <p>{{ detail.evaluatequestion }}</p>
+        </div>
+        <h4 class="info-title">Değerlendiren</h4>
+        <div class="evaluatee-info">
+          <img [src]="detail.evaluatorimageurl" alt="{{ detail.evaluatorname }}" class="evaluatee-image">
+          <div>
+            <h6 class="evaluatee-name">{{ detail.evaluatorname }}</h6>
+          </div>
+        </div>
+        <h4 class="info-title">Değerlendirilen</h4>
+        <div class="evaluatee-info">
+          <img [src]="detail.evaluateeimageurl" alt="{{ detail.evaluateename }}" class="evaluatee-image">
+          <div>
+            <h6 class="evaluatee-name">{{ detail.evaluateename }}</h6>
+          </div>
+        </div>
+
+        <div class="evaluate-meta">
+          <div class="evaluation-date">
+
+          </div>
+          <div class="evaluate-score">
+            <p><strong>Skor:</strong> {{ detail.evaluatescore }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <p class="no-data">No evaluation details available for this task.</p>
+    </ng-template>
+  </div>
+</div>

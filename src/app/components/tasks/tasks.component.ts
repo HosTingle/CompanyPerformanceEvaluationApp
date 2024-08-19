@@ -99,7 +99,6 @@ export class TasksComponent {
       if (response.data !=null) {
         this.users=await response.data;
         this.userNames = this.users.map((user: UserDetail)  => user.name);
-
         this.copyusers=this.users;
 
       } 

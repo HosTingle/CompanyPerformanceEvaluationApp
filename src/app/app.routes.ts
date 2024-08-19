@@ -21,6 +21,7 @@ import { TaskdetailComponent } from './components/taskdetail/taskdetail.componen
 import { HelppageComponent } from './components/helppage/helppage.component';
 import { EvaluateresponsComponent } from './components/evaluaterespons/evaluaterespons.component';
 import { AdminmanagmentComponent } from './components/adminmanagment/adminmanagment.component';
+import { EvaluaterespdetailComponent } from './components/evaluaterespdetail/evaluaterespdetail.component';
 
 export const routes: Routes = [ 
   { path: '', redirectTo: 'loginpage', pathMatch: 'full' }, 
@@ -40,6 +41,7 @@ export const routes: Routes = [
     { path:'helppage',component:HelppageComponent},
     { path:'evaluateresult',component:EvaluateresponsComponent},
     {path:'usermanagment',component:AdminmanagmentComponent},
+    {path:'evalresdetail/:id',component:EvaluaterespdetailComponent},
   { path: '**', redirectTo: '/404' },
 
 
