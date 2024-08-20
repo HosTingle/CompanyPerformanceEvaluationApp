@@ -92,6 +92,17 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPost("DeleteUserInfo")]
+        public IActionResult DeleteUserInfo(UserUpdateDto userUpdateDto)
+        {
+
+            var result = _userPerformanceService.DeleteAllUserPerformance(userUpdateDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
         [HttpGet("getallTeamList")]
         public async Task<IActionResult> GetCityList()
         {

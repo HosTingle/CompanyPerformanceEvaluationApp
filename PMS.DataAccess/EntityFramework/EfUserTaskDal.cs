@@ -28,6 +28,7 @@ namespace PMS.DataAccess.EntityFramework
                        STATUS = e.STATUS,
                        TASKID = e.TASKID,
                        TASKNAME = e.TASKNAME,
+                       ISCOMPLETED=e.ISCOMPLETED,
 
                    };
         }

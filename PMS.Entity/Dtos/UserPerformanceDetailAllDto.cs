@@ -22,5 +22,6 @@ namespace PMS.Entity.Dtos
         public string IMAGEURL { get; set; } 
         public string TEAMNAME {  get; set; }
         public int ROLELEVEL { get; set; }
+        public string STATUS { get; set; } 
     }
 }

@@ -44,14 +44,16 @@ namespace PMS.Business.DependencyResolvers
             builder.RegisterType<UserAuthManager>().As<IUserAuthService>().SingleInstance();
             builder.RegisterType<EfUserAuthDal>().As<IUserAuthDal>().SingleInstance();
 
-            builder.RegisterType<UserPerformanceManager>().As<IUserPerformanceService>().SingleInstance();
-            builder.RegisterType<EfUserPerformanceDal>().As<IUserPerformanceDal>().SingleInstance();
+
 
             builder.RegisterType<UserPositionManager>().As<IUserPositionService>().SingleInstance();
             builder.RegisterType<EfUserPositionDal>().As<IUserPositionDal>().SingleInstance();
 
             builder.RegisterType<AddressManager>().As<IAddressService>().SingleInstance();
             builder.RegisterType<EfAddressDal>().As<IAddressDal>().SingleInstance();
+
+            builder.RegisterType<UserPerformanceManager>().As<IUserPerformanceService>().SingleInstance();
+            builder.RegisterType<EfUserPerformanceDal>().As<IUserPerformanceDal>().SingleInstance();
 
             builder.RegisterType<EmailService>().As<IEmailService>().SingleInstance();
 

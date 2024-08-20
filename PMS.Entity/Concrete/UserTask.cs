@@ -21,7 +21,8 @@ namespace PMS.Entity.Concrete
 
         public string STATUS {  get; set; } 
 
-        public int USERID {  get; set; }    
+        public int USERID {  get; set; }
+        public string ISCOMPLETED {  get; set; }
 
     }
 }

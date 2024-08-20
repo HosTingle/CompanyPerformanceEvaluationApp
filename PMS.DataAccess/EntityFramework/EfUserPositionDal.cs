@@ -30,7 +30,8 @@ namespace PMS.DataAccess.EntityFramework
                        POSITIONNAME= a.POSITIONNAME,
                        USERNAME = au.USERNAME,
                        USERAUTHID=au.USERAUTHID,
-                       TEAMNAME=u.TEAMNAME
+                       TEAMNAME=u.TEAMNAME,
+                       
                       
                    };
         }

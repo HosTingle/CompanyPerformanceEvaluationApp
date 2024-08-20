@@ -21,5 +21,6 @@ namespace PMS.Entity.Dtos
         public string STATUS { get; set; }
 
         public int USERID { get; set; }
-    }
+        public string ISCOMPLETED { get; set; }
+    } 
 }

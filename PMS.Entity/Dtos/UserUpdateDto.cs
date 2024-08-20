@@ -13,12 +13,16 @@ namespace PMS.Entity.Dtos
         public string Name {  get; set; }
 
         public string Email { get; set; }
-
-        public string Country {  get; set; }
-        public string City { get; set; }    
-        public string Phone {  get; set; } 
-
         public DateTime Birthdate { get; set; }
+        public string Phone { get; set; }
+        public string Country {  get; set; }
+        public string City { get; set; }
+
+        public string Role { get; set; }
+
+        public string Imageurl { get; set; }
+
         public string Teamname { get; set; }
+        public string Status { get; set; } 
     }
 }

@@ -63,6 +63,7 @@ namespace PMS.Business.Concrete
                     STATUS = userTask.STATUS,
                     TASKID = userTask.TASKID,
                     USERID = userTask.USERID,
+                    ISCOMPLETED=userTask.ISCOMPLETED,
                 };
 
                 userTaskDateDtoList.Add(sa);

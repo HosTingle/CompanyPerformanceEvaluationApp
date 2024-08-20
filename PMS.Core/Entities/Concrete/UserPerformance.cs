@@ -20,6 +20,7 @@ namespace PMS.Core.Entities.Concrete
         public string PHONE { get; set; }
         public string IMAGEURL { get; set; }
 
-        public string TEAMNAME {  get; set; }   
+        public string TEAMNAME {  get; set; }
+        public string STATUS { get; set; } 
     }
 }
