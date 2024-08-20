@@ -35,7 +35,7 @@ body, html {
     margin: 0 20px 0 0; /* Sağ tarafa 20px boşluk ekler */
 }
   .container {
-    position: relative; /* Konumlandırma için gerekli */
+ 
     margin-top: 4%;
     margin-left: 25%;
     max-width: 65%;
@@ -50,7 +50,7 @@ body, html {
      padding: 3%;
     display: flex;
     flex-direction: row;
-    gap: 20%;
+    gap: 10%;
     margin: 3%;
   }
   
@@ -63,9 +63,8 @@ body, html {
   
 
   .action-button {
-    position: absolute;
+  
     bottom: 10px; /* Alt kenara 10px uzaklık */
-    right: 10px; /* Sağ kenara 10px uzaklık */
     padding: 10px 20px;
     background-color: #fff;
     color: black;

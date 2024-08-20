@@ -5,4 +5,5 @@ export class Tasks{
     duedate!:Date;
     status!:string;
     userid!:number;
+    iscompleted!:string;
 }

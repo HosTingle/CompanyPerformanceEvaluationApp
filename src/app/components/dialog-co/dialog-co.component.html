@@ -103,12 +103,16 @@
         <li *ngFor="let task of filteredTasks()" [class.completed]="task.status">
 
           {{ task.taskname }}
-          <i *ngIf="task.status === 'F'" class="fas fa-check-circle status-icon" aria-hidden="true"></i>
+          <i *ngIf="task.status === 'F' && task.iscompleted === 'T'" class="fas fa-check-circle status-icon" aria-hidden="true"></i>
           <i *ngIf="task.status !== 'F'" class="fas fa-hourglass-half status-icon" aria-hidden="true"></i>
           <span class="ellipsis-icon" [matMenuTriggerFor]="menu">...</span>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)=" viewTaskDetail(task)" >Görev Detay</button>
-            <button mat-menu-item *ngIf="task.status === 'F'" (click)="degerlendir(task.taskid)">Değerlendir</button>
+            <button mat-menu-item 
+            *ngIf="task.status === 'F' && task.iscompleted === 'F'" 
+            (click)="degerlendir(task)">
+      Değerlendir
+    </button>
           </mat-menu>
         </li>
       </ul>

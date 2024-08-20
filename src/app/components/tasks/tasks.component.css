@@ -49,7 +49,7 @@ app-sidebar {
   margin: 0 20px 0 0; /* Sağ tarafa 20px boşluk ekler */
 }
 .container {
-  position: relative; /* Konumlandırma için gerekli */
+
   margin-top: 4%;
   margin-left: 25%;
   flex-direction: column;

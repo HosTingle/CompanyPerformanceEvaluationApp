@@ -11,7 +11,6 @@ import { Tasks } from '../../model/tasks';
 import { UserStoreService } from '../../services/user-store.service';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { Task } from '../../model/task';
 
 @Component({
   selector: 'app-tasks',
@@ -28,7 +27,6 @@ export class TasksComponent {
   countF!:number;
   countT!:number;
   public users:any=[];
-  usertask!:Task;
   public usertasks:Tasks[] = [];
   public userscity:any=[];
   public copyusers:any=[];
@@ -48,7 +46,6 @@ export class TasksComponent {
     private router:Router,
   ) {}
   ngOnInit(): void {
-    this.getalluser();
     this.getuser();
   }
   clearSearch() {
@@ -79,18 +76,6 @@ export class TasksComponent {
 
 
     };
-  getalluser(){
-    this.authservice.getalluser(this.id).subscribe(async (response:any)=>{
-      if (response.data !=null) {
-        this.users=await response.data;
-        this.userNames = this.users.map((user: UserDetail)  => user.name);
-
-        this.copyusers=this.users;
-
-      } 
-    });
-
-  }
   taskfinish(usertask:Tasks){
     usertask.status="F";
     this.countF = this.usertasks.filter(task => task.status === 'F').length;

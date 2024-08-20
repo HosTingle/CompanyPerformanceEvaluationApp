@@ -9,7 +9,6 @@ import { UserStoreService } from '../../services/user-store.service';
 import { AuthServiceService } from '../../services/auth.service.service';
 import { PositionService } from '../../services/position.service';
 import { Evalquestion } from '../../model/evalquestion';
-import { Task } from '../../model/task';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { DatatablepageComponent } from '../datatablepage/datatablepage.component';
 import { FormsModule } from '@angular/forms';
@@ -48,7 +47,6 @@ export class DialogCoComponent {
     evaluatenumber!:number;
     id!:number;
     newTask: string = '';
-    tasks: Task[] = [];
     evaluateList:Evaluate[]=[];
     currentFilter: string = 'all';
     evalQuestionList: Evalquestion[] = [];
@@ -61,6 +59,7 @@ export class DialogCoComponent {
     userNames: string[] = [];
     openmenu:boolean=false;
     selectedEvaluations: EvaluateSelection[] = [];
+    selectedtask!:Tasks;
     ngOnInit(): void {
       this.getallEvaluateQuestion();
       this.getuser();
@@ -121,7 +120,7 @@ export class DialogCoComponent {
       evaluate.evaluatorid = this.id;
       evaluate.evaluateeid = this.data.userid;
       evaluate.evalquestionid =this.selectedEvaluations[i].evaluatequestionid;
-      evaluate.taskid = this.selectedtaskid;
+      evaluate.taskid = this.selectedtask.taskid;
       evaluate.feedbackcomment = `asdasdasd`;
       evaluate.evaluationdate = new Date();
       evaluate.evaluatescore = this.selectedEvaluations[i].puan; 
@@ -143,6 +142,12 @@ export class DialogCoComponent {
         this.toastrService.success('Değerlendirmeler Eklendi', 'Başarılı', {
     
         });
+        this.selectedtask.iscompleted="T";
+        this.positionser.updateusertask(this.selectedtask).subscribe(async (response:any)=>{
+          if (response.data !=null) {
+    
+          } 
+        });
         this.onNoClick();
        } 
        else{
@@ -163,8 +168,8 @@ export class DialogCoComponent {
          } 
        });
     }
-    degerlendir(id:number){
-      this.selectedtaskid=id;
+    degerlendir(task:Tasks){
+      this.selectedtask=task;
       this.visible=!this.visible;
     }
     getuser(){
@@ -193,23 +198,9 @@ export class DialogCoComponent {
 
     }
 
-    addTask(event: KeyboardEvent): void {
-      if (event.key === "Enter" && this.newTask.trim() !== '') {
-        this.tasks.push({
-          text: this.newTask.trim(), completed: false,
-          id: 0
-        });
-        this.newTask = '';
-      }
-    }
+
   
-    toggleTask(task: Task): void {
-      task.completed = !task.completed;
-    }
-  
-    clearAllTasks(): void {
-      this.tasks = [];
-    }
+ 
   
     filterTasks(filter: string): void {
       this.currentFilter = filter;

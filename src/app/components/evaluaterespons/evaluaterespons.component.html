@@ -21,14 +21,17 @@
   </div>
   
   <div class="tasks-container">
-    <!-- Benzersiz görevler -->
+    <div *ngIf="uniqueTasks.length === 0" class="no-tasks">
+      Herhangi bir geçmiş değerlendirmeniz yoktur
+    </div>
+  
     <div *ngFor="let task of uniqueTasks" class="task">
       <div class="task-content">
         <div class="task-info">
           <h3 class="h3wig">{{ task.taskname }}</h3> 
           <p>{{ task.description }}</p>
         </div>
-        <button class="task-button" (click)="routeevaluate(task.evaluateid,task.taskname,task.period)">Detaylar</button>
+        <button class="task-button" (click)="routeevaluate(task.evaluateid, task.taskname, task.period)">Detaylar</button>
       </div>
     </div>
   </div>

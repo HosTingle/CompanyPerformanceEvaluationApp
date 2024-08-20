@@ -21,4 +21,8 @@ export class UserService {
       let newPath = this.apiUrl + 'UserPerformance/UpdateUserInfo'
        return this.httpClient.post<ReponseModel>(newPath,userdet)
   }
+  deletalluserinformation(userdet:UserDetail){
+    let newPath = this.apiUrl + `UserPerformance/DeleteUserInfo`;
+    return this.httpClient.post<ReponseModel>(newPath,userdet)
+  }
 }

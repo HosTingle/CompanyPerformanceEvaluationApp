@@ -67,6 +67,7 @@ export class SignupadressComponent implements OnInit{
     this.reg.city= this.userRegisterAddressForm.get('city')?.value;
     this.reg.country = this.userRegisterAddressForm.get('country')?.value;
     this.reg.state= this.userRegisterAddressForm.get('state')?.value;
+    this.reg.status= "T";
   }
   onCityChange() {
     this.userRegisterAddressForm.get('city')?.valueChanges.subscribe(selectedCity => {

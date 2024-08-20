@@ -27,7 +27,7 @@ app-sidebar {
   .evaluate-detail {
     margin-left: 1%;
     background-color: #fff;
-    padding: 20px;
+    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -67,5 +67,36 @@ app-sidebar {
   .no-data {
     text-align: center;
     color: #888;
+  }
+  .evaluation-container {
+    display: flex;
+    justify-content: space-between; /* Space between the two sections */
+    align-items: flex-start; /* Align items at the top */
+  }
+  
+  .evaluation-section {
+    display: flex;
+    flex-direction: column; /* Stack title and content vertically */
+    align-items: center; /* Center-align the content */
+  }
+  .evaluate-score{
+    margin-right: 36%;
+  }
+  .evaluatee-info {
+    display: flex;
+    flex-direction: column; /* Stack image and name vertically */
+    align-items: center; /* Center-align image and name */
+  }
+  
+  .evaluatee-image {
+    width: 60px; /* Adjust image size as needed */
+    height: 60px;
+    border-radius: 50%; /* Circular image */
+    margin-bottom: 10px; /* Space between image and name */
+  }
+  
+  .evaluatee-name {
+    margin: 0; /* Remove any default margin */
+    text-align: center; /* Center the name */
   }
   

@@ -11,7 +11,7 @@
 
     <div class="red-rectangle">
      
-      <div class="dropdown">
+      <div >
         <label for="role">Rol</label> 
         <select name="role" id="role" [(ngModel)]="selectedRole" (change)="onCitySelected()">
           <option value="" selected></option>
@@ -23,7 +23,7 @@
         </select>
       </div>
               <ng-container *ngIf="role==='Ustyönetici'">
-          <div class="dropdown">
+          <div >
             <label for="city">Takım</label> 
             <select name="city" id="city" [(ngModel)]="selectedCity" (change)="onCitySelected()">
               <option value="" selected></option>
@@ -32,7 +32,7 @@
           </div>
               </ng-container>
  
-              <div class="dropdown">
+              <div >
                 <label for="person">Kişi</label> <!-- Dropdown üzerine metin -->
                 <select name="person" id="person"[(ngModel)]="selectedPerson">
                   <option value="" selected></option>
@@ -42,10 +42,10 @@
              
          
               </div>
-            
-         
+              <button class="action-button" (click)="getUsers()">Ara</button> 
+           
  
-      <button class="action-button" (click)="getUsers()">Ara</button> 
+
     </div>
 
   </div>

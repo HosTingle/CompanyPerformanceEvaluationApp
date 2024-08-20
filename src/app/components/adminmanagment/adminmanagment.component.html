@@ -1,1 +1,193 @@
 <app-sidebar></app-sidebar>
+<div class="container">
+  <div class="corner-text">
+    <p>Arama Koşulları</p>
+    <button class="btn success" (click)="clearSelections()">Temizle</button>
+  </div>
+  
+
+  <div class="red-rectangle">
+   
+    <div >
+      <label for="role">Rol</label> 
+      <select name="role" id="role" [(ngModel)]="selectedRole" (change)="onCitySelected()">
+        <option value="" selected></option>
+        <ng-container *ngFor="let role of roleList">
+          <option *ngIf="role.positionlevel < level" [value]="role.positionname">
+            {{ role.positionname }}
+          </option>
+        </ng-container>
+      </select>
+    </div>
+            <ng-container *ngIf="role==='Ustyönetici'">
+        <div >
+          <label for="city">Takım</label> 
+          <select name="city" id="city" [(ngModel)]="selectedCity" (change)="onCitySelected()">
+            <option value="" selected></option>
+            <option *ngFor="let city of cityList" [value]="city">{{ city }}</option>
+          </select>
+        </div>
+            </ng-container>
+
+            <div >
+              <label for="person">Kişi</label> <!-- Dropdown üzerine metin -->
+              <select name="person" id="person"[(ngModel)]="selectedPerson">
+                <option value="" selected></option>
+         
+                <option *ngFor="let role of userNames" [value]="role">{{ role }}</option>
+                </select>
+           
+       
+            </div>
+            <button class="action-button" (click)="getUsers()">Ara</button> 
+         
+
+
+  </div>
+
+</div>
+
+<ng-container *ngIf="visible===true">
+
+  <div class="table-responsive">
+    <div class="datatable-container">
+      
+        <div class="filter-container">
+          <input type="text" [(ngModel)]="searchTerm" placeholder="Arama yapın..." />
+          <div class="action-buttons">
+            <button class="clear-button" (click)="clearSearch()">Temizle</button>
+    
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+    
+       
+             <th>
+              <div class="header-content">
+                <span>İsim</span>
+                <button *ngIf="sortColumn === 'name'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('name')">&#9660;</button>
+                <button *ngIf="sortColumn !== 'name'" (click)="sort('name')">&#9650;</button>
+              </div>
+            </th>
+            <th>
+              <div class="header-content">
+                <span>Rol</span>
+                <button *ngIf="sortColumn === 'role'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('role')">&#9660;</button>
+                <button *ngIf="sortColumn !== 'role'" (click)="sort('role')">&#9650;</button>
+              </div>
+            </th>
+       
+            <th>
+              <div class="header-content">
+                <span>Takım</span>
+                <button *ngIf="sortColumn === 'teamname'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('teamname')">&#9660;</button>
+                <button *ngIf="sortColumn !== 'teamname'" (click)="sort('teamname')">&#9650;</button>
+              </div>
+            </th>
+            <th>
+                <div class="header-content">
+                  <span>Hesap D.</span>
+
+                </div>
+              </th>
+            <th>
+      
+       
+            </th>
+            </tr>
+          </thead>
+
+         <tbody>
+  <ng-container *ngFor="let user of filteredUsers">
+    <tr *ngIf="user.rolelevel < level">
+      <td>
+        <img class="profile-pic" src="{{user.imageurl}}" alt="Profile Picture">
+        {{ user.name }}
+      </td>
+
+      <!-- Role Column -->
+      <ng-container *ngIf="!visibletextState[user.userid]">
+        <td>{{ user.role }}</td>
+      </ng-container>
+      <ng-container *ngIf="visibletextState[user.userid]">
+        <td>
+          <select name="role" id="role" [(ngModel)]="user.role" (change)="onCitySelected()">
+            <ng-container *ngFor="let role of roleList">
+              <option *ngIf="role.positionlevel < level" [value]="role.positionname">
+                {{ role.positionname }}
+              </option>
+            </ng-container>
+          </select>
+        </td>
+      </ng-container>
+
+      <!-- Team Column -->
+      <ng-container *ngIf="!visibletextState[user.userid]">
+        <td>{{ user.teamname }}</td>
+      </ng-container>
+      <ng-container *ngIf="visibletextState[user.userid]">
+        <td>
+          <ng-container *ngIf="role==='Ustyönetici'">
+            <select name="role" id="role" [(ngModel)]="user.teamname">
+              <ng-container *ngFor="let team of cityList">
+                <option>
+                  {{ team }}
+                </option>
+              </ng-container>
+            </select>
+          </ng-container>
+          <ng-container *ngIf="role !== 'Ustyönetici'">
+            {{ user.teamname }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container *ngIf="!visibletextState[user.userid]">
+        <td>{{ user.status === 'T' ? 'Aktif' : 'Pasif' }}</td>
+      </ng-container>
+      <ng-container *ngIf="visibletextState[user.userid]">
+        <td>
+          <select name="status" id="status" [(ngModel)]="user.status">
+            <option [value]="'T'">Aktif</option>
+            <option [value]="'F'">Pasif</option>
+          </select>
+        </td>
+      </ng-container>
+
+      <!-- Action Buttons -->
+      <td class="buttons">
+        <ng-container *ngIf="!visibletextState[user.userid]">
+          <div (click)="toggleDropdown(user.userid)">
+            <mat-icon class="icon-button">settings</mat-icon>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="visibletextState[user.userid]">
+          <div (click)="managmentt(user)">
+            <mat-icon class="icon-button">check</mat-icon>
+          </div>
+          <div (click)="toggleDropdown(user.userid)">
+            <mat-icon class="icon-button">close</mat-icon>
+          </div>
+    
+        
+        </ng-container>
+        <div (click)="deletealluser(user)">
+          <mat-icon class="icon-button">delete</mat-icon>
+        </div>
+        <button class="clear-button">Görev Yönet</button>
+      </td>
+    </tr>
+  </ng-container>
+</tbody>
+
+        </table>
+      </div>
+
+</div>
+
+
+
+</ng-container>

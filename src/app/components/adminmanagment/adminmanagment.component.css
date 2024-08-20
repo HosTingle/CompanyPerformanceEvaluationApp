@@ -1,10 +1,264 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  
+  background-color: #fff;
+}
 app-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  
+}
+
+.corner-text{
+  flex-direction: row;
+  font-weight: bold;
+  margin-top: 1%;
+  margin-left: 1%;
+  
     display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
-    
-  }
+    align-items: center; /* Dikeyde ortalamak için */
+
+}
+.colored-text a {
+  color: white; /* Metin rengini kırmızı yapar */
+
+}
+.corner-text p {
+  margin: 0 20px 0 0; /* Sağ tarafa 20px boşluk ekler */
+}
+.container {
+
+  margin-top: 4%;
+  margin-left: 25%;
+  max-width: 65%;
+  background-color: #f8be30;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.colored-text {
+  color: #eeefef; /* Metin rengini kırmızı yapar */
+}
+.red-rectangle {
+  background-color: #f8be30;
+   padding: 3%;
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+  margin: 3%;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 2%;
+}
+.buttons {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+}
+
+.clear-button {
+  margin-right: 8px; /* Add some space between the button and the first icon */
+}
+
+.icon-button {
+  margin-left: 8px; /* Ensure the icons have space between each other */
+  cursor: pointer;
+}
+
+
+.action-button {
+
+  bottom: 10px; /* Alt kenara 10px uzaklık */
+  margin-left:5%;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+
+.action-button:hover {
+  background-color: #eeefef;
+}
+#cars {
+  width: 200%; /* Ekran genişliğinin %50'si */
+}
+.dropdown {
+  display: flex;
+  flex-direction:column;
+  margin-bottom: 20px;
+  gap: 5px; /* Etiket ve seçim kutusu arasına boşluk ekler */
+}
+.button-like {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white; /* Metin rengini beyaz yapar */
+
+  border: none;
+  border-radius: 5px;
+  text-decoration: none; /* Alt çizgi kaldırılır */
+  cursor: pointer;
+  text-align: center;
+}
+.btn {
+border: none;
+background-color: inherit;
+
+
+
+}
+
+.btn:hover {background: #f8be30;}
+
+.success {color: #fff;}
+
+
+
+
+
+.table-responsive {
+max-width: 65%; /* Burada istediğiniz genişliği belirleyin */
+margin-left: 25%;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+/* Ortalamak için */
+}
+
+/* Tablo satırlarının arka plan ve metin rengi */
+
+.datatable-container {
+margin: 12px;
+padding: 12px;
+
+
+font-family: Arial, sans-serif;
+background-color: #fff;
+}
+
+
+
+.filter-container {
+margin-bottom: 15px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.inputt {
+  width: 150px; /* Adjust the width as needed */
+  padding: 5px; /* Adjust padding to reduce the overall size */
+  font-size: 14px; /* Adjust the font size if you want to make the text smaller */
+}
+.box{
+  margin-left: 5%;
+}
+input[type="text"] {
+
+width: 30%;
+box-sizing: border-box;
+border: 1px solid #ddd;
+border-radius: 4px;
+font-size: 16px;
+}
+
+.action-buttons {
+
+gap: 20px;
+align-items: center;
+margin-right: 2%;
+}
+
+button {
+padding: 8px 15px;
+border: none;
+border-radius: 4px;
+color: #fff;
+font-size: 14px;
+cursor: pointer;
+transition: background-color 0.3s, box-shadow 0.3s;
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.clear-button {
+margin: 5%;
+background-color: #333;
+}
+
+.clear-button:hover {
+background-color: #333;
+}
+
+
+
+table {
+width: 100%;
+border-collapse: collapse; /* Hücre kenarlıklarının üst üste gelmesini engeller */
+}
+
+table th,
+table td {
+border-right: 1px solid #ddd; /* Dikey çizgileri ekler */
+border-bottom: 1px solid #ddd;
+padding: 8px; /* Hücreler arasında boşluk sağlar */
+text-align: left; /* Metin hizalaması */
+}
+
+table th:last-child,
+table td:last-child {
+border-right: none; /* Son sütunda sağ kenarlığı kaldırır */
+}
+
+
+
+th, td {
+padding: 6px 2px;
+text-align: left;
+
+}
+
+th {
+background-color: #f8be30;
+
+}
+
+th button {
+background: none;
+border: none;
+cursor: pointer;
+font-size: 20px;
+margin-left: 5px;
+font-weight: bold;
+}
+
+
+.header-content {
+display: flex;
+align-items: center;
+gap: 10px; /* Space between the text and the button */
+margin-right: 12%;
+}
+
+th button {
+background: none;
+border: none;
+cursor: pointer;
+font-size: 20px;
+font-weight: bold;
+}
+
+
+
+
+

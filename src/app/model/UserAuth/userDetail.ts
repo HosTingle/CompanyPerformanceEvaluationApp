@@ -9,5 +9,6 @@ export class UserDetail{
     role!:string;
     imageurl!:string;
     teamname!:string;
-    rolelevel!:number;
+    rolelevel!:number; 
+    status!:string; 
 }

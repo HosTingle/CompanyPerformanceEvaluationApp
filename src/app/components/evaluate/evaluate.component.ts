@@ -138,6 +138,9 @@ export class EvaluateComponent implements OnInit {
           this.users= this.filterusers;
           this.userNames = this.users.map((user: UserDetail)  => user.name);
         }
+        else{
+          this.userNames = this.users.map((user: UserDetail)  => user.name);
+        }
         this.copyusers=this.users;
       } 
     });
