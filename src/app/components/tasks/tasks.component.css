@@ -1,11 +1,18 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  display: flex;
-  
+.main {
+
+    
+  border-width: 5px;    
+  border-color: rgb(0, 0, 0);
   background-color: #fff;
+  position: fixed;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  width: 71%;
+  box-sizing: border-box;
+  
 }
+
 app-sidebar {
   position: fixed;
   top: 0;
@@ -146,8 +153,9 @@ background-color: inherit;
 .table-responsive {
 max-width: 65%; /* Burada istediğiniz genişliği belirleyin */
 margin-left: 25%;
+margin-top: 3%;
 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-/* Ortalamak için */
+border-radius: 1%
 }
 
 /* Tablo satırlarının arka plan ve metin rengi */

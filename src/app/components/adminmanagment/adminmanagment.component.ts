@@ -111,8 +111,18 @@ export class AdminmanagmentComponent {
   managmentt(user:UserDetail){
     this.userser.updateuserinfo(user).subscribe(
       (response:any)=>{
-       if (response.data !=null) {
+       if (response.success) { 
+        this.toastrService.success('User Bilgileri Güncellendi', 'Başarılı', {
+
+        }); 
+       }
+       else{
+        this.toastrService.error('User Bilgileri Güncellenemedi', 'Başarısız', { 
+ 
+        }); 
+
        } 
+
      });
      this.visibletextState[user.userid] = !this.visibletextState[user.userid];
   }
@@ -127,17 +137,17 @@ export class AdminmanagmentComponent {
   deletealluser(userdet:UserDetail){
     this.userser.deletalluserinformation(userdet).subscribe(
       (response:any)=>{
-       if (response.data !=null) {
+       if (response.success) {
         this.toastrService.success('Silme Gerçekleşti', 'Başarılı', {
 
         }); 
-        this.router.navigate([`usermanagment`]); 
+       this.getalluser();
        } 
        else{
         this.toastrService.error('Daha Sonra Tekrar Deneyiniz', 'Başarısız', { 
  
         }); 
-        
+
        }
      });
   }
@@ -219,7 +229,10 @@ export class AdminmanagmentComponent {
   }
   
   
-
+  RouteManagment(user:UserDetail){
+    this.positionser.changUser(user);
+    this.router.navigate([`usermanagment/${user.userid}`]);
+  }
   onCitySelected(){
     this.users= this.filterusers;
     this.userscity = this.users.filter((user: UserDetail) => {

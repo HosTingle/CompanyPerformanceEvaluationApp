@@ -9,7 +9,6 @@ import { authGuard } from './guards/auth.guard';
 import { ForgotpassComponent } from './components/forgotpass/forgotpass.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
-import { UpdateuserpageComponent } from './components/updateuserpage/updateuserpage.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EvaluateComponent } from './components/evaluate/evaluate.component';
 import { SignupadressComponent } from './components/signupadress/signupadress.component';
@@ -19,6 +18,7 @@ import { HelppageComponent } from './components/helppage/helppage.component';
 import { EvaluateresponsComponent } from './components/evaluaterespons/evaluaterespons.component';
 import { AdminmanagmentComponent } from './components/adminmanagment/adminmanagment.component';
 import { EvaluaterespdetailComponent } from './components/evaluaterespdetail/evaluaterespdetail.component';
+import { TaskassignpageComponent } from './components/taskassignpage/taskassignpage.component';
 
 export const routes: Routes = [ 
   { path: '', redirectTo: 'loginpage', pathMatch: 'full' }, 
@@ -28,16 +28,16 @@ export const routes: Routes = [
     {path:"forgotpage", component:ForgotpassComponent},
     {path:"reset-password",component:ResetComponent},
     { path: '404', component: NotfoundComponent }, 
-    {path:'profilepage',component:ProfileComponent},
-    {path:'editpage',component:UpdateuserpageComponent},
-    {path:'evaluatepage',component:EvaluateComponent},
+    {path:'profilepage',component:ProfileComponent,canActivate:[authGuard]},
+    {path:'evaluatepage',component:EvaluateComponent,canActivate:[authGuard]},
     {path:'signadresspage',component:SignupadressComponent},
-    {path:'taskspage',component:TasksComponent},
-    { path:'taskspage/:id',component:TaskdetailComponent},
-    { path:'helppage',component:HelppageComponent},
-    { path:'evaluateresult',component:EvaluateresponsComponent},
-    {path:'usermanagment',component:AdminmanagmentComponent},
-    {path:'evalresdetail/:id',component:EvaluaterespdetailComponent},
+    {path:'taskspage',component:TasksComponent,canActivate:[authGuard]},
+    { path:'taskspage/:id',component:TaskdetailComponent,canActivate:[authGuard]},
+    { path:'helppage',component:HelppageComponent,canActivate:[authGuard]},
+    { path:'evaluateresult',component:EvaluateresponsComponent,canActivate:[authGuard]},
+    {path:'usermanagment',component:AdminmanagmentComponent,canActivate:[authGuard]},
+    {path:'evalresdetail/:id',component:EvaluaterespdetailComponent,canActivate:[authGuard]},
+    {path:'usermanagment/:id',component:TaskassignpageComponent,canActivate:[authGuard]},
   { path: '**', redirectTo: '/404' },
 
 

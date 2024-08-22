@@ -21,22 +21,24 @@
         <i class="fas fa-home"></i>
         <span class="nav-item">Anasayfa</span>
       </a></li>
+      <ng-container *ngIf=" role === 'Yonetici' || role === 'Ustyönetici'">
+        <li><a href="evaluatepage">
+          <i class="fas fa-star"></i>
+          <span class="nav-itemm">Performans Değerlendirmesi</span>
+        </a></li>
+      </ng-container>
       <li><a href="evaluateresult">
         <i class="fas fa-check-circle"></i>
-        <span class="nav-item">Değerlendirmeler</span>
+        <span class="nav-itemm">Değerlendirme Sonuçları</span>
   
       </a></li>
-      <ng-container *ngIf=" role === 'Yonetici' || role === 'Ustyönetici'">
+
+
+    <ng-container *ngIf=" role === 'Yonetici' || role === 'Ustyönetici'">
       <li><a href="usermanagment">
         <i class="fas fa-tools"></i> 
         <span class="nav-item">Yönetim</span>
   
-      </a></li>
-    </ng-container>
-      <ng-container *ngIf=" role === 'Yonetici' || role === 'Ustyönetici'">
-      <li><a href="evaluatepage">
-        <i class="fas fa-star"></i>
-        <span class="nav-item">Değerlendirme</span>
       </a></li>
     </ng-container>
     <ng-container *ngIf=" role != 'Ustyönetici'">
@@ -46,23 +48,25 @@
       </a></li>
     </ng-container>
  
-      <li><a href="profilepage">
-        <i class="fas fa-user"></i>
-        <span class="nav-item">Profil</span>
-  
-      </a></li>
-  
+   
+    <li><a href="profilepage">
+      <i class="fas fa-user"></i>
+      <span class="nav-item">Profil</span>
+
+    </a></li>
      
       <li><a href="helppage">
         <i class="fas fa-question-circle"></i>
         <span class="nav-item">Yardım</span>
       </a></li>
+      
       <li>
         <button class="logout" style="background: none; border: none; cursor: pointer;">
             <i class="fas fa-sign-out-alt"></i>
             <span class="nav-item" (click)="logout()" >Çıkış yap</span> 
         </button>
     </li>
+    
     </ul>
   </nav>
 

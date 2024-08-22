@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DialogModule } from '@angular/cdk/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 export const appConfig: ApplicationConfig = {
 
 
@@ -40,7 +41,7 @@ export const appConfig: ApplicationConfig = {
     FormsModule,MatFormFieldModule ,
     DialogModule,
     MatIconModule,
- 
+    provideCharts(withDefaultRegisterables())
   ],
   
   

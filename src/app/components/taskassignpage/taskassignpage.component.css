@@ -1,0 +1,78 @@
+app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    
+  }
+  .container-column {
+    flex-direction: column;
+    margin-top: 2%;
+    margin-left: 25%;
+    max-width: 65%;
+
+    padding: 20px;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* İsteğe bağlı: Hafif bir gölge eklemek için */
+    background-color: #fff; /* İsteğe bağlı: Arka plan rengi */
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+
+  }
+.input-group {
+    margin-bottom: 20px;
+}
+.input-groupp{
+    flex-direction: column;
+    margin-left: 40%;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    gap: 10%;
+}
+.button-containerr{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left:10%;
+    gap: 10%;
+}
+.btn-primary {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #333;
+}
+
+.btn btn-secondary{
+    background-color: black;
+}

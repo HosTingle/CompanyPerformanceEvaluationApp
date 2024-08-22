@@ -1,52 +1,55 @@
+<app-sidebar>
+</app-sidebar>
 
+<div class="dashboard">
+  <div class="stats">
+    <div class="stat-box">
+      <h2>Çalışan Sayısı</h2> 
+      <p>{{userlenght}}</p>
+    </div>
+    <ng-container *ngIf="role==='Ustyönetici'  || role==='Yonetici'">
+    <div class="stat-box">
+      <h2>Yapılan Değerlendirme</h2> 
+      <p>{{evaluatecounter}}</p> 
+    </div>
+    </ng-container>
+    <ng-container *ngIf="role!='Ustyönetici'  && role !='Yonetici'">
+    <div class="stat-box">
+      <h2>Değerlendirilen Görevleri</h2> 
+      <p>{{evaluatecounter}}</p> 
+    </div>
+   </ng-container>
+    <div class="stat-box">
+      <h2>Average Employee Tenure</h2>
+      <p>4.6 years</p>
+    </div>
+    <div class="stat-box">
+      <h2>Gender Diversity Ratio</h2>
+      <p>69.93%</p>
+    </div>
+  </div>
 
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-  
-  <div class="container">
-   <app-sidebar>
-    
-   </app-sidebar>
-        <ng-container *ngIf="role==='Calisan'">
-          <section class="main">
-        
-
-            <section class="main-course">
-              <h1>My courses</h1>
-              <div class="course-box">
-                <ul>
-                  <li class="active">In progress</li>
-                  <li>explore</li>
-                  <li>incoming</li>
-                  <li>finished</li>
-                </ul>
-                <div class="course">
-                  <div class="box">
-                    <h3>HTML</h3>
-                    <p>80% - progress</p>
-                    <button>continue</button>
-                    <i class="fab fa-html5 html"></i>
-                  </div>
-                  <div class="box">
-                    <h3>CSS</h3>
-                    <p>50% - progress</p>
-                    <button>continue</button>
-                    <i class="fab fa-css3-alt css"></i>
-                  </div>
-                  <div class="box">
-                    <h3>JavaScript</h3>
-                    <p>30% - progress</p>
-                    <button>continue</button>
-                    <i class="fab fa-js-square js"></i>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </section>
-        </ng-container>
-  
-      </div>
+  <div class="charts">
+    <ng-container *ngIf="role!='Ustyönetici' ">
+    <div class="chart-box">
+      <canvas baseChart
+        [type]="'pie'"
+        [datasets]="pieChartDatasets"
+        [labels]="pieChartLabels"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+    </ng-container>
+    <div class="chart-box">
+      <canvas baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [type]="'bar'">
+      </canvas>
+    </div>
+  </div>
+</div>

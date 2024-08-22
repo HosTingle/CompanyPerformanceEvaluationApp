@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { QuestionspageComponent } from "../questionspage/questionspage.component";
-import { UpdateuserpageComponent } from "../updateuserpage/updateuserpage.component";
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { AuthServiceService } from '../../services/auth.service.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, QuestionspageComponent, UpdateuserpageComponent, SidebarComponent,FormsModule],
+  imports: [CommonModule, QuestionspageComponent, SidebarComponent,FormsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -77,6 +76,9 @@ export class ProfileComponent {
     this.userdet.name=this.user.name;
     this.userdet.phone=this.user.phone;
     this.userdet.teamname=this.user.teamname;
+    this.userdet.imageurl=this.user.imageurl;
+    this.userdet.status=this.user.status;
+    this.userdet.role= this.role;
     this.userser.updateuserinfo(this.userdet).subscribe({
       
       next:(res)=>{

@@ -13,6 +13,12 @@ app-sidebar {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    
+  }
+  .average-score-display {
+    margin-left: 70%;
+    color: #fff;
+    font-weight: bold;
   }
   .no-tasks{
     color: #fff;

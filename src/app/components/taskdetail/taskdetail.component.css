@@ -1,3 +1,17 @@
+.main {
+
+    
+  border-width: 5px;    
+  border-color: rgb(0, 0, 0);
+  background-color: #fff;
+  position: fixed;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  width: 71%;
+  box-sizing: border-box;
+  
+}
 app-sidebar {
     position: fixed;
     top: 0;

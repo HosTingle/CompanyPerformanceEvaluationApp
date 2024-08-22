@@ -54,7 +54,12 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
           )
         }
        }
-       return throwError(()=> new Error('Bir hata ile karşılaşıldı. Daha sonra tekrar deneyiniz'))
+       return throwError(()=> {
+        new Error('Bir hata ile karşılaşıldı. Daha sonra tekrar deneyiniz');
+        toast.error('Daha Sonra Tekrar Deneyiniz', 'Başarısız', { 
+ 
+        }); 
+      })
     }
   )
   )

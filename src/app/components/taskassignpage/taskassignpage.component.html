@@ -1,0 +1,78 @@
+<app-sidebar></app-sidebar>
+
+<app-sidebar></app-sidebar>
+<div class="button-containerr">
+  <!-- İki düğme; biri ilk ekranı, diğeri ikinci ekranı gösterir -->
+  <button class="btn btn-secondary" (click)="showScreen(1)">Görev Ekle</button>
+  <button class="btn btn-secondary" (click)="showScreen(2)">Görev Seç</button>
+</div>
+
+<div class="container-column">
+  <!-- Ekran 1: Form ekranı -->
+  <div *ngIf="currentScreen === 1">
+    <div class="input-group">
+      <td>
+        <img class="profile-pic" src="{{user.imageurl}}" alt="Profile Picture">
+        {{ user.name }}
+      </td>
+    </div>
+
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="taskEndDate">Bitiş Tarihi</label>
+        <input id="taskEndDate" type="date" class="form-control" formControlName="taskEndDate" />
+      </div>
+      <div class="input-group">
+        <label for="taskTitle">Görev Başlığı</label>
+        <input id="taskTitle" type="text" class="form-control" formControlName="taskTitle" placeholder="Görev başlığını giriniz" />
+      </div>
+      <div class="input-group">
+        <label for="taskDescription">Görev Açıklaması</label>
+        <textarea id="taskDescription" class="form-control" rows="5" formControlName="taskDescription" placeholder="Görev açıklamasını giriniz"></textarea>
+      </div>
+      <div class="button-container">
+        <button type="submit" class="btn btn-primary" (click)="addusertask()">Ekle</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Ekran 2: Alternatif bir içerik (başka bir ekran) -->
+  <div *ngIf="currentScreen === 2">
+    <div class="input-group">
+        <td>
+          <img class="profile-pic" src="{{user.imageurl}}" alt="Profile Picture">
+          {{ user.name }}
+        </td>
+      </div>
+      
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <!-- Bitiş Tarihi İçin Input -->
+        <div class="input-group">
+          <label for="taskEndDate">Bitiş Tarihi</label>
+          <input id="taskEndDate" type="date" class="form-control" formControlName="taskEndDate" />
+        </div>
+      
+        <!-- Görev Başlığı İçin Dropdown -->
+        <div class="input-group">
+          <label for="taskTitle">Görev Başlığı</label>
+          <select id="taskTitle" class="form-control" formControlName="taskTitle" (change)="onTaskTitleChange($event)">
+            <option *ngFor="let task of predefinedTasks" [value]="task.title">{{ task.title }}</option>
+          </select>
+        </div>
+      
+        <!-- Görev Açıklaması İçin Dropdown -->
+        <div class="input-group">
+          <label for="taskDescription">Görev Açıklaması</label>
+          <select id="taskDescription" class="form-control" formControlName="taskDescription">
+            <option *ngFor="let description of availableDescriptions" [value]="description">{{ description }}</option>
+          </select>
+        </div>
+      
+        <div class="button-container">
+          <button type="submit" class="btn btn-primary" (click)="addusertask()">Ekle</button>
+        </div>
+      </form>
+      
+  </div>
+</div>
+

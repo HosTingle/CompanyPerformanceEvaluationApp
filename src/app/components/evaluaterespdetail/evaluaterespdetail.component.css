@@ -70,7 +70,7 @@ app-sidebar {
   }
   .evaluation-container {
     display: flex;
-    justify-content: space-between; /* Space between the two sections */
+    justify-content: space-evenly; /* Space between the two sections */
     align-items: flex-start; /* Align items at the top */
   }
   
@@ -79,9 +79,7 @@ app-sidebar {
     flex-direction: column; /* Stack title and content vertically */
     align-items: center; /* Center-align the content */
   }
-  .evaluate-score{
-    margin-right: 36%;
-  }
+
   .evaluatee-info {
     display: flex;
     flex-direction: column; /* Stack image and name vertically */

@@ -100,6 +100,7 @@
           </thead>
 
          <tbody>
+          
   <ng-container *ngFor="let user of filteredUsers">
     <tr *ngIf="user.rolelevel < level">
       <td>
@@ -107,7 +108,6 @@
         {{ user.name }}
       </td>
 
-      <!-- Role Column -->
       <ng-container *ngIf="!visibletextState[user.userid]">
         <td>{{ user.role }}</td>
       </ng-container>
@@ -177,7 +177,7 @@
         <div (click)="deletealluser(user)">
           <mat-icon class="icon-button">delete</mat-icon>
         </div>
-        <button class="clear-button">Görev Yönet</button>
+        <button class="clear-button" (click)="RouteManagment(user)">Görev Yönet</button>
       </td>
     </tr>
   </ng-container>

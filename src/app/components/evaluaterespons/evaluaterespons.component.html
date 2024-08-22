@@ -1,14 +1,20 @@
 <app-sidebar></app-sidebar>
 <div class="container">
+  <!-- Sağ üst köşede averageScore'u gösteren div -->
+
+  <div class="average-score-display" *ngIf="avarageScore>0">
+    Dönem Puan Ortalaması: {{ avarageScore | number:'1.1-1' }}
+  </div>
+
   <div class="filters-container">
     <div class="filter-container">
       <label for="period">Yıl</label>
       <select id="period" name="period" [(ngModel)]="selectedYear" (change)="filterAndGroupTasks()">
         <option [ngValue]="2020">2020</option>
-    <option [ngValue]="2021">2021</option>
-    <option [ngValue]="2022">2022</option>
-    <option [ngValue]="2023">2023</option>
-    <option [ngValue]="2024">2024</option>
+        <option [ngValue]="2021">2021</option>
+        <option [ngValue]="2022">2022</option>
+        <option [ngValue]="2023">2023</option>
+        <option [ngValue]="2024">2024</option>
       </select>
     </div>
     <div class="filter-container">
@@ -19,7 +25,7 @@
       </select>
     </div>
   </div>
-  
+
   <div class="tasks-container">
     <div *ngIf="uniqueTasks.length === 0" class="no-tasks">
       Herhangi bir geçmiş değerlendirmeniz yoktur

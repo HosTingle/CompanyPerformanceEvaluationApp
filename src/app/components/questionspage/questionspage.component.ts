@@ -4,12 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserStoreService } from '../../services/user-store.service';
 import { CommonModule } from '@angular/common';
-import { UpdateuserpageComponent } from "../updateuserpage/updateuserpage.component";
 
 @Component({
   selector: 'app-questionspage',
   standalone: true,
-  imports: [CommonModule, UpdateuserpageComponent],
+  imports: [CommonModule],
   templateUrl: './questionspage.component.html',
   styleUrl: './questionspage.component.css'
 })

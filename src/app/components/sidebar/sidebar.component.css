@@ -68,9 +68,14 @@ nav .fas{
 .nav-item{
   position: relative;
   top: 12px;
-  margin-left: 10px;
-}
 
+  font-size: 12.4px;
+}
+.nav-itemm{
+  position: relative;
+  top: 12px;
+  font-size: 12.4px;
+}
 .logout{
   position: absolute;
   bottom: 0;

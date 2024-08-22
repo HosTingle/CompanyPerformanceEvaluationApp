@@ -12,15 +12,18 @@ import { EntityReponseModel } from '../model/responseModels/entityResponseModel'
 import { ReponseModel } from '../model/responseModels/responseModel';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { EvaluateDetals } from '../model/evaluatedetail';
+import { UserDetail } from '../model/UserAuth/userDetail';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PositionService {
   private taskSource = new BehaviorSubject<Tasks | null>(null);
+  private userSource = new BehaviorSubject<UserDetail | null>(null);
   private evaluateSourceL = new BehaviorSubject<EvaluateDetals[]>([]);
   currentEvaluates = this.evaluateSourceL.asObservable();
   currentTask = this.taskSource.asObservable();
+  currentUser= this.userSource.asObservable();
   apiUrl = ApiUrl.localurl;
   constructor(
     private httpClient:HttpClient,
@@ -54,8 +57,16 @@ export class PositionService {
   changeEvaluateL(evaluatedetail: EvaluateDetals[]) {
     this.evaluateSourceL.next(evaluatedetail);
   }
+  changUser(user: UserDetail) {
+    this.userSource.next(user);
+  }
   updateusertask(usetask:Tasks){
     let newPath = this.apiUrl + `UserTask/update`;
     return this.httpClient.post<ReponseModel>(newPath,usetask)
   }
+  addusertask(usetask:Tasks){
+    let newPath = this.apiUrl + `UserTask/add`;
+    return this.httpClient.post<ReponseModel>(newPath,usetask)
+  }
+
 }

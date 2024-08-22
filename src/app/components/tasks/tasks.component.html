@@ -1,37 +1,6 @@
+
 <app-sidebar></app-sidebar>
-<div class="container">
-    <div class="red-rectangle">
-        <div class="container-box">
-            <p class="zaa">Görev Sayısı</p>
-            <div class="container-box-text">
-              <div class="icon-wrapper">
-                <i class="fas fa-tasks"></i>
-            </div>
-                <p class="cop">{{toplams}}</p> 
-            </div>
-        </div>
-        <div class="container-box">
-            <p class="zaa">Devam Eden</p>
-            <div class="container-box-textb">
-              <div class="icon-wrapper">
-                <i class="fas fa-clock"></i>
-            </div>
-                <p class="cop">{{countT}}</p> 
-           
-            </div>
-        </div>
-        <div class="container-box">
-            <p class="zaa">Biten Görev</p>
-            <div class="container-box-textf">
-              <div class="icon-wrapper">
-                <i class="fas fa-check"></i>
-            </div>
-                <p class="cop">{{countF}}</p> 
-          
-            </div>
-        </div>
-    </div>
-</div>
+
 <ng-container *ngIf="usertasks != null && usertasks.length > 0">
 <div class="table-responsive">
     <div class="corner-text">
@@ -98,4 +67,4 @@
         </div>
         
     </div>
-    </ng-container>
+</ng-container>

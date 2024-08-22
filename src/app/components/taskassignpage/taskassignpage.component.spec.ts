@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UpdateuserpageComponent } from './updateuserpage.component';
+import { TaskassignpageComponent } from './taskassignpage.component';
 
-describe('UpdateuserpageComponent', () => {
-  let component: UpdateuserpageComponent;
-  let fixture: ComponentFixture<UpdateuserpageComponent>;
+describe('TaskassignpageComponent', () => {
+  let component: TaskassignpageComponent;
+  let fixture: ComponentFixture<TaskassignpageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UpdateuserpageComponent]
+      imports: [TaskassignpageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UpdateuserpageComponent);
+    fixture = TestBed.createComponent(TaskassignpageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

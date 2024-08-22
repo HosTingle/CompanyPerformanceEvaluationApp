@@ -23,10 +23,12 @@ export class EvaluateresponsComponent implements OnInit {
   selectedYear: number = 2024; // Varsayılan yıl
   respons!:any;
   uniqueTasks: any[] = [];
+  score!:number;
   evaluatedetail!: EvaluateDetals[];
   evaluatedet!: EvaluateDetals[];
   groupedTasks: { [key: string]: EvaluateDetals[] } = {};
   filteredTasks: any[] = [];
+  avarageScore:number=0;
   constructor(
     private router:Router,
     private localStorageService: LocalStorageService,
@@ -36,7 +38,7 @@ export class EvaluateresponsComponent implements OnInit {
   ) {}
 ngOnInit(): void {
   this.getuserfromstore();
-  if(this.role=="Yonetici"){
+  if(this.role=="Yonetici" ||this.role=="Ustyönetici"){
     this.getalluserEvaluator();
   }
   else{
@@ -74,21 +76,44 @@ ngOnInit(): void {
   }
   filterAndGroupTasks() {
     const taskMap = new Map<string, any[]>();
+    
+    // Verileri filtrele
     this.filteredTasks = this.evaluatedet.filter(task => {
       const taskYear = new Date(task.evaluationdate).getFullYear();
       return task.period === this.selectedPeriod && taskYear === this.selectedYear;
     });
+  
+    // Görevleri grupla
     for (let task of this.filteredTasks) {
-      const key = `${task.taskname}-${task.period}`; // Combine taskname and period as the key
+      const key = `${task.taskname}-${task.period}`; 
       if (!taskMap.has(key)) {
         taskMap.set(key, []);
       }
       taskMap.get(key)?.push(task);
     }
   
+    // Gruplandırılmış görevler
     this.uniqueTasks = Array.from(taskMap.values()).map(tasks => tasks[0]);
     this.groupedTasks = Object.fromEntries(taskMap);
+  
+    // Ortalama puanı hesapla
+    let totalScore = 0;
+    let taskCount = 0;
+  
+    for (const key in this.groupedTasks) {
+      const tasks = this.groupedTasks[key];
+      const total = tasks.reduce((sum, task) => sum + task.evaluatescore, 0);
+      const average = total / tasks.length;
+  
+      totalScore += average;
+      taskCount++;
+    }
+  
+    // Ortalama puanı hesapla ve güncelle
+    this.avarageScore = (totalScore / taskCount) * 10;
+    console.log('Average Score:', this.avarageScore);
   }
+  
 
   routeevaluate(idd:number,name:string,period:string){
     this.evaluatedetail = this.groupedTasks[`${name}-${period}`];
