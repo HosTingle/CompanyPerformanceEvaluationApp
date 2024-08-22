@@ -23,6 +23,11 @@ namespace PMS.Business.Concrete
 
         public IResult Add(UserTask userTask)
         {
+            int minValue = 80;
+            int maxValue = 100000;
+            Random random = new Random();
+            int randomNumberr = random.Next(minValue, maxValue);
+            userTask.TASKID=randomNumberr;
             _userTaskDal.Add(userTask);
             return new SuccessResult("Eklendi");
         }
