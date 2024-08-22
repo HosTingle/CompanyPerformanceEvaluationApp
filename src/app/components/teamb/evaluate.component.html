@@ -1,0 +1,36 @@
+<app-sidebar></app-sidebar>
+<div class="main" style="position: fixed;">
+<div class="container">
+  <div class="search-container">
+    <div class="dropdown">
+      <label for="team">Takım</label>
+      <select name="team" id="team" [(ngModel)]="selectedTeamname" (change)="getUsers()">
+        <option value="" selected>Takım Adı</option>
+        <ng-container *ngFor="let team of teamList">
+          <option [value]="team">{{ team }}</option>
+        </ng-container>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="results">
+    <h3>Takım Üyeleri</h3>
+    <div class="card flex justify-content-center overflow-x-auto">
+      <p-organizationChart [value]="chartDATA" selectionMode="multiple" [(selection)]="selectedNodes" [collapsible]="true">
+        <ng-template let-node pTemplate="person">
+          <div class="text-center">
+            <div class="profile-container">
+              <img class="profile-pic" src="{{node.data.image}}" alt="Profile Picture">
+              <div class="font-bold">
+                <p class="name">{{ node.data.name }}</p>
+                <p class="title">{{ node.data.title }}</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-organizationChart>
+    </div>
+  </div>
+</div>
+</div>

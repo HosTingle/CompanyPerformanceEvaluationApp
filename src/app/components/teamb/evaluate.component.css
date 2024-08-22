@@ -1,0 +1,122 @@
+/* Genel stil ayarları */
+
+.main {
+
+    
+  border-width: 5px;    
+  border-color: rgb(0, 0, 0);
+  background-color: #fff;
+  position: fixed;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  width: 80%;
+  box-sizing: border-box;
+  
+}
+
+/* Yan menü (app-sidebar) */
+app-sidebar {
+  width: 300px; /* Sabit genişlik */
+
+  color: #ffffff;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.profile-container {
+
+
+  flex-direction: column;
+  align-items: center;
+}
+/* Ana içerik */
+.container {
+
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Allow vertical scrolling if content is taller than viewport */
+}
+
+/* Arama konteyneri */
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #e1e1e1;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+/* Arama butonları ve dropdown */
+.search-container .dropdown {
+  flex: 1;
+}
+
+.search-container .dropdown label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.search-container .dropdown select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.profile-pic {
+  max-width: 40px; /* Profil resminin genişliğini sınırlayın */
+  border-radius: 50%; /* Resmin yuvarlak olması için */
+  margin-bottom: 5px; /* Resim ile isim arasında boşluk bırakın */
+}
+
+.font-bold {
+  text-align: center;
+}
+
+.name {
+  font-size: 10px;
+  font-weight: bold;
+  margin: 0; /* Varsayılan boşlukları kaldırın */
+}
+
+.title {
+  font-size: 10px;
+  margin: 0; /* Varsayılan boşlukları kaldırın */
+}
+.search-container .btn:hover {
+  background-color: #45a049;
+}
+
+/* Sonuçlar bölümü */
+.results {
+  margin-top: 20px;
+}
+
+.results h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Ağaç yapısı */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card .p-organizationChart {
+  width: 100%;
+}

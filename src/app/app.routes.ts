@@ -19,6 +19,7 @@ import { EvaluateresponsComponent } from './components/evaluaterespons/evaluater
 import { AdminmanagmentComponent } from './components/adminmanagment/adminmanagment.component';
 import { EvaluaterespdetailComponent } from './components/evaluaterespdetail/evaluaterespdetail.component';
 import { TaskassignpageComponent } from './components/taskassignpage/taskassignpage.component';
+import { EvaluateeComponent } from './components/teamb/evaluate.component';
 
 export const routes: Routes = [ 
   { path: '', redirectTo: 'loginpage', pathMatch: 'full' }, 
@@ -38,6 +39,7 @@ export const routes: Routes = [
     {path:'usermanagment',component:AdminmanagmentComponent,canActivate:[authGuard]},
     {path:'evalresdetail/:id',component:EvaluaterespdetailComponent,canActivate:[authGuard]},
     {path:'usermanagment/:id',component:TaskassignpageComponent,canActivate:[authGuard]},
+    {path:'userteam',component:EvaluateeComponent,canActivate:[authGuard]},
   { path: '**', redirectTo: '/404' },
 
 

@@ -97,7 +97,7 @@ export class HomepageComponent implements OnInit{
     this.getalluser();
     this.getpositions();
     this.getcitys();
-    if(this.role=="Yonetici"){
+    if(this.role=="Yonetici" || this.role=="Ustyönetici"){
       this.getalluserEvaluator();
     }
     else{
@@ -286,7 +286,7 @@ export class HomepageComponent implements OnInit{
       if (response.data !=null) {
         this.users=await response.data;
  
-        if(this.role=="Yonetici"){
+        if(this.role!="Ustyönetici"){
           this.filterusers= this.users.filter((user: UserDetail) => {
             return (
               ( user.teamname === this.teamname)

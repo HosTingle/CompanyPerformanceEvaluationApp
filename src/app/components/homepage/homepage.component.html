@@ -19,19 +19,14 @@
       <p>{{evaluatecounter}}</p> 
     </div>
    </ng-container>
-    <div class="stat-box">
-      <h2>Average Employee Tenure</h2>
-      <p>4.6 years</p>
-    </div>
-    <div class="stat-box">
-      <h2>Gender Diversity Ratio</h2>
-      <p>69.93%</p>
-    </div>
+
   </div>
 
   <div class="charts">
     <ng-container *ngIf="role!='Ustyönetici' ">
+      
     <div class="chart-box">
+            <h6>Görevler</h6> 
       <canvas baseChart
         [type]="'pie'"
         [datasets]="pieChartDatasets"
@@ -39,10 +34,12 @@
         [options]="pieChartOptions"
         [plugins]="pieChartPlugins"
         [legend]="pieChartLegend">
+        style="width: 300px; height: 300px;">
       </canvas>
     </div>
     </ng-container>
     <div class="chart-box">
+      <h6 class="saa">Döneme Göre Puanlandırmalar</h6> 
       <canvas baseChart
         [data]="barChartData"
         [options]="barChartOptions"
