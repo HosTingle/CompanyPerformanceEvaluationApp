@@ -166,3 +166,11 @@
     /* You can adjust left/right margins/paddings as well */
   }
   
+  
+  .text-danger {
+    display: block;
+    position: absolute;
+  }
+  
+
+  
