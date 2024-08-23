@@ -1,0 +1,37 @@
+<app-sidebar></app-sidebar>
+
+<div class="table-responsive">
+
+    <div class="corner-text">
+        <p>Görev Detay</p>
+    </div>
+    
+    <div class="header-content">
+        <p class="header-text">Görev</p>
+        <div class="text-bor">
+            <p>{{usertask.taskname}}</p> 
+        </div>
+
+    </div>
+    <div class="header-content">
+        <p class="header-text">Görev Açıklama</p>
+        <div class="text-bor">
+            <p>{{usertask.description}}</p> 
+        </div>
+    </div>
+    <div class="header-content">
+        <p class="header-text">Bitiş Tarihi</p>
+        <div class="text-bor">
+            <p>{{usertask.duedate| date: 'dd/MM/yyyy'}}</p> 
+        </div>
+    </div>
+    <div class="header-content">
+        <p  class="header-text">Durum</p>
+        <div class="text-bor">
+            <p>  {{ usertask.status === 'T' ? 'Devam Ediyor' : usertask.status === 'F' ? 'Tamamlandı' : '' }}</p> 
+        </div>
+    </div>
+
+ 
+
+</div>

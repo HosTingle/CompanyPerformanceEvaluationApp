@@ -1,0 +1,82 @@
+.main {
+
+    
+  border-width: 5px;    
+  border-color: rgb(0, 0, 0);
+  background-color: #fff;
+  position: fixed;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  width: 71%;
+  box-sizing: border-box;
+  
+}
+app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    
+  }
+  
+  .corner-text{
+    flex-direction: row;
+    font-weight: bold;
+    margin-top: 3%;
+    margin-left: 3%;
+    font-size:20px;
+      display: flex;
+      align-items: center; /* Dikeyde ortalamak için */
+  
+  }
+ 
+  
+  
+  
+  .table-responsive {
+  max-width: 65%; /* Burada istediğiniz genişliği belirleyin */
+  margin-left: 25%;
+  margin-top: 5%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  /* Ortalamak için */
+  }
+  
+  /* Tablo satırlarının arka plan ve metin rengi */
+  
+
+  
+  
+  .header-content {
+    display: flex;
+    align-items: center; /* Elemanları dikeyde ortalar */
+    justify-content: space-between; /* Elemanlar arasını eşit olarak açar */
+    margin: 10px 0; /* Header-content'ler arasında boşluk bırakır */
+    margin-left: 2%;
+}
+
+.header-content p {
+    margin: 1.5%;
+
+    font-size: 16px;
+    flex: 1; /* P elementini esnek yapar, daha fazla yer kaplamasına izin verir */
+}
+
+.text-bor {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    flex: 2; /* .text-bor elementinin genişliğini ayarlar, flex: 1 ile oynayabilirsiniz */
+    margin-left: 8px; /* P elementi ile text-bor arasında boşluk bırakır */
+}
+.header-text{
+  font-weight: bold;
+}
+ 
+  
+  
+  
+  
