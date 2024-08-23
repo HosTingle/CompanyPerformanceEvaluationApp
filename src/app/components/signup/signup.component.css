@@ -25,7 +25,7 @@
   }
   
   .shape:first-child {
-    background: linear-gradient(#1845ad, #23a2f6);
+    background: linear-gradient(#215bfb, #3bb1ff);
     left: -80px;
     top: -80px;
   }
@@ -37,7 +37,7 @@
   }
   
   form {
-    height: 640px;
+    height: 680px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -102,11 +102,12 @@
   
   button {
     display: block;
-    margin: 30px auto; /* shorthand for margin-top, margin-right, margin-bottom, and margin-left */
+    margin: 10px auto; /* shorthand for margin-top, margin-right, margin-bottom, and margin-left */
     width: 45%;
+    height: 50px;
     background-color: #f8be30;
     color: #fff;
-    padding: 15px 0;
+    padding: 10px 0;
     font-size: 18px;
     font-weight: 600;
     border-radius: 5px;
@@ -118,11 +119,18 @@
   }
   
   button.btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #424242;
   }
   
   button.btn-secondary:hover {
     background-color: #5a6268;
+  }
+
+  button:disabled {
+    background-color: #787878; /* İstediğiniz arka plan rengini buraya ekleyin */
+    color: #000000; /* Metin rengini de değiştirmek isteyebilirsiniz */
+    cursor: not-allowed; /* Fare imlecini değiştirmek için */
+    border: 1px solid #a9a9a9; /* Kenarlık rengini değiştirmek isteyebilirsiniz */
   }
   
   .form-check {
@@ -153,5 +161,18 @@
   .form-group {
     margin-top: 8%
   }
+
+  .text-danger {
+    display: block;
+    position: absolute;
+  }
   
+  .error-required,
+.error-minlength,
+.error-capitalLetter,
+.error-specialChar,
+.error-both {
+  display: block; /* Her mesajın kendi satırında olmasını sağlar */
+  margin-top: 5px; /* Mesajlar arasında boşluk bırakır */
+}
   
