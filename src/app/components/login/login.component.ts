@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth.service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Token } from '../../model/UserAuth/token';
 import { UserStoreService } from '../../services/user-store.service';
+import { passwordValidator, usernameValidator } from '../../validators/validation';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true, 
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -33,8 +35,8 @@ export class LoginComponent implements OnInit {
 
   createUserLoginForm() {
     this.userLoginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ['', [Validators.required, usernameValidator]],
+      password: ['', [Validators.required, passwordValidator,Validators.minLength(6)]],
     });
   }
   login() {
