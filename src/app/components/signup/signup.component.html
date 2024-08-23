@@ -1,9 +1,8 @@
-<form [formGroup]="userRegisterForm">
-    
+<form [formGroup]="userRegisterForm" (ngSubmit)="onSubmit()">    
   <div class="container">
-      <img width="180" height="25" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Vak%C4%B1fbank_logo.svg/2560px-Vak%C4%B1fbank_logo.svg.png" alt="Vakıfbank Logo">
+      <img width="180" height="25" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Vak%C4%B1fbank_logo.svg/2560px-Vak%C4%B1fbank_logo.svg.png" alt="Vakıfbank Logo" >
   </div>
-  <div class="form-group" style="margin-bottom: 20px;">
+  <div class="form-group" style="margin-bottom: 35px;">
     <select id="name" class="form-control form-control-lg custom-select" formControlName="teamid" style="display: block; width: 100%; font-size: 1rem;  color: #333; background-color: #ededed; ">
       <option value="" disabled selected>Takım Id</option> 
       <option value="Performans Değerlendirme">xashas</option>
@@ -14,34 +13,80 @@
       <option value="Yapay Zeka">parxat</option>
     </select>
     <small *ngIf="userRegisterForm.controls['teamid'].dirty && userRegisterForm.hasError('required', 'teamid')" class="text-danger">
-      Takım Id required
+      Takım Id boş geçilemez.
     </small>
   </div>
-  <div class="form-group" style="margin-bottom: 20px;">
-    <input type="email" id="name" class="form-control form-control-lg" placeholder="İsim" formControlName="name"  />
-    <small *ngIf="userRegisterForm.controls['name'].dirty && userRegisterForm.hasError('required','name')" class="text-danger">Name is required</small>
+  
+
+
+  <div class="form-group" style="margin-bottom: 35px;">
+    <input type="text" id="name" class="form-control form-control-lg" placeholder="İsim" formControlName="name"  />
+
+
+      <small *ngIf="userRegisterForm.controls['name'].touched && userRegisterForm.hasError('required','name')" class="text-danger"> Ad boş geçilemez.</small>
+
+
+      <small *ngIf="userRegisterForm.get('name')?.hasError('minlength')" class="text-danger" >
+        İsim 3 karakterden az olamaz.
+      </small>
 </div>
-  <div class="form-group" style="margin-bottom: 20px;">
+
+
+
+  <div class="form-group" style="margin-bottom: 35px;">
       <input type="email" id="username" class="form-control form-control-lg" placeholder="E-mail" formControlName="email" autocomplete="off" />
-      <small *ngIf="userRegisterForm.controls['email'].dirty && userRegisterForm.hasError('required','email')" class="text-danger">Email is required</small>
+      <small *ngIf="userRegisterForm.controls['email'].dirty && userRegisterForm.hasError('required','email')" class="text-danger">Email boş geçilemez.</small>
+
+      <small *ngIf="userRegisterForm.get('email')?.hasError('mailWrong') " class="text-danger" style="line-height: 1.0 ; margin-left: 5px; margin-top: 5px;"> Geçerli bir mail adresi giriniz. </small>
+
   </div>
-  <div class="form-group" style="margin-bottom: 20px;">
+
+
+  <div class="form-group" style="margin-bottom: 35px;">
       <input type="email" id="username" class="form-control form-control-lg" placeholder="Kullanıcı Adı" formControlName="username" />
-      <small *ngIf="userRegisterForm.controls['username'].dirty && userRegisterForm.hasError('required','username')" class="text-danger">Username is required</small>
+
+      <small *ngIf="userRegisterForm.controls['username'].dirty && userRegisterForm.hasError('required','username')" class="text-danger"> Kullanıcı adı boş geçilemez.</small>
+
+
+      <small *ngIf="userRegisterForm.get('username')?.hasError('turkishCharacter') " class="text-danger" style="line-height: 1.0 ; margin-left: 5px; margin-top: 5px;">
+        Kullanıcı adı türkçe karakter içeremez.
+      </small>
+
   </div> 
-  <div class="form-group" style="margin-bottom: 20px;">
+
+
+  <div class="form-group" style="margin-bottom: 35px;">
       <input type="password" id="password" class="form-control form-control-lg" placeholder="Şifre" formControlName="password" autocomplete="off"/>
-      <small *ngIf="userRegisterForm.controls['password'].dirty && userRegisterForm.hasError('required','password')" class="text-danger">Password is required</small>
+      <small *ngIf="userRegisterForm.controls['password'].dirty && userRegisterForm.hasError('required','password')" class="text-danger">Şifre boş geçilemez.</small>
+
+
+      <small *ngIf="userRegisterForm.get('password')?.hasError('minlength') || userRegisterForm.get('password')?.hasError('both') " class="text-danger" style="line-height: 1.0 ; margin-left: 5px; margin-top: 5px;"> 
+        Şifreniz en az 6 karakter olmalı, büyük harfle başlamalı,özel karakter ve rakam içermelidir.
+      </small>
   </div>
-  <div class="form-group" style="margin-bottom: 20px;">
-      <input type="text" id="Phone" class="form-control form-control-lg" placeholder="Telefon" formControlName="phone"  />
-      <small *ngIf="userRegisterForm.controls['phone'].dirty && userRegisterForm.hasError('required','phone')" class="text-danger">Phone is required</small>
+
+
+
+  <div class="form-group" style="margin-bottom: 35px;">
+      <input type="text" id="Phone" class="form-control form-control-lg" placeholder="Telefon (0 ile başlayınız)" formControlName="phone"  />
+      <small *ngIf="userRegisterForm.controls['phone'].dirty && userRegisterForm.hasError('required','phone')" class="text-danger">Telefon numarası boş geçilemez.</small>
+
+      
+      <small *ngIf="userRegisterForm.get('phone')?.hasError('invalidPhoneNumber') " class="text-danger">
+        Geçerli bir telefon numarası giriniz.
+      </small>
   </div>
-  <div class="form-group" style="margin-bottom: 20px;">
-      <input type="date"  id="birthDate" formControlName="birthDate" class="form-control">
-      <small *ngIf="userRegisterForm.controls['birthDate'].dirty && userRegisterForm.hasError('required','birthDate')" class="text-danger">Date is required</small>
+
+
+
+  <div class="form-group" style="margin-bottom: 35px;">
+      <input type="date"  id="birthDate" formControlName="birthDate" class="form-control"  [attr.max]="maxDate" (keydown)="preventKeyboardInput($event)">
+
+      <small *ngIf="userRegisterForm.controls['birthDate'].dirty && userRegisterForm.hasError('required','birthDate')" class="text-danger">Doğum tarihi boş geçilemez.</small>
   </div>
+
+
   <div class="form-group button-container">
-      <button type="button" class="btn btn-primary" (click)="navigateToAddressPage()">Devam Et</button>
+      <button type="button" class="btn btn-primary" (click)="navigateToAddressPage()" [disabled]="userRegisterForm.invalid">Devam Et</button>
   </div>
 </form>
