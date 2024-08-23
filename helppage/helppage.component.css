@@ -1,0 +1,246 @@
+app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    
+  }
+  /* Genel stil ayarları */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+  }
+  
+  /* Tüm ekranlar için genel stil */
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  .py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-gray-900 {
+    color: #1a202c;
+  }
+  
+  .text-gray-700 {
+    color: #4a5568;
+  }
+  
+  .text-gray-400 {
+    color: #333;
+  }
+  
+  .text-4xl {
+    font-size: 2.25rem;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .text-lg {
+    font-size: 1.125rem;
+  }
+  
+  .capitalize {
+    text-transform: capitalize;
+  }
+  
+  .mb-14 {
+    margin-bottom: 3.5rem;
+  }
+  
+  /* Flex ve grid ayarları */
+  .lg\:grid {
+    display: grid;
+  }
+  
+  .place-content-center {
+    place-content: center;
+    margin-left: 16%;
+  }
+  
+  .lg\:flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .lg\:gap-10 {
+    gap: 2.5rem;
+  }
+  
+  /* Kart tasarımı */
+  .bg-white {
+    background-color: #ffffff;
+  }
+  
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  
+  .py-12 {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+  
+  .px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .max-w-xs {
+    max-width: 20rem;
+  }
+  
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .border-t-8 {
+    border-top-width: 8px;
+  }
+  
+  .border-blue-400 {
+    border-color: #63b3ed;
+  }
+  
+  .border-green-400 {
+    border-color: #68d391;
+  }
+  
+  .border-indigo-400 {
+    border-color: #7f9cf5;
+  }
+  
+  /* Button stilleri */
+  button {
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .border {
+    border-width: 1px;
+  }
+  
+  .text-blue-400 {
+    color: #fff;
+  }
+  
+  .text-green-400 {
+    color: #68d391;
+  }
+  
+  .text-indigo-400 {
+    color: #fff;
+  }
+  
+  .text-white {
+    color: #ffffff;
+  }
+  
+  .bg-green-400 {
+    background-color: #68d391;
+  }
+  
+  .pt-1 {
+    padding-top: 0.25rem;
+  }
+  
+  .pb-1\.5 {
+    padding-bottom: 0.375rem;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .shadow-sm {
+     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .rounded-full {
+    border-radius: 9999px;
+  }
+  
+  .inline {
+    display: inline-block;
+  }
+  
+  .mt-16 {
+    margin-top: 4rem;
+  }
+  
+  .mt-24 {
+    margin-top: 6rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .mt-3\.5 {
+    margin-top: 0.875rem;
+  }
+  
+  .tracking-wider {
+    letter-spacing: 0.05em;
+    background-color: #333;
+  }
+  
+  .uppercase {
+    text-transform: uppercase;
+  }
+  
+  /* Responsive ayarlar */
+  @media (max-width: 1024px) {
+    .lg\:py-0 {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  
+    .lg\:flex {
+      display: block;
+    }
+  
+    .lg\:mx-0 {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  
+    .lg\:my-0 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  
+    .my-5 {
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+  }
+  
