@@ -1,0 +1,70 @@
+
+<app-sidebar></app-sidebar>
+
+<ng-container *ngIf="usertasks != null && usertasks.length > 0">
+<div class="table-responsive">
+    <div class="corner-text">
+        <p>Görevler</p>
+    </div>
+    <div class="datatable-container">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        <div class="header-content">
+                            <span>Görev</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="header-content">
+                            <span>Durum</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="header-content">
+                            <span></span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="header-content">
+                            <span></span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of usertasks">
+                    <td>
+                        <i class="fas fa-tasks"></i> 
+                    </td>
+                    <td>{{ user.taskname }}</td>
+                    <td>
+                        {{ user.status === 'T' ? 'Devam Ediyor' : user.status === 'F' ? 'Tamamlandı' : '' }}
+                    </td>
+                    <td>
+                        <ng-container *ngIf="user.status === 'T'; else done">
+                            <mat-icon (click)="taskfinish(user)">check</mat-icon>
+                        </ng-container>
+                        <ng-template #done>
+                            <ng-container *ngIf="user.status === 'F'"></ng-container>
+                        </ng-template>
+                    </td>
+                    <td></td>
+                    <td>
+                        <mat-icon (click)="viewTaskDetail(user)"> info </mat-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</ng-container>
+<ng-container *ngIf="usertasks != null && usertasks.length == 0">
+    <div class="table-responsive">
+        <div class="corner-textt">
+            <p>Herhangi bir Görev bulunamadı</p>
+        </div>
+        
+    </div>
+</ng-container>
