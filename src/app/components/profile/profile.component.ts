@@ -11,6 +11,7 @@ import { UserDetail } from '../../model/UserAuth/userDetail';
 import { UserService } from '../../services/user.service';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-profile',
   standalone: true,
