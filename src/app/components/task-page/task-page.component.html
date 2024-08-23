@@ -1,0 +1,101 @@
+<div class="container">
+  <nav>
+    <div class="dogukan">
+      <img width="160" height="25" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Vakıfbank_logo.svg/2560px-Vakıfbank_logo.svg.png" alt="Vakıfbank Logo">
+    </div>
+    <ul>
+      <li><a href="#" class="logo">
+        <span class="nav-item">DashBoard</span>
+      </a></li>
+      <li><a href="#">
+        <i class="fas fa-home"></i>
+        <span class="nav-item">Anasayfa</span>
+      </a></li> 
+      <li><a href="#">
+        <i class="fas fa-tasks"></i>
+        <span class="nav-item">Değerlendirme</span>
+      </a></li>
+      <li><a href="#">
+        <i class="fas fa-chart-bar"></i>
+        <span class="nav-item">Analizler</span>
+      </a></li>
+      <li><a href="#">
+        <i class="fas fa-pen-to-square"></i>
+        <span class="nav-item">Hedefler</span>
+      </a></li>
+      <li><a href="#">
+        <i class="fas fa-user"></i>
+        <span class="nav-item">Profil</span>
+      </a></li>
+      <li><a href="#">
+        <i class="fas fa-cog"></i>
+        <span class="nav-item">Ayarlar</span>
+      </a></li>
+      <li><a href="#">
+        <i class="fas fa-question-circle"></i>
+        <span class="nav-item">Yardım</span>
+      </a></li>
+      <li>
+        <button class="logout" style="background: none; border: none; cursor: pointer;">
+            <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </li>
+    </ul>
+  </nav>
+  
+  <div class="profile-section">
+    <div class="profile-info-container">
+      <img src="https://previews.123rf.com/images/kritchanut/kritchanut1406/kritchanut140600106/29213216-kad%C4%B1n-avatar-siluet-profil-resimleri.jpg" alt="Profil Resmi" width="100" height="100" style="border-radius: 50%;">
+      <div class="profile-info">
+        <h2>Hikmet Sıla Ulukan</h2>
+        <p>Bilgisayar Mühendisi</p>
+      </div>
+    </div>
+    <div class="goal-progress">
+      <div class="progress-circle" id="progress-circle"></div>
+      <p>Hedef Tamamlama: <span id="progress-percentage">0%</span></p>
+    </div>
+    <ul id="menu">
+      <li (click)="showContent('donem1')">1. Dönem</li>
+      <li (click)="showContent('donem2')">2. Dönem</li>      
+    </ul>
+  </div>
+
+  <div id="düzen">
+    <div id="donem1" class="content active">
+      <h2>1. Dönem Hedefleri</h2>
+      <div class="gorev-card">
+        <div>
+          <h3>Hedef 1</h3>
+          <p>Açıklama: Bu hedefin kısa açıklaması.</p>
+        </div>
+        <button class="tamamla-btn" (click)="gorevTamamla($event)">Tamamla</button>
+      </div>
+      <div class="gorev-card">
+        <div>
+          <h3>Hedef 2</h3>
+          <p>Açıklama: Bu hedefin kısa açıklaması.</p>
+        </div>
+        <button class="tamamla-btn" (click)="gorevTamamla($event)">Tamamla</button>
+      </div>
+    </div>
+    
+    <div id="donem2" class="content">
+      <h2>2. Dönem Hedefleri</h2>
+      <div class="gorev-card">
+        <div>
+          <h3>Hedef 3</h3>
+          <p>Açıklama: Bu hedefin kısa açıklaması.</p>
+        </div>
+        <button class="tamamla-btn" (click)="gorevTamamla($event)">Tamamla</button>
+      </div>
+      <div class="gorev-card">
+        <div>
+          <h3>Hedef 4</h3>
+          <p>Açıklama: Bu hedefin kısa açıklaması.</p>
+        </div>
+        <button class="tamamla-btn" (click)="gorevTamamla($event)">Tamamla</button>
+      </div>
+    </div>
+  </div>
+</div>
