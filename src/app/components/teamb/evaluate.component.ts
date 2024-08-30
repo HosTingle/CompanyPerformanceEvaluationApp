@@ -7,7 +7,6 @@ import { UserDetail } from '../../model/UserAuth/userDetail';
 import { AuthServiceService } from '../../services/auth.service.service';
 import { UserStoreService } from '../../services/user-store.service';
 import { MatDialog } from '@angular/material/dialog';
-
 import { PositionService } from '../../services/position.service';
 import { Position } from '../../model/position';
 import { OrganizationChartModule } from 'primeng/organizationchart';

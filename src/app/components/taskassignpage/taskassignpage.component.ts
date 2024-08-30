@@ -10,11 +10,12 @@ import { Tasks } from '../../model/tasks';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-taskassignpage',
   standalone: true,
-  imports: [SidebarComponent,CommonModule,ReactiveFormsModule,],
+  imports: [SidebarComponent,CommonModule,ReactiveFormsModule,MatIconModule],
   templateUrl: './taskassignpage.component.html',
   styleUrl: './taskassignpage.component.css'
 })
@@ -24,6 +25,7 @@ export class TaskassignpageComponent {
   currentScreen: number = 1; // Başlangıçta ilk ekranı göster
   taskForm!: FormGroup;
   score!:number;
+  public usertasks:Tasks[] = [];
   predefinedTasks: { title: string, description: string[] }[] = [
     { title: 'Giriş Özelliği', description: [
       'Güvenli bir kullanıcı giriş sistemi tasarlama ve uygulama, kullanıcı verilerini koruma.',
@@ -66,17 +68,25 @@ export class TaskassignpageComponent {
       'Kullanıcıların çevrimiçi ödemeleri güvenli bir şekilde gerçekleştirmelerini sağlama ve işlem güvenliğini sağlama.'
     ] }
   ];
-  
-  
+  userNames: string[] = [];
+  id!:number;
+  countF!:number;
+  countT!:number;
+  toplams!:number;
+  public copyusers:any=[];
+  public users:any=[];
   availableDescriptions: string[] = [];
   constructor(
     private positionser:PositionService,
     private router:Router,
     private formBuilder: FormBuilder,
-    private toastrService:ToastrService
+    private toastrService:ToastrService,
+    private userstor:UserStoreService,
+    private authservice:AuthServiceService,
   ) {}
   ngOnInit() {
     this.initializeForm()
+    this.getuser()
     const savedTask = localStorage.getItem('userka');
   if (savedTask) {
     this.user = JSON.parse(savedTask);
@@ -84,12 +94,55 @@ export class TaskassignpageComponent {
     this.getusertask();
   }
   }
+  getuser(){
+    this.userstor.getUserIdStore()
+    .subscribe(val=>{
+      const USERNAMEFromToken=this.authservice.getUserIdFromToken()
+      this.id=val || USERNAMEFromToken
+    });
+    this.positionser.currentUser.subscribe(user => {
+      if (user) {
+        this.user = user;
+        this.id=this.user.userid
+        localStorage.setItem('userka', JSON.stringify(user));
+      }
+    });
+   
+      this.positionser.getByIdTasks(this.id).
+      subscribe({
+    
+        next:(res)=>{
+        this.usertasks=res.data;
+          this.toplams=this.usertasks.length;
+         this.countF = this.usertasks.filter(task => task.status === 'F').length;
+          this.countT = this.usertasks.filter(task => task.status === 'T').length;
+        },
+        error:(err)=>{
+       
+        }
+      })
+
+
+    };
   getusertask(){
     this.positionser.currentUser.subscribe(user => {
       if (user) {
         this.user = user;
         localStorage.setItem('userka', JSON.stringify(user));
       }
+    });
+  }
+  taskfinish(usertask:Tasks){
+    usertask.status="F";
+    this.countF = this.usertasks.filter(task => task.status === 'F').length;
+    this.countT = this.usertasks.filter(task => task.status === 'T').length;
+    this.positionser.updateusertask(usertask).subscribe(async (response:any)=>{
+      if (response.data !=null) {
+        this.users=await response.data;
+        this.userNames = this.users.map((user: UserDetail)  => user.name);
+        this.copyusers=this.users;
+
+      } 
     });
   }
   onTaskTitleChange(event: any): void {
@@ -150,6 +203,11 @@ export class TaskassignpageComponent {
   }
   showScreen(screenNumber: number): void {
     this.currentScreen = screenNumber;
+  }
+  viewTaskDetail(usertask: Tasks) {
+    this.positionser.changeTask(usertask);
+    this.router.navigate([`taskspage/${usertask.taskid}`]);
+
   }
 
 }

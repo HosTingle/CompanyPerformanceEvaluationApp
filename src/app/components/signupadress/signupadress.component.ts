@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { Register } from '../../model/UserAuth/register';
-
 @Component({
   selector: 'app-signupadress',
   standalone: true,
@@ -42,7 +41,6 @@ export class SignupadressComponent implements OnInit{
     private formBuilder: FormBuilder,
     private router:Router,
     private toastrService: ToastrService,
- 
   ) {}
   
   ngOnInit(): void {
@@ -84,8 +82,7 @@ export class SignupadressComponent implements OnInit{
         positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
       });
     }
-    else{
-   
+    else{ 
       this.authService.register(this.reg).subscribe((response:any)=>{
         if (response.success) {
           this.toastrService.success(response.message, 'Başarili', {  
@@ -97,11 +94,7 @@ export class SignupadressComponent implements OnInit{
             positionClass: 'toast-bottom-center' // Burada konumu belirleyebilirsiniz
           });
         }
-  
-      });
+       });
     }
-    
-
-   
 }
 }

@@ -2,13 +2,11 @@
 
 <app-sidebar></app-sidebar>
 <div class="button-containerr">
-  <!-- İki düğme; biri ilk ekranı, diğeri ikinci ekranı gösterir -->
   <button class="btn btn-secondary" (click)="showScreen(1)">Görev Ekle</button>
   <button class="btn btn-secondary" (click)="showScreen(2)">Görev Seç</button>
 </div>
 
 <div class="container-column">
-  <!-- Ekran 1: Form ekranı -->
   <div *ngIf="currentScreen === 1">
     <div class="input-group">
       <td>
@@ -36,7 +34,6 @@
     </form>
   </div>
 
-  <!-- Ekran 2: Alternatif bir içerik (başka bir ekran) -->
   <div *ngIf="currentScreen === 2">
     <div class="input-group">
         <td>
@@ -46,13 +43,11 @@
       </div>
       
       <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-        <!-- Bitiş Tarihi İçin Input -->
         <div class="input-group">
           <label for="taskEndDate">Bitiş Tarihi</label>
           <input id="taskEndDate" type="date" class="form-control" formControlName="taskEndDate" />
         </div>
       
-        <!-- Görev Başlığı İçin Dropdown -->
         <div class="input-group">
           <label for="taskTitle">Görev Başlığı</label>
           <select id="taskTitle" class="form-control" formControlName="taskTitle" (change)="onTaskTitleChange($event)">
@@ -60,7 +55,6 @@
           </select>
         </div>
       
-        <!-- Görev Açıklaması İçin Dropdown -->
         <div class="input-group">
           <label for="taskDescription">Görev Açıklaması</label>
           <select id="taskDescription" class="form-control" formControlName="taskDescription">
@@ -74,5 +68,73 @@
       </form>
       
   </div>
+
+  <ng-container *ngIf="usertasks != null && usertasks.length > 0">
+    <div class="table-responsive">
+      <div class="corner-textt">
+        <h6>Görevler</h6>
+    </div>
+      <div class="datatable-container-expanded"> <!-- genişletilmiş tablo için CSS sınıfı -->
+        <table class="expanded-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        <div class="header-content">
+                            <span>Görev</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="header-content">
+                            <span>Durum</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="header-content">
+                            <span></span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="header-content">
+                            <span></span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of usertasks">
+                    <td>
+                        <i class="fas fa-tasks"></i> 
+                    </td>
+                    <td>{{ user.taskname }}</td>
+                    <td>
+                        {{ user.status === 'T' ? 'Devam Ediyor' : user.status === 'F' ? 'Tamamlandı' : '' }}
+                    </td>
+                    <td>
+                        <ng-container *ngIf="user.status === 'T'; else done">
+                            <mat-icon (click)="taskfinish(user)">check</mat-icon>
+                        </ng-container>
+                        <ng-template #done>
+                            <ng-container *ngIf="user.status === 'F'"></ng-container>
+                        </ng-template>
+                    </td>
+                    <td></td>
+                    <td>
+                        <mat-icon (click)="viewTaskDetail(user)"> info </mat-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="usertasks != null && usertasks.length == 0">
+    <div class="table-responsive">
+        <div class="corner-textt">
+            <p>Herhangi bir Görev bulunamadı</p>
+        </div>
+    </div>
+  </ng-container>
 </div>
 

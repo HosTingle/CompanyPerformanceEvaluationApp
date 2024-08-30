@@ -61,7 +61,6 @@ export class AdminmanagmentComponent {
     this.getalluser();
     this.getpositions();
     this.getcitys();
-
   }
   workstore(){
     this.userstor.getUserIdStore()
@@ -86,12 +85,10 @@ export class AdminmanagmentComponent {
   });
   }
   clearSelections() {
-
     this.selectedRole = '';
     this.selectedCity = '';
     this.selectedPerson = '';
     this.onCitySelected();
-
   }
   getpositions(){
     this.positionser.getPositions().subscribe(
@@ -104,7 +101,6 @@ export class AdminmanagmentComponent {
   toggleDropdown(userId: number) {
     this.visibletextState[userId] = !this.visibletextState[userId];
   }
-  
   managment(){
     this.visibletext= !this.visibletext;
   }
@@ -113,16 +109,12 @@ export class AdminmanagmentComponent {
       (response:any)=>{
        if (response.success) { 
         this.toastrService.success('User Bilgileri Güncellendi', 'Başarılı', {
-
         }); 
        }
        else{
         this.toastrService.error('User Bilgileri Güncellenemedi', 'Başarısız', { 
- 
         }); 
-
        } 
-
      });
      this.visibletextState[user.userid] = !this.visibletextState[user.userid];
   }
@@ -145,16 +137,13 @@ export class AdminmanagmentComponent {
        } 
        else{
         this.toastrService.error('Daha Sonra Tekrar Deneyiniz', 'Başarısız', { 
- 
         }); 
-
        }
      });
   }
   getUsers(){
     this.users=this.copyusers;
     if(this.selectedRole!='' || this.selectedCity!='' || this.selectedPerson!=''){
-   
         this.users = this.users.filter((user: UserDetail) => {
           return (
             (!this.selectedCity || user.teamname === this.selectedCity) &&
@@ -168,13 +157,10 @@ export class AdminmanagmentComponent {
     }
     this.visible=true;
   }
-
-
   getalluser(){
     this.authservice.getalluser(this.id).subscribe(async (response:any)=>{
       if (response.data !=null) {
         this.users=await response.data;
- 
         if(this.role=="Yonetici"){
           this.filterusers= this.users.filter((user: UserDetail) => {
             return (
@@ -191,10 +177,7 @@ export class AdminmanagmentComponent {
         this.copyusers=this.users;
       } 
     });
- 
-
   }
-  
   get filteredUsers(): UserDetail[] {
     return this.users
       .filter((user: UserDetail) =>

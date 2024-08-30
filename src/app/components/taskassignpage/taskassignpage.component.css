@@ -76,3 +76,25 @@ app-sidebar {
 .btn btn-secondary{
     background-color: black;
 }
+.datatable-container-expanded {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .expanded-table {
+    width: 100%;
+    table-layout: fixed; /* Tablo genişliği tüm sütunlar arasında eşit olarak paylaştırılır */
+  }
+  
+  .expanded-table th,
+  .expanded-table td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .expanded-table th .header-content,
+  .expanded-table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
