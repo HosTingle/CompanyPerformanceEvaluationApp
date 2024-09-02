@@ -29,7 +29,8 @@ namespace PMS.Core.Utilities.Security
                 claims.Add(new Claim("USERAUTHID", model.USERAUTHID.ToString()));
                 claims.Add(new Claim("USERID", model.USERID.ToString()));
                 claims.Add(new Claim("POSITIONNAME", model.POSITIONNAME.ToString()));
-                claims.Add(new Claim("POSITIONLEVEL", model.POSITIONLEVEL.ToString()));  
+                claims.Add(new Claim("POSITIONLEVEL", model.POSITIONLEVEL.ToString()));
+                claims.Add(new Claim("TEAMNAME", model.TEAMNAME.ToString()));
             }
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.key));
             var signinCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -58,6 +59,7 @@ namespace PMS.Core.Utilities.Security
                 claims.Add(new Claim("USERID", model.USERID.ToString()));
                 claims.Add(new Claim("POSITIONNAME", model.POSITIONNAME.ToString()));
                 claims.Add(new Claim("POSITIONLEVEL", model.POSITIONLEVEL.ToString()));
+                claims.Add(new Claim("TEAMNAME", model.TEAMNAME.ToString()));
             }
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.key));
             var signinCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

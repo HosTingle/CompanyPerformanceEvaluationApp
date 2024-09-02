@@ -21,14 +21,14 @@ namespace PMS.Business.Concrete
     public class UserAuthManager : IUserAuthService
     {
         IUserAuthDal _userAuthDal; 
-        IUserPerformanceService _userPerformanceService; 
+        IUserPerformanceDal _userPerformanceDal;  
         IUserPositionDal _userPositionDal;
         IPositionService _positionService; 
         IAddressService _addressService; 
-        public UserAuthManager(IUserAuthDal userAuthDal, IUserPerformanceService userPerformanceService,IPositionService positionService, IUserPositionDal userPositionDal, IAddressService addressService)  
+        public UserAuthManager(IUserAuthDal userAuthDal, IUserPerformanceDal userPerformanceDal,IPositionService positionService, IUserPositionDal userPositionDal, IAddressService addressService)  
         {
             _userAuthDal = userAuthDal;
-            _userPerformanceService = userPerformanceService;
+            _userPerformanceDal = userPerformanceDal;
             _positionService = positionService;
             _userPositionDal = userPositionDal; 
             _addressService = addressService;
@@ -55,12 +55,17 @@ namespace PMS.Business.Concrete
         {
             return new SuccessDataResult<UserAuth>(await _userAuthDal.Get(x=>x.USERAUTHID == id));
         }
+        public async Task<IDataResult<UserAuth>> GetByUserId(int id)
+        {
+            return new SuccessDataResult<UserAuth>(await _userAuthDal.Get(x => x.USERID == id)); 
+        }
 
         public IResult Update(UserAuth userAuth)
         {
             _userAuthDal.Update(userAuth);
             return new SuccessResult("Güncellendi");
         }
+
         public async Task<IDataResult<TokenResponseViewModel>> CreateAccessToken(UserPositionDetailDto userPositionDetailDto,int a)
         {
             var sa = new Authandpositionmix
@@ -71,6 +76,8 @@ namespace PMS.Business.Concrete
                 USERID= userPositionDetailDto.USERID,
                 USERPOSITIONID = userPositionDetailDto.USERPOSITIONID,
                 USERAUTHID= userPositionDetailDto.USERAUTHID,
+                TEAMNAME=userPositionDetailDto.TEAMNAME,
+                
             };
            var accessToken = JwtTokenGenerator.GenerateToken(sa,a);
             return new SuccessDataResult<TokenResponseViewModel>(accessToken, "Token Üretildi");
@@ -78,30 +85,46 @@ namespace PMS.Business.Concrete
         public IResult Register(UserRegisterDto userRegisterDto) 
         {
             byte[] passwordHash, passwordSalt;
+            // Belirli bir aralık tanımla
+            int minValue = 80;
+            int maxValue = 100000;
+            Random random = new Random();
+            int randomNumberr = random.Next(minValue, maxValue);
             var user = new UserInfo
             {
-                NAME= userRegisterDto.Name,
-                BIRTHDATE=userRegisterDto.BirthDate,
-                PHONE=userRegisterDto.Phone,
+                NAME = userRegisterDto.Name,
+                BIRTHDATE = userRegisterDto.BirthDate,
+                PHONE = userRegisterDto.Phone,
+                IMAGEURL = "https://st4.depositphotos.com/15648834/23779/v/950/depositphotos_237795810-stock-illustration-unknown-person-silhouette-profile-picture.jpg",
+                TEAMNAME=userRegisterDto.teamid,
+                STATUS="T",
+                USERID= randomNumberr
             };
 
-            _userPerformanceService.Add(user);
-            var sa= _userPerformanceService.GetByEmail(userRegisterDto.Phone);
+            _userPerformanceDal.Add(user);
+            var sa= _userPerformanceDal.Get(x=>x.PHONE== userRegisterDto.Phone).Result;
             HashingHelper.CreatePasswordHash(userRegisterDto.Password, out passwordHash, out passwordSalt);
+         
+
+         
+
+            // Rastgele bir sayı üret (minValue dahil, maxValue hariç)
+            int randomNumber = random.Next(minValue, maxValue);
             var usera = new UserAuth
             {
-                USERID= sa.Result.Data.USERID,
+                USERID= sa.USERID,
                 PASSWORDHASH=passwordHash,
                 PASSWORDSALT=passwordSalt,
                 EMAIL=userRegisterDto.Email,    
                 USERNAME=userRegisterDto.Username,
-              
+                USERAUTHID= randomNumber
+
             };
             var result=Add(usera);
             var position = new UserPosition
             {
-                POSITIONID=_positionService.GetByName("user").Result.Data.POSITIONID,
-                USERID= sa.Result.Data.USERID,
+                POSITIONID=_positionService.GetByName("Kullanıcı").Result.Data.POSITIONID,
+                USERID= sa.USERID,
             };
             _userPositionDal.Add(position); 
             if (result.Success)
@@ -112,7 +135,7 @@ namespace PMS.Business.Concrete
                     CITY=userRegisterDto.City, 
                     COUNTRY=userRegisterDto.Country,
                     STATE=userRegisterDto.State,
-                    USERID = sa.Result.Data.USERID,
+                    USERID = sa.USERID,
                 };
                 var res=_addressService.Add(adres);
                 if (res.Success)

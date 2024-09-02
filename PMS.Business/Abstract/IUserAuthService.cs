@@ -24,7 +24,7 @@ namespace PMS.Business.Abstract
         Task<IDataResult<UserAuth>> Login(UserLoginDto userForLoginDto);
         string GenerateRefreshToken(); 
         ClaimsPrincipal GetPrincipleFromExpiredToken(string token);
-
+        Task<IDataResult<UserAuth>> GetByUserId(int id);
 
     }
 }

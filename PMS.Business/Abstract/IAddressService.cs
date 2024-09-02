@@ -16,5 +16,7 @@ namespace PMS.Business.Abstract
         IResult Update(Address address);
         Task<IDataResult<Address>> GetById(int id);
         Task<IDataResult<List<Address>>> GetAll();
+        Task<IDataResult<List<string>>> GetAllAddress();  
+
     }
 }

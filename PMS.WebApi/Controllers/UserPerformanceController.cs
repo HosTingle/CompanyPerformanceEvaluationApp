@@ -72,9 +72,9 @@ namespace PMS.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpGet("geallperformancedetail")]
-        public async Task<IActionResult> GetAllPerformanceDetail() 
+        public async Task<IActionResult> GetAllPerformanceDetail(int id) 
         {
-            var result = await _userPerformanceService.GetAllPerformanceDetail();
+            var result = await _userPerformanceService.GetAllPerformanceDetail(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -86,6 +86,27 @@ namespace PMS.WebApi.Controllers
         { 
 
             var result = _userPerformanceService.UpdateUserInfo(userUpdateDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("DeleteUserInfo")]
+        public IActionResult DeleteUserInfo(UserUpdateDto userUpdateDto)
+        {
+
+            var result = _userPerformanceService.DeleteAllUserPerformance(userUpdateDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getallTeamList")]
+        public async Task<IActionResult> GetCityList()
+        {
+            var result = await _userPerformanceService.GetAllAddress();
             if (result.Success)
             {
                 return Ok(result);

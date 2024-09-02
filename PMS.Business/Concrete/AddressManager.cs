@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PMS.Business.Concrete
 {
-    public class AddressManager:IAddressService
+    public class AddressManager : IAddressService
     {
         IAddressDal _addressDal;
 
@@ -46,6 +46,12 @@ namespace PMS.Business.Concrete
         {
             _addressDal.Update(address); 
             return new SuccessResult("Güncellendi");
+        }
+
+        public async Task<IDataResult<List<string>>> GetAllAddress()
+        {
+            var result = await _addressDal.GetCityList();
+            return new SuccessDataResult<List<string>>(result,"Veriler getirildi");
         }
     }
 }

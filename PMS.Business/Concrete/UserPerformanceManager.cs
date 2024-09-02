@@ -17,11 +17,17 @@ namespace PMS.Business.Concrete
         IUserPerformanceDal _userPerformanceDal;
         IAddressService _addressService;
         IAddressDal _addressDal; 
-        public UserPerformanceManager(IUserPerformanceDal userPerformanceDal,IAddressService addressService,IAddressDal addressDal)
+        IPositionService _positionService;
+        IUserPositionService _userPositionService;
+        IUserAuthService _userAuthService; 
+        public UserPerformanceManager(IUserPerformanceDal userPerformanceDal,IAddressService addressService,IAddressDal addressDal,IPositionService positionService,IUserPositionService userPositionService,IUserAuthService userAuthService)
         {
             _userPerformanceDal = userPerformanceDal;
             _addressService = addressService;
             _addressDal=addressDal;
+            _positionService = positionService;
+            _userPositionService= userPositionService;
+            _userAuthService= userAuthService;
 
         }
 
@@ -29,6 +35,40 @@ namespace PMS.Business.Concrete
         {
             _userPerformanceDal.Add(userPerformance);
             return new SuccessResult("Eklendi");
+        }
+        public IResult DeleteAllUserPerformance(UserUpdateDto userUpdateDto)
+        {
+
+            var adres = _addressDal.Get(x => x.USERID == userUpdateDto.userid).Result;
+            var addressresult =_addressService.Delete(adres);
+            if (addressresult.Success)
+            {
+                var resauth=_userAuthService.GetByUserId(userUpdateDto.userid).Result.Data;
+                var resultauths=_userAuthService.Delete(resauth);
+                if (resultauths.Success)
+                {
+                    var posuser = _userPositionService.GetByUserId(userUpdateDto.userid).Result.Data;
+                    var posuserd=_userPositionService.Delete(posuser);
+                    if (posuserd.Success)
+                    {
+                        return new SuccessResult("Silindi"); 
+                    }
+                    else
+                    {
+                        return new ErrorResult("Güncelleme gerçekleşmedi Userposition eklenemedi");
+                    }
+                    
+                }
+                else
+                {
+                    return new ErrorResult("Güncelleme gerçekleşmedi Userposition eklenemedi");
+                }
+            }
+            else
+            {
+                return new ErrorResult("Güncelleme gerçekleşmedi Userposition eklenemedi");
+            }
+        
         }
         public IResult UpdateUserInfo(UserUpdateDto userUpdateDto)
         {
@@ -54,21 +94,42 @@ namespace PMS.Business.Concrete
                     NAME = userUpdateDto.Name,
                     PHONE = userUpdateDto.Phone,
                     USERID=userUpdateDto.userid,
+                    IMAGEURL = userUpdateDto.Imageurl,
+                    TEAMNAME=userUpdateDto.Teamname,
+                    STATUS=userUpdateDto.Status,
                 };
 
                 var res = Update(sa);
                 if (res is SuccessResult)
                 {
-                    return new SuccessResult("Güncelleme gerçekleşti");
+
+                    var reso = _positionService.GetByName(userUpdateDto.Role).Result.Data;
+                    var resos = _userPositionService.GetByUserId(userUpdateDto.userid).Result.Data; 
+                    var sas = new UserPosition
+                    {
+                      USERID= userUpdateDto.userid,
+                      POSITIONID= reso.POSITIONID,
+                      USERPOSITIONID= resos.USERPOSITIONID
+                    };
+                    var las=_userPositionService.Update(sas);
+                    if (res.Success)
+                    {
+                        return new SuccessResult("Güncelleme gerçekleşti");
+                    }
+                    else
+                    {
+                        return new ErrorResult("Güncelleme gerçekleşmedi Userposition eklenemedi");
+                    }
+                  
                 }
                 else
                 {
-                    return new ErrorResult("Güncelleme gerçekleşmediş-");
+                    return new ErrorResult("Güncelleme gerçekleşmediş User Bilgiler eklenemedi");
                 }
             }
             else
             {
-                return new ErrorResult("Güncelleme gerçekleşmedi");
+                return new ErrorResult("Güncelleme gerçekleşmedi Adress eklenemedi");
             }
         }
         public IResult Delete(UserInfo userPerformance)
@@ -81,9 +142,9 @@ namespace PMS.Business.Concrete
         {
             return new SuccessDataResult<List<UserInfo>>(await _userPerformanceDal.GetAll(),"Veriler Getirildi"); 
         }
-        public async Task<IDataResult<List<UserPerformanceDetailAllDto>>> GetAllPerformanceDetail() 
+        public async Task<IDataResult<List<UserPerformanceDetailAllDto>>> GetAllPerformanceDetail(int userid) 
         {
-            return new SuccessDataResult<List<UserPerformanceDetailAllDto>>( await _userPerformanceDal.GetUserPerformanceDetailsList(), "Veriler Getirildi");
+            return new SuccessDataResult<List<UserPerformanceDetailAllDto>>( await _userPerformanceDal.GetUserPerformanceDetailsList(userid), "Veriler Getirildi");
         }
         public async Task<IDataResult<UserInfo>> GetById(int id)
         {
@@ -106,6 +167,11 @@ namespace PMS.Business.Concrete
                 NAME=result.NAME,
                 PHONE=result.PHONE,
                 USERID=result.USERID,
+                IMAGEURL = result.IMAGEURL,
+                TEAMNAME=result.TEAMNAME,
+                STATUS=result.STATUS,
+                
+                
             };
 
             return new SuccessDataResult<GetByIdUserPerformanceDetailDto>(sa, "Userperformans detaylı bilgileri getirildi.");
@@ -116,6 +182,10 @@ namespace PMS.Business.Concrete
             _userPerformanceDal.Update(userPerformance);
             return new SuccessResult("Güncellendi");
         }
-       
+        public async Task<IDataResult<List<string>>> GetAllAddress()
+        {
+            var result = await _userPerformanceDal.GetCityList();
+            return new SuccessDataResult<List<string>>(result, "Veriler getirildi");
+        }
     }
 }

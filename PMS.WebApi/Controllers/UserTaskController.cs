@@ -22,7 +22,7 @@ namespace PMS.WebApi.Controllers
             var result = await _userTaskService.GetAll();
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -32,7 +32,7 @@ namespace PMS.WebApi.Controllers
             var result = await _userTaskService.GetById(id);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -42,7 +42,7 @@ namespace PMS.WebApi.Controllers
             var result = _userTaskService.Add(userTask);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -52,7 +52,17 @@ namespace PMS.WebApi.Controllers
             var result = _userTaskService.Update(userTask);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getallbyid")]
+        public async Task<IActionResult> GetAllById(int id) 
+        {
+            var result = await _userTaskService.GetAllById(id);
+            if (result.Success)
+            {
+                return Ok(result);
             }
             return BadRequest(result);
         }
@@ -62,7 +72,7 @@ namespace PMS.WebApi.Controllers
             var result = _userTaskService.Delete(userTask);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
             return BadRequest(result);
         }

@@ -11,5 +11,6 @@ namespace PMS.DataAccess.Abstract
 {
     public interface IAddressDal : IEntityRepository<Address>  
     {
+        Task<List<string>> GetCityList(); 
     }
 }

@@ -15,6 +15,6 @@ namespace PMS.Entity.Concrete
 
         public string POSITIONNAME {  get; set; }
 
-        public string POSITIONLEVEL {  get; set; }    
+        public int POSITIONLEVEL {  get; set; }    
     }
 }

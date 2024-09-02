@@ -2,6 +2,7 @@
 using PMS.Core.Utilities.Results;
 using PMS.DataAccess.Abstract;
 using PMS.Entity.Concrete;
+using PMS.Entity.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,11 +41,23 @@ namespace PMS.Business.Concrete
         {
             return new SuccessDataResult<Evaluate>(await _evaluateDal.Get(x=>x.EVALUATEID==id),"Veri Getirildi");
         }
-
+        public async Task<IDataResult<List<GetEvaluateDetailsDto>>> GetAllEvaluateeDetail(int id)  
+        {
+            return new SuccessDataResult<List<GetEvaluateDetailsDto>>(await _evaluateDal.GetEvaluateDetailsList(id), "Veri Getirildi"); 
+        }
+        public async Task<IDataResult<List<GetEvaluateDetailsDto>>> GetAllEvaluateeDetaill(int id)
+        {
+            return new SuccessDataResult<List<GetEvaluateDetailsDto>>(await _evaluateDal.GetEvaluateDetailsListt(id), "Veri Getirildi");
+        }
         public IResult Update(Evaluate evaluate)
         {
             _evaluateDal.Update(evaluate);
             return new SuccessResult("Güncellendi");
+        }
+        public IResult AddRange(List<Evaluate> evaluates)
+        {
+            _evaluateDal.AddRange(evaluates);
+            return new SuccessResult("Veriler topluca eklendi");
         }
     }
 }

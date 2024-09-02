@@ -67,6 +67,16 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getallCityList")]
+        public async Task<IActionResult> GetCityList() 
+        {
+            var result = await _addressService.GetAllAddress();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 
 }

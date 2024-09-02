@@ -15,9 +15,12 @@ namespace PMS.Core.Entities.Concrete
 
         public string NAME { get; set; }
 
-
         public DateTime BIRTHDATE { get; set; }
 
         public string PHONE { get; set; }
+        public string IMAGEURL { get; set; }
+
+        public string TEAMNAME {  get; set; }
+        public string STATUS { get; set; } 
     }
 }

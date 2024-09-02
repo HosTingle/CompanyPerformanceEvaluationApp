@@ -41,6 +41,10 @@ namespace PMS.Business.Concrete
         {
             return new SuccessDataResult<UserPosition>(await _userPositionDal.Get(x=>x.USERPOSITIONID == id)); 
         }
+        public async Task<IDataResult<UserPosition>> GetByUserId(int id) 
+        {
+            return new SuccessDataResult<UserPosition>(await _userPositionDal.Get(x => x.USERID == id));
+        }
 
         public IResult Update(UserPosition userPosition)
         {

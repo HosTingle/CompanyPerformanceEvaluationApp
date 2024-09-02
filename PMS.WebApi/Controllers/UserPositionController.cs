@@ -36,6 +36,16 @@ namespace PMS.WebApi.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getbyuserid")]
+        public async Task<IActionResult> GetByUserId(int id)
+        {
+            var result = await _userPositionService.GetByUserId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
         [HttpPost("add")]
         public IActionResult Add(UserPosition userPosition)
         {
