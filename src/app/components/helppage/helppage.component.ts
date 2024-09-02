@@ -25,7 +25,7 @@ export class HelppageComponent {
     window.location.href = 'https://www.ntv.com.tr/vakifbank';
   }
   redirectToExternalSitee() {
-    this.router.navigate(["userteam"]);
+    this.router.navigate(["helpp"]);
   }
   redirectToExternalSiteee() {
     this.router.navigate(["userteam"]);

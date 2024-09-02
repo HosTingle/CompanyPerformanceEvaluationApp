@@ -77,3 +77,4 @@ export function mailValidator(control: AbstractControl): ValidationErrors | null
   
     return Object.keys(errors).length > 0 ? errors : null;
   }
+  

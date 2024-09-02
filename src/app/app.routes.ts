@@ -20,6 +20,7 @@ import { AdminmanagmentComponent } from './components/adminmanagment/adminmanagm
 import { EvaluaterespdetailComponent } from './components/evaluaterespdetail/evaluaterespdetail.component';
 import { TaskassignpageComponent } from './components/taskassignpage/taskassignpage.component';
 import { EvaluateeComponent } from './components/teamb/evaluate.component';
+import { HelppComponent } from './components/helpp/helpp.component';
 
 export const routes: Routes = [ 
   { path: '', redirectTo: 'loginpage', pathMatch: 'full' }, 
@@ -29,6 +30,7 @@ export const routes: Routes = [
     {path:"forgotpage", component:ForgotpassComponent},
     {path:"reset-password",component:ResetComponent},
     { path: '404', component: NotfoundComponent }, 
+    { path: 'helpp', component: HelppComponent ,canActivate:[authGuard]}, 
     {path:'profilepage',component:ProfileComponent,canActivate:[authGuard]},
     {path:'evaluatepage',component:EvaluateComponent,canActivate:[authGuard]},
     {path:'signadresspage',component:SignupadressComponent},
